@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{797E22C6-2768-4FBF-80DF-9DB7DE96F535}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tron</RootNamespace>
+    <AssemblyName>Tron</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxMin">
+      <HintPath>..\packages\AjaxMin.4.48.4489.28432\lib\net20\AjaxMin.dll</HintPath>
+    </Reference>
+    <Reference Include="EcmaScript.NET">
+      <HintPath>..\packages\YUICompressor.NET.2.0.0.0\lib\NET20\EcmaScript.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\YUICompressor.NET.2.0.0.0\lib\NET20\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.1.0.0\lib\net40\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Hosting.AspNet">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Hosting.AspNet.1.0.0\lib\net45\Microsoft.AspNet.SignalR.Hosting.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Hosting.Common">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Hosting.Common.1.0.0\lib\net40\Microsoft.AspNet.SignalR.Hosting.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.10\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SquishIt.Framework">
+      <HintPath>..\packages\SquishIt.0.9.2-beta1\lib\SquishIt.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Yahoo.Yui.Compressor">
+      <HintPath>..\packages\YUICompressor.NET.2.0.0.0\lib\NET20\Yahoo.Yui.Compressor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Client\Main.ts" />
+    <TypeScriptCompile Include="Client\Game\Game.ts" />
+    <Content Include="Client\Game\Game.js">
+      <DependentUpon>Game.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Game\Game.min.js">
+      <DependentUpon>Game.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="Client\Interfaces\ThreeJS\Three.d.ts" />
+    <TypeScriptCompile Include="Client\Interfaces\ThreeJS\Object3D\Scene.d.ts" />
+    <TypeScriptCompile Include="Client\Interfaces\ThreeJS\Geometry\Geometry.d.ts" />
+    <TypeScriptCompile Include="Client\Interfaces\ThreeJS\Geometry\CubeGeometry.d.ts" />
+    <TypeScriptCompile Include="Client\Interfaces\ThreeJS\Core\Vector3.d.ts" />
+    <TypeScriptCompile Include="Client\Interfaces\ThreeJS\Core\Fog.d.ts" />
+    <TypeScriptCompile Include="Client\Interfaces\ThreeJS\Core\Color.d.ts" />
+    <TypeScriptCompile Include="Client\Interfaces\ThreeJS\Cameras\Camera.d.ts" />
+    <TypeScriptCompile Include="Client\Game\GameLoop.ts" />
+    <Content Include="Client\Game\GameLoop.js">
+      <DependentUpon>GameLoop.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Game\GameLoop.min.js">
+      <DependentUpon>GameLoop.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Interfaces\ThreeJS\Cameras\Camera.d.js">
+      <DependentUpon>Camera.d.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="Client\Interfaces\ThreeJS\Cameras\PerspectiveCamera.d.ts" />
+    <Content Include="Client\Interfaces\ThreeJS\Cameras\Camera.d.min.js">
+      <DependentUpon>Camera.d.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Interfaces\ThreeJS\Cameras\PerspectiveCamera.d.js">
+      <DependentUpon>PerspectiveCamera.d.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Interfaces\ThreeJS\Cameras\PerspectiveCamera.d.min.js">
+      <DependentUpon>PerspectiveCamera.d.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Interfaces\ThreeJS\Core\Color.d.min.js">
+      <DependentUpon>Color.d.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Interfaces\ThreeJS\Core\Fog.d.min.js">
+      <DependentUpon>Fog.d.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Interfaces\ThreeJS\Core\Vector3.d.js">
+      <DependentUpon>Vector3.d.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Interfaces\ThreeJS\Core\Vector3.d.min.js">
+      <DependentUpon>Vector3.d.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Interfaces\ThreeJS\Geometry\CubeGeometry.d.min.js">
+      <DependentUpon>CubeGeometry.d.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Interfaces\ThreeJS\Geometry\Geometry.d.min.js">
+      <DependentUpon>Geometry.d.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="Client\Interfaces\ThreeJS\Object3D\Object3D.d.ts" />
+    <TypeScriptCompile Include="Client\Interfaces\ThreeJS\Object3D\Mesh.d.ts" />
+    <TypeScriptCompile Include="Client\Interfaces\ThreeJS\Object3D\Light.d.ts" />
+    <TypeScriptCompile Include="Client\Interfaces\ThreeJS\Materials\Material.d.ts" />
+    <Content Include="Client\Interfaces\ThreeJS\Materials\Material.d.js">
+      <DependentUpon>Material.d.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Interfaces\ThreeJS\Materials\Material.d.min.js">
+      <DependentUpon>Material.d.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Interfaces\ThreeJS\Object3D\Light.d.js">
+      <DependentUpon>Light.d.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Interfaces\ThreeJS\Object3D\Light.d.min.js">
+      <DependentUpon>Light.d.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Interfaces\ThreeJS\Object3D\Mesh.d.js">
+      <DependentUpon>Mesh.d.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Interfaces\ThreeJS\Object3D\Mesh.d.min.js">
+      <DependentUpon>Mesh.d.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Interfaces\ThreeJS\Object3D\Object3D.d.js">
+      <DependentUpon>Object3D.d.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Interfaces\ThreeJS\Object3D\Scene.d.min.js">
+      <DependentUpon>Scene.d.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="Client\Interfaces\ThreeJS\Renderers\Renderer.d.ts" />
+    <Content Include="Client\Interfaces\ThreeJS\Renderers\Renderer.d.js">
+      <DependentUpon>Renderer.d.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Interfaces\ThreeJS\Renderers\Renderer.d.min.js">
+      <DependentUpon>Renderer.d.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Interfaces\ThreeJS\Three.d.min.js">
+      <DependentUpon>Three.d.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Main.js">
+      <DependentUpon>Main.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Main.min.js">
+      <DependentUpon>Main.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="Client\Space\Map.ts" />
+    <TypeScriptCompile Include="Client\Renderers\GameRenderer.ts" />
+    <TypeScriptCompile Include="Client\Renderers\EnvironmentRenderer.ts" />
+    <TypeScriptCompile Include="Client\Renderers\CoreRenderer.ts" />
+    <Content Include="Client\Renderers\CoreRenderer.js">
+      <DependentUpon>CoreRenderer.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Renderers\CoreRenderer.min.js">
+      <DependentUpon>CoreRenderer.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Renderers\EnvironmentRenderer.js">
+      <DependentUpon>EnvironmentRenderer.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Renderers\EnvironmentRenderer.min.js">
+      <DependentUpon>EnvironmentRenderer.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Renderers\GameRenderer.js">
+      <DependentUpon>GameRenderer.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Renderers\GameRenderer.min.js">
+      <DependentUpon>GameRenderer.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Space\Map.js">
+      <DependentUpon>Map.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Space\Map.min.js">
+      <DependentUpon>Map.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="Client\Renderers\MapRenderer.ts" />
+    <Content Include="Client\Renderers\MapRenderer.js">
+      <DependentUpon>MapRenderer.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Renderers\MapRenderer.min.js">
+      <DependentUpon>MapRenderer.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="Client\View\Camera.ts" />
+    <TypeScriptCompile Include="Client\Utilities\Size.ts" />
+    <TypeScriptCompile Include="Client\Game\GameTime.ts" />
+    <Content Include="Client\Game\GameTime.js">
+      <DependentUpon>GameTime.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Game\GameTime.min.js">
+      <DependentUpon>GameTime.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Utilities\Size.js">
+      <DependentUpon>Size.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Utilities\Size.min.js">
+      <DependentUpon>Size.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\View\Camera.js">
+      <DependentUpon>Camera.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\View\Camera.min.js">
+      <DependentUpon>Camera.ts</DependentUpon>
+    </Content>
+    <Content Include="default.aspx" />
+    <Content Include="packages.config" />
+    <Content Include="Client\Main.js.map">
+      <DependentUpon>Main.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Main.min.js.map">
+      <DependentUpon>Main.js</DependentUpon>
+    </Content>
+    <Content Include="Client\Space\Map.js.map">
+      <DependentUpon>Map.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Game\Game.js.map">
+      <DependentUpon>Game.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Renderers\MapRenderer.js.map">
+      <DependentUpon>MapRenderer.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\View\Camera.js.map">
+      <DependentUpon>Camera.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Renderers\GameRenderer.js.map">
+      <DependentUpon>GameRenderer.ts</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery-1.8.2.js" />
+    <Content Include="Client\Interfaces\jquery.d.min.js">
+      <DependentUpon>jquery.d.ts</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.signalR-1.0.0.js" />
+    <TypeScriptCompile Include="Client\Interfaces\jquery.d.ts" />
+    <Content Include="Scripts\shortcut.js" />
+    <Content Include="Scripts\three.detector.js" />
+    <Content Include="Scripts\three.min.js" />
+    <Content Include="Styles\game.css" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RegisterHubs.cs" />
+    <Compile Include="default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Client\Renderers\EnvironmentRenderer.js.map">
+      <DependentUpon>EnvironmentRenderer.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Renderers\CoreRenderer.js.map">
+      <DependentUpon>CoreRenderer.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Game\GameLoop.js.map">
+      <DependentUpon>GameLoop.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Game\GameTime.js.map">
+      <DependentUpon>GameTime.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Utilities\Size.js.map">
+      <DependentUpon>Size.ts</DependentUpon>
+    </Content>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Server\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:46440/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

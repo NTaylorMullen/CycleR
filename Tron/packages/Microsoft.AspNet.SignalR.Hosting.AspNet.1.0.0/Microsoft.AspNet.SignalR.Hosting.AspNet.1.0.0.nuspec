@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.AspNet.SignalR.Hosting.AspNet</id>
+    <version>1.0.0</version>
+    <authors>Microsoft Open Technologies, Inc.</authors>
+    <owners>Microsoft Open Technologies, Inc.</owners>
+    <licenseUrl>https://github.com/SignalR/SignalR/blob/master/LICENSE.md</licenseUrl>
+    <projectUrl>https://github.com/SignalR/SignalR</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Asp.Net host for SignalR</description>
+    <dependencies>
+      <dependency id="Microsoft.AspNet.SignalR.Hosting.Common" version="1.0.0" />
+      <dependency id="Microsoft.Web.Infrastructure" version="1.0" />
+    </dependencies>
+  </metadata>
+</package>

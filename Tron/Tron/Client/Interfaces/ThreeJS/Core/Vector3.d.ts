@@ -1,0 +1,31 @@
+interface IVector3 {
+    x: number;
+    y: number;
+    z: number;
+    set(x: number, y: number, z: number): IVector3;
+    setX(x: number): IVector3;
+    setY(y: number): IVector3;
+    setZ(z: number): IVector3;
+    copy(v: IVector3): IVector3;
+    add(a: IVector3, b: IVector3): IVector3;
+    addSelf(v: IVector3): IVector3;
+    multiplyScalar(s: number): IVector3;
+    divideScalar(s: number): IVector3;
+    negate(): IVector3;
+    dot(v: IVector3): IVector3;
+    lengthSq(): number;
+    length(): number;
+    lengthManhattan(): number;
+    normalize(): IVector3;
+    distanceTo(v: IVector3): number;
+    distanceToSquared(v: IVector3): number;
+    setLength(l: number): IVector3;
+    cross(a: IVector3, b: IVector3): IVector3;
+    crossSelf(v: IVector3): IVector3;
+    getPositionFromMatrix(m: any): IVector3;
+    getRotationFromMatrix(m: any): IVector3;
+    getScaleFromMatrix(m: any): IVector3;
+    equals(v: IVector3): IVector3;
+    isZero(): bool;
+    clone(): IVector3;
+}
