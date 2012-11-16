@@ -8,6 +8,7 @@ interface IObject3D {
     eulerOrder: string;
     scale: IVector3;
     up: IVector3;
+    material: IMaterial;
 
     add(object: IObject3D): void;
     translate(distance: number, axis: string): void;

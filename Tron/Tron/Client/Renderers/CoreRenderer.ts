@@ -5,15 +5,7 @@
 class CoreRenderer {
     private _renderer: IRenderer;    
 
-    constructor (private _scene: IScene, private _camera: Camera) { 
-        this.initializeRenderer();
-    }
-
-    private initializeRenderer(): void {
-        this._renderer = this.determineRenderer();
-        this._renderer.setSize(window.innerWidth, window.innerHeight);
-
-        $("body").append(this._renderer.domElement);
+    constructor (private _scene: IScene) { 
     }
 
     private determineRenderer(): IRenderer {
@@ -28,7 +20,16 @@ class CoreRenderer {
         }
     }
 
-    public Draw(): void {
-        this._renderer.render(this._scene, this._camera.Context);
+    public Initialize(): IRenderer {
+        this._renderer = this.determineRenderer();
+        this._renderer.setSize(window.innerWidth, window.innerHeight);
+
+        $("body").append(this._renderer.domElement);
+
+        return this._renderer;
+    }
+
+    public Draw(camera: Camera): void {
+        this._renderer.render(this._scene, camera.Context);
     }
 }

@@ -1,14 +1,7 @@
 var CoreRenderer = (function () {
-    function CoreRenderer(_scene, _camera) {
+    function CoreRenderer(_scene) {
         this._scene = _scene;
-        this._camera = _camera;
-        this.initializeRenderer();
     }
-    CoreRenderer.prototype.initializeRenderer = function () {
-        this._renderer = this.determineRenderer();
-        this._renderer.setSize(window.innerWidth, window.innerHeight);
-        $("body").append(this._renderer.domElement);
-    };
     CoreRenderer.prototype.determineRenderer = function () {
         if(THREE.Detector.webgl) {
             return new THREE.WebGLRenderer();
@@ -20,9 +13,14 @@ var CoreRenderer = (function () {
             }
         }
     };
-    CoreRenderer.prototype.Draw = function () {
-        this._renderer.render(this._scene, this._camera.Context);
+    CoreRenderer.prototype.Initialize = function () {
+        this._renderer = this.determineRenderer();
+        this._renderer.setSize(window.innerWidth, window.innerHeight);
+        $("body").append(this._renderer.domElement);
+        return this._renderer;
+    };
+    CoreRenderer.prototype.Draw = function (camera) {
+        this._renderer.render(this._scene, camera.Context);
     };
     return CoreRenderer;
 })();
-//@ sourceMappingURL=CoreRenderer.js.map

@@ -1,0 +1,2 @@
+interface IPlaneGeometry extends IGeometry {
+}

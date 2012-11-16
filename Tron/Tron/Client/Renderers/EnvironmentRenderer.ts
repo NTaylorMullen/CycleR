@@ -9,7 +9,7 @@ class EnvironmentRenderer {
     }
 
     private RenderFog(): void {
-        this._scene.fog = new THREE.FogExp2(0xffffff, 0.0003);
+        this._scene.fog = new THREE.FogExp2(0x333333, 0.0003);
         this._scene.fog.color.setHSV( 0.1, 0.10, 1 );
     }
 

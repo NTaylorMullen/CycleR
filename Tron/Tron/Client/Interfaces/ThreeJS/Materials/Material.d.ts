@@ -17,4 +17,5 @@ interface IMaterial {
     visible: bool;
     side: any;
     needsUpdate: bool;
+    color: IColor;
 }

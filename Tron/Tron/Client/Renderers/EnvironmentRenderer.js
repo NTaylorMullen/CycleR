@@ -5,7 +5,7 @@ var EnvironmentRenderer = (function () {
         this.RenderLight();
     }
     EnvironmentRenderer.prototype.RenderFog = function () {
-        this._scene.fog = new THREE.FogExp2(16777215, 0.0003);
+        this._scene.fog = new THREE.FogExp2(3355443, 0.0003);
         this._scene.fog.color.setHSV(0.1, 0.1, 1);
     };
     EnvironmentRenderer.prototype.RenderLight = function () {
@@ -15,4 +15,3 @@ var EnvironmentRenderer = (function () {
     };
     return EnvironmentRenderer;
 })();
-//@ sourceMappingURL=EnvironmentRenderer.js.map

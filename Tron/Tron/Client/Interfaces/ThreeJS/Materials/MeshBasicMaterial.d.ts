@@ -1,0 +1,2 @@
+interface IMeshBasicMaterial extends IMaterial {
+}

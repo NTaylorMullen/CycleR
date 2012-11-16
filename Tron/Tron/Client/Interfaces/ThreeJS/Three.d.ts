@@ -2,15 +2,21 @@
 /// <reference path="Core/Vector3.d.ts" />
 /// <reference path="Core/Color.d.ts" />
 /// <reference path="Core/Fog.d.ts" />
+/// <reference path="Core/EventTarget.d.ts" />
 /// <reference path="Object3D/Object3D.d.ts" />
 /// <reference path="Object3D/Scene.d.ts" />
 /// <reference path="Object3D/Light.d.ts" />
 /// <reference path="Object3D/Mesh.d.ts" />
 /// <reference path="Geometry/Geometry.d.ts" />
 /// <reference path="Geometry/CubeGeometry.d.ts" />
+/// <reference path="Geometry/PlaneGeometry.d.ts" />
 /// <reference path="Materials/Material.d.ts" />
+/// <reference path="Materials/MeshBasicMaterial.d.ts" />
 /// <reference path="Cameras/Camera.d.ts" />
 /// <reference path="Cameras/PerspectiveCamera.d.ts" />
+/// <reference path="Cameras/TrackballControls.d.ts" />
+/// <reference path="Cameras/FirstPersonControls.d.ts" />
+/// <reference path="Loaders/JSONLoader.d.ts" />
 /// <reference path="Renderers/Renderer.d.ts" />
 
 interface IThree {
@@ -26,6 +32,11 @@ interface IThree {
     SVGRenderer(): any;
     CanvasRenderer(): any;
     Detector: any;
+    TrackballControls(camera: ICamera, domElement?: HTMLCanvasElement): any;
+    FirstPersonControls(camera: ICamera, domElement?: HTMLCanvasElement): any;
+    Vector3(x: number, y: number, z: number): any;
+    JSONLoader(): any;
+    MeshFaceMaterial(): any;
 }
 
 declare var THREE: IThree;

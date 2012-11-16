@@ -15,6 +15,6 @@ C:\Users\N.Taylor\Documents\GitHub\Tron\Tron\Tron\bin\Microsoft.AspNet.SignalR.C
 C:\Users\N.Taylor\Documents\GitHub\Tron\Tron\Tron\bin\Microsoft.AspNet.SignalR.Hosting.AspNet.xml
 C:\Users\N.Taylor\Documents\GitHub\Tron\Tron\Tron\bin\Microsoft.AspNet.SignalR.Hosting.Common.xml
 C:\Users\N.Taylor\Documents\GitHub\Tron\Tron\Tron\bin\Newtonsoft.Json.xml
-C:\Users\N.Taylor\Documents\GitHub\Tron\Tron\Tron\obj\Debug\Tron.csprojResolveAssemblyReference.cache
 C:\Users\N.Taylor\Documents\GitHub\Tron\Tron\Tron\obj\Debug\Tron.dll
 C:\Users\N.Taylor\Documents\GitHub\Tron\Tron\Tron\obj\Debug\Tron.pdb
+C:\Users\N.Taylor\Documents\GitHub\Tron\Tron\Tron\obj\Debug\Tron.csprojResolveAssemblyReference.cache
