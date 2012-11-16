@@ -98,6 +98,26 @@
     </Content>
     <TypeScriptCompile Include="Client\Cycles\CycleManager.ts" />
     <TypeScriptCompile Include="Client\Cycles\Cycle.ts" />
+    <TypeScriptCompile Include="Client\Controllers\Adapters\KeyboardAdapter.ts" />
+    <TypeScriptCompile Include="Client\Controllers\CycleController.ts" />
+    <TypeScriptCompile Include="Client\Collidables\MovementControllers\MovementController.ts" />
+    <Content Include="Client\Collidables\MovementControllers\MovementController.js">
+      <DependentUpon>MovementController.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Controllers\Adapters\KeyboardAdapter.js">
+      <DependentUpon>KeyboardAdapter.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="Client\Interfaces\Game\Controllers\Adapters\KeyMapping.d.ts" />
+    <TypeScriptCompile Include="Client\Cycles\CycleMovementController.ts" />
+    <Content Include="Client\Cycles\CycleMovementController.js">
+      <DependentUpon>CycleMovementController.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Interfaces\Game\Controllers\Adapters\KeyMapping.d.js">
+      <DependentUpon>KeyMapping.d.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Controllers\CycleController.js">
+      <DependentUpon>CycleController.ts</DependentUpon>
+    </Content>
     <Content Include="Client\Cycles\Cycle.js">
       <DependentUpon>Cycle.ts</DependentUpon>
     </Content>
@@ -127,6 +147,10 @@
     </Content>
     <Content Include="Client\GameCore\GameTime.min.js">
       <DependentUpon>GameTime.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="Client\Interfaces\Game\Controllers\Adapters\Adapter.d.ts" />
+    <Content Include="Client\Interfaces\Game\Controllers\Adapters\Adapter.d.js">
+      <DependentUpon>Adapter.d.ts</DependentUpon>
     </Content>
     <Content Include="Client\Interfaces\Game\Game.d.ts" />
     <TypeScriptCompile Include="Client\Interfaces\Game\Loaders\ModelLoadRequest.d.ts" />
@@ -311,6 +335,18 @@
       <DependentUpon>ModelLibrary.ts</DependentUpon>
     </Content>
     <Content Include="Scripts\three.windowresize.js" />
+    <Content Include="Client\Controllers\CycleController.js.map">
+      <DependentUpon>CycleController.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Controllers\Adapters\KeyboardAdapter.js.map">
+      <DependentUpon>KeyboardAdapter.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Cycles\CycleMovementController.js.map">
+      <DependentUpon>CycleMovementController.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Collidables\MovementControllers\MovementController.js.map">
+      <DependentUpon>MovementController.ts</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

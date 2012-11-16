@@ -8,4 +8,3 @@ var ModelLibrary = (function () {
     };
     return ModelLibrary;
 })();
-//@ sourceMappingURL=ModelLibrary.js.map

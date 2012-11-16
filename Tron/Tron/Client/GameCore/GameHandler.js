@@ -11,12 +11,13 @@ var GameHandler = (function (_super) {
     }
     GameHandler.prototype.ModelsLoaded = function (models) {
         this._models = models;
-        var c = new Cycle(new THREE.Vector3(0, 35, 0), this._models[ModelLibrary.Cycle.ModelName]);
+        var c = new Cycle(new THREE.Vector3(0, 35, 0), 0, this._models[ModelLibrary.Cycle.ModelName]);
         this._cycleManager.Add(c);
+        this._cycleController = new CycleController(c);
     };
     GameHandler.prototype.Update = function (gameTime) {
         this.AddAllToScene(this._cycleManager.GetPendingObjects());
+        this._cycleManager.Update(gameTime);
     };
     return GameHandler;
 })(SceneObjectCreator);
-//@ sourceMappingURL=GameHandler.js.map

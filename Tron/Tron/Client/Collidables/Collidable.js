@@ -1,5 +1,7 @@
 var Collidable = (function () {
-    function Collidable() {
+    function Collidable(id) {
+        this.Disposed = false;
+        this.ID = id;
     }
     return Collidable;
 })();
