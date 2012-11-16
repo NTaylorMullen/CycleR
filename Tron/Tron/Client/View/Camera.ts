@@ -1,6 +1,6 @@
 /// <reference path="../Interfaces/Game/Game.d.ts" />
 /// <reference path="../Interfaces/ThreeJS/Three.d.ts" />
-/// <reference path="../Game/GameTime.ts" />
+/// <reference path="../GameCore/GameTime.ts" />
 /// <reference path="FreeCameraController.ts" />
 /// <reference path="AttachedCameraController.ts" />
 
@@ -22,7 +22,9 @@ class Camera {
     private initializeGameCamera() {
         this.Context = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
         this.Context.position.z = Camera.DISTANCE;
-        this.Context.position.y = 200;
+
+        // Handle window resize
+        THREEx.WindowResize(this._renderer, this.Context);
     }
 
     private initializeCameraControllers() {

@@ -1,10 +1,11 @@
-var ModelLibrary;
-(function (ModelLibrary) {
+var ModelLibrary = (function () {
+    function ModelLibrary() {
+    }
     ModelLibrary.Cycle = {
-        FilePath: "/Models/cycle2.js",
-        TexturePath: "/Models/Cycles/",
+        FilePath: "/Models/Cycles/cycle2.js",
+        TexturePath: "/Models/Cycles",
         ModelName: "Cycle"
     };
-})(ModelLibrary || (ModelLibrary = {}));
-
+    return ModelLibrary;
+})();
 //@ sourceMappingURL=ModelLibrary.js.map

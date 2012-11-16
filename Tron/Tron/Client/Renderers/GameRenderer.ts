@@ -26,6 +26,12 @@ class GameRenderer {
         this._scene.add(object);
     }
 
+    public AddAll(objects: IObject3D[]): void {
+        for (var i = 0; i < objects.length; i++) {
+            this._scene.add(objects[i]);
+        }
+    }
+
     public Draw(camera: Camera): void {
         this._coreRenderer.Draw(camera);
     }

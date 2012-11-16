@@ -10,13 +10,13 @@ class ModelLoader {
          this._models = {};
     }
 
-    public LoadModel(loadRequest: IModelLoadRequest): void {
+    public LoadModel(loadRequest: IModelLoadRequest, done?: Function): void {
         this._jsonLoader.load(loadRequest.FilePath, (geometry: IGeometry) => {
             this._models[loadRequest.ModelName] = geometry;
 
-            /*var mesh: IMesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial());
-            mesh.scale.set(40, 40, 35);
-            this._scene.add(mesh);*/
+            if (done) {
+                done();
+            }
         }, loadRequest.TexturePath);
     }
 
@@ -33,5 +33,9 @@ class ModelLoader {
         else {
             throw new Error("Model '" + name + "' has not been loaded.");
         }
+    }
+
+    public GetModels(): { [s: string]: IGeometry; } {
+        return this._models;
     }
 }

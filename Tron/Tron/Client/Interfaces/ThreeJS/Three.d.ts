@@ -34,9 +34,10 @@ interface IThree {
     Detector: any;
     TrackballControls(camera: ICamera, domElement?: HTMLCanvasElement): any;
     FirstPersonControls(camera: ICamera, domElement?: HTMLCanvasElement): any;
-    Vector3(x: number, y: number, z: number): any;
+    Vector3(x?: number, y?: number, z?: number): any;
     JSONLoader(): any;
     MeshFaceMaterial(): any;
+    SceneUtils: any;
 }
 
-declare var THREE: IThree;
+declare var THREE: IThree, THREEx;

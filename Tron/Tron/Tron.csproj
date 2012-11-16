@@ -97,6 +97,10 @@
       <DependentUpon>Collidable.ts</DependentUpon>
     </Content>
     <TypeScriptCompile Include="Client\Cycles\CycleManager.ts" />
+    <TypeScriptCompile Include="Client\Cycles\Cycle.ts" />
+    <Content Include="Client\Cycles\Cycle.js">
+      <DependentUpon>Cycle.ts</DependentUpon>
+    </Content>
     <Content Include="Client\Cycles\CycleManager.js">
       <DependentUpon>CycleManager.ts</DependentUpon>
     </Content>
@@ -107,6 +111,10 @@
       <DependentUpon>Game.ts</DependentUpon>
     </Content>
     <TypeScriptCompile Include="Client\GameCore\GameLoop.ts" />
+    <TypeScriptCompile Include="Client\GameCore\GameHandler.ts" />
+    <Content Include="Client\GameCore\GameHandler.js">
+      <DependentUpon>GameHandler.ts</DependentUpon>
+    </Content>
     <Content Include="Client\GameCore\GameLoop.js">
       <DependentUpon>GameLoop.ts</DependentUpon>
     </Content>
@@ -150,9 +158,6 @@
     <Content Include="Client\Interfaces\ThreeJS\Renderers\Renderer.d.ts" />
     <Content Include="Client\Interfaces\ThreeJS\Three.d.ts" />
     <TypeScriptCompile Include="Client\ModelHelpers\ModelLibrary.ts" />
-    <Content Include="Client\ModelHelpers\ModelLibrary.js">
-      <DependentUpon>ModelLibrary.ts</DependentUpon>
-    </Content>
     <Content Include="Client\Main.js">
       <DependentUpon>Main.ts</DependentUpon>
     </Content>
@@ -160,6 +165,9 @@
       <DependentUpon>Main.js</DependentUpon>
     </Content>
     <Content Include="Client\Main.ts" />
+    <Content Include="Client\ModelHelpers\ModelLibrary.js">
+      <DependentUpon>ModelLibrary.ts</DependentUpon>
+    </Content>
     <Content Include="Client\Renderers\CoreRenderer.js">
       <DependentUpon>CoreRenderer.ts</DependentUpon>
     </Content>
@@ -184,6 +192,10 @@
     <Content Include="Client\ModelHelpers\ModelLoader.js">
       <DependentUpon>ModelLoader.ts</DependentUpon>
     </Content>
+    <TypeScriptCompile Include="Client\Utilities\SceneObjectCreator.ts" />
+    <Content Include="Client\Utilities\SceneObjectCreator.js">
+      <DependentUpon>SceneObjectCreator.ts</DependentUpon>
+    </Content>
     <Content Include="Client\Utilities\Size.js">
       <DependentUpon>Size.ts</DependentUpon>
     </Content>
@@ -205,8 +217,10 @@
     </Content>
     <Content Include="Client\View\FreeCameraController.ts" />
     <Content Include="default.aspx" />
-    <Content Include="Models\cycle.js" />
     <Content Include="Models\Cycles\cycle.js" />
+    <Content Include="Models\Cycles\cycle2.js" />
+    <Content Include="Models\Cycles\cycle3.js" />
+    <Content Include="Models\Cycles\jet.png" />
     <Content Include="packages.config" />
     <Content Include="Client\GameCore\Game.js.map">
       <DependentUpon>Game.ts</DependentUpon>
@@ -281,56 +295,22 @@
     <Content Include="Client\ModelHelpers\ModelLoader.js.map">
       <DependentUpon>ModelLoader.ts</DependentUpon>
     </Content>
-    <Content Include="Client\ModelHelpers\ModelLibrary.js.map">
-      <DependentUpon>ModelLibrary.ts</DependentUpon>
-    </Content>
-    <Content Include="Models\Cycles\Glass.tga" />
-    <Content Include="Models\Cycles\HQ_Movie cycle.lwo" />
-    <Content Include="Models\Cycles\HQ_Movie cycle.lxo" />
-    <Content Include="Models\Cycles\HQ_Movie cycle.mtl" />
-    <Content Include="Models\Cycles\HQ_Movie cycle.obj" />
-    <Content Include="Models\Cycles\MG_MovieCycle_BodyHeadLight_EMSS.tga" />
-    <Content Include="Models\Cycles\MG_MovieCycle_Body_DIFF.tga" />
-    <Content Include="Models\Cycles\MG_MovieCycle_Body_EMSS.tga" />
-    <Content Include="Models\Cycles\MG_MovieCycle_Body_NORM.tga" />
-    <Content Include="Models\Cycles\MG_MovieCycle_Body_RMMK.tga" />
-    <Content Include="Models\Cycles\MG_MovieCycle_Body_SPEC.tga" />
-    <Content Include="Models\Cycles\MG_MovieCycle_Body_SPPW.tga" />
-    <Content Include="Models\Cycles\MG_MovieCycle_Engine_DIFF.tga" />
-    <Content Include="Models\Cycles\MG_MovieCycle_Engine_EMSS.tga" />
-    <Content Include="Models\Cycles\MG_MovieCycle_Engine_MASK.tga" />
-    <Content Include="Models\Cycles\MG_MovieCycle_Engine_NORM.tga" />
-    <Content Include="Models\Cycles\MG_MovieCycle_Tire_DIFF.tga" />
-    <Content Include="Models\Cycles\MG_MovieCycle_Tire_EMSS.tga" />
-    <Content Include="Models\Cycles\MG_MovieCycle_Tire_MASK.tga" />
-    <Content Include="Models\Cycles\MG_MovieCycle_Tire_NORM.tga" />
-    <Content Include="Models\Cycles\MG_Player_Baton_DIFF.tga" />
-    <Content Include="Models\Cycles\MG_Player_Baton_EMSS.tga" />
-    <Content Include="Models\Cycles\MG_Player_Baton_NORM.tga" />
-    <Content Include="Models\Cycles\MG_Player_Baton_RMMK.tga" />
-    <Content Include="Models\Cycles\MG_Player_Baton_SPEC.tga" />
-    <Content Include="Models\Cycles\MG_Player_Baton_SPPW.tga" />
-    <Content Include="Models\Cycles\MG_Player_Body_DIFF.tga" />
-    <Content Include="Models\Cycles\MG_Player_Body_EMSS.tga" />
-    <Content Include="Models\Cycles\MG_Player_Body_NORM.tga" />
-    <Content Include="Models\Cycles\MG_Player_Body_RMMK.tga" />
-    <Content Include="Models\Cycles\MG_Player_Body_SPEC.tga" />
-    <Content Include="Models\Cycles\MG_Player_Body_SPPW.tga" />
-    <Content Include="Models\Cycles\MG_Player_Disc_DIFF.tga" />
-    <Content Include="Models\Cycles\MG_Player_Disc_EMSS.tga" />
-    <Content Include="Models\Cycles\MG_Player_Disc_NORM.tga" />
-    <Content Include="Models\Cycles\MG_Player_Disc_RMMK.tga" />
-    <Content Include="Models\Cycles\MG_Player_Disc_SPEC.tga" />
-    <Content Include="Models\Cycles\MG_Player_Disc_SPPW.tga" />
-    <Content Include="Models\Cycles\MG_Player_Helmet_DIFF.tga" />
-    <Content Include="Models\Cycles\MG_Player_Helmet_EMSS.tga" />
-    <Content Include="Models\Cycles\MG_Player_Helmet_NORM.tga" />
-    <Content Include="Models\Cycles\MG_Player_Helmet_RMMK.tga" />
-    <Content Include="Models\Cycles\MG_Player_Helmet_SPEC.tga" />
-    <Content Include="Models\Cycles\MG_Player_Helmet_SPPW.tga" />
     <Content Include="Client\Cycles\CycleManager.js.map">
       <DependentUpon>CycleManager.ts</DependentUpon>
     </Content>
+    <Content Include="Client\Cycles\Cycle.js.map">
+      <DependentUpon>Cycle.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Utilities\SceneObjectCreator.js.map">
+      <DependentUpon>SceneObjectCreator.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\GameCore\GameHandler.js.map">
+      <DependentUpon>GameHandler.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\ModelHelpers\ModelLibrary.js.map">
+      <DependentUpon>ModelLibrary.ts</DependentUpon>
+    </Content>
+    <Content Include="Scripts\three.windowresize.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -4,17 +4,23 @@ var Game = (function () {
         this._gameRenderer = new GameRenderer();
         this._camera = new Camera(this._gameRenderer.Renderer);
         this._gameLoop = new GameLoop(this.Update, this.Draw, this);
+        this._gameHandler = new GameHandler();
         this.load();
         this._gameLoop.Start();
     }
     Game.prototype.load = function () {
-        this._modelLoader.LoadModel(ModelLibrary.Cycle);
+        var _this = this;
+        this._modelLoader.LoadModel(ModelLibrary.Cycle, function () {
+            _this._gameHandler.ModelsLoaded(_this._modelLoader.GetModels());
+        });
     };
     Game.prototype.Draw = function () {
         this._gameRenderer.Draw(this._camera);
+        this._gameRenderer.AddAll(this._gameHandler.GetPendingObjects());
     };
     Game.prototype.Update = function (gameTime) {
         this._camera.Update(gameTime);
+        this._gameHandler.Update(gameTime);
     };
     return Game;
 })();

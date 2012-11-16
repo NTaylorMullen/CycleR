@@ -1,9 +1,9 @@
 /// <reference path="CameraController.ts" />
-/// <reference path="../Game/GameTime.ts" />
+/// <reference path="../GameCore/GameTime.ts" />
 
 class FreeCameraController extends CameraController {
     static MODE: string = "Free";
-    static MOVE_SPEED: number = 5000;
+    static MOVE_SPEED: number = 1000;
     static LOOK_SPEED: number = .075;
 
     private _controls: IFirstPersonControls;

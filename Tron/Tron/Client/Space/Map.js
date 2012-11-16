@@ -6,4 +6,3 @@ var Map = (function () {
     Map.WALL_SIZE = new Size(Map.MAP_SIZE.Width, 2000);
     return Map;
 })();
-//@ sourceMappingURL=Map.js.map

@@ -9,6 +9,11 @@ var GameRenderer = (function () {
     GameRenderer.prototype.Add = function (object) {
         this._scene.add(object);
     };
+    GameRenderer.prototype.AddAll = function (objects) {
+        for(var i = 0; i < objects.length; i++) {
+            this._scene.add(objects[i]);
+        }
+    };
     GameRenderer.prototype.Draw = function (camera) {
         this._coreRenderer.Draw(camera);
     };

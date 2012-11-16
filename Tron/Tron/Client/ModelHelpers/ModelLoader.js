@@ -4,10 +4,13 @@ var ModelLoader = (function () {
         this._models = {
         };
     }
-    ModelLoader.prototype.LoadModel = function (loadRequest) {
+    ModelLoader.prototype.LoadModel = function (loadRequest, done) {
         var _this = this;
         this._jsonLoader.load(loadRequest.FilePath, function (geometry) {
             _this._models[loadRequest.ModelName] = geometry;
+            if(done) {
+                done();
+            }
         }, loadRequest.TexturePath);
     };
     ModelLoader.prototype.LoadModels = function (filesToLoad) {
@@ -21,6 +24,9 @@ var ModelLoader = (function () {
         } else {
             throw new Error("Model '" + name + "' has not been loaded.");
         }
+    };
+    ModelLoader.prototype.GetModels = function () {
+        return this._models;
     };
     return ModelLoader;
 })();

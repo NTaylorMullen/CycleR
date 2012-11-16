@@ -1,6 +1,7 @@
 class Size {
     public Width: number;
     public Height: number;
+    public Depth: number;
 
     constructor (width: number, height?: number) {
         this.Width = width;

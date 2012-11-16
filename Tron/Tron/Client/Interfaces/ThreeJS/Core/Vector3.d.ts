@@ -10,6 +10,7 @@ interface IVector3 {
     add(a: IVector3, b: IVector3): IVector3;
     addSelf(v: IVector3): IVector3;
     multiplyScalar(s: number): IVector3;
+    multiply(a: IVector3, b: IVector3): IVector3;
     divideScalar(s: number): IVector3;
     negate(): IVector3;
     dot(v: IVector3): IVector3;
