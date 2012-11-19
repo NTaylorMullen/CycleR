@@ -136,13 +136,13 @@ var AttachedCameraController = (function (_super) {
     AttachedCameraController.prototype.Update = function (gameTime) {
         _super.prototype.Update.call(this, gameTime);
         if(this._attachedTo != null) {
-            this._camera.lookAt(this._attachedTo.position);
             if(this._readMouse) {
                 this._theta += this._thetaIncrementor;
             }
             var position = this.getAttachedPosition();
             this._camera.position.x = position.x + AttachedCameraController.CAMERA_DISTANCE * Math.sin(this._theta * AttachedCameraController.TO_RADIANS);
             this._camera.position.z = position.z + AttachedCameraController.CAMERA_DISTANCE * Math.cos(this._theta * AttachedCameraController.TO_RADIANS);
+            this._camera.lookAt(this._attachedTo.position);
             this._lastAttachedPosition = position;
         }
     };

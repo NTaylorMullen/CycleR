@@ -172,9 +172,7 @@ class AttachedCameraController extends CameraController {
     public Update(gameTime: GameTime): void {
         super.Update(gameTime);
 
-        if (this._attachedTo != null) {
-            this._camera.lookAt(this._attachedTo.position);
-
+        if (this._attachedTo != null) {          
             if (this._readMouse) {
                 this._theta += this._thetaIncrementor;
             }
@@ -182,6 +180,7 @@ class AttachedCameraController extends CameraController {
             var position: IVector3 = this.getAttachedPosition();
             this._camera.position.x = position.x + AttachedCameraController.CAMERA_DISTANCE * Math.sin(this._theta * AttachedCameraController.TO_RADIANS);
             this._camera.position.z = position.z + AttachedCameraController.CAMERA_DISTANCE * Math.cos(this._theta * AttachedCameraController.TO_RADIANS);
+            this._camera.lookAt(this._attachedTo.position);
 
             this._lastAttachedPosition = position;
         }
