@@ -10,7 +10,7 @@ var CycleMovementController = (function (_super) {
         this._context = _context;
         this.Velocity.z = -CycleMovementController.MAX_SPEED;
     }
-    CycleMovementController.MAX_SPEED = 200;
+    CycleMovementController.MAX_SPEED = 700;
     CycleMovementController.prototype.positionOnLine = function () {
         if(this.Velocity.z !== 0) {
             this._context.position.z -= (this._context.position.z % Map.FLOOR_TILE_SIZE.Width) - Map.FLOOR_TILE_SIZE.Width * (this.Velocity.z / Math.abs(this.Velocity.z));
@@ -45,3 +45,4 @@ var CycleMovementController = (function (_super) {
     };
     return CycleMovementController;
 })(MovementController);
+//@ sourceMappingURL=CycleMovementController.js.map

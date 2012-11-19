@@ -1,6 +1,6 @@
 /// <reference path="../Interfaces/ThreeJS/Three.d.ts" />
-/// <reference path="../View/Camera.ts" />
-/// <reference path="../Game/GameTime.ts" />
+/// <reference path="../Cameras/Camera.ts" />
+/// <reference path="../GameCore/GameTime.ts" />
 
 class CoreRenderer {
     private _renderer: IRenderer;    
@@ -10,7 +10,7 @@ class CoreRenderer {
 
     private determineRenderer(): IRenderer {
         if (THREE.Detector.webgl) {
-            return new THREE.WebGLRenderer();
+            return new THREE.WebGLRenderer({ preserveDrawingBuffer: true });
         }
         else if (THREE.Detector.canvas) {
             return new THREE.CanvasRenderer();

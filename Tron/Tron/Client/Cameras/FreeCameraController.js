@@ -23,3 +23,4 @@ var FreeCameraController = (function (_super) {
     };
     return FreeCameraController;
 })(CameraController);
+//@ sourceMappingURL=FreeCameraController.js.map

@@ -165,6 +165,7 @@
     <Content Include="Client\Interfaces\ThreeJS\Core\Color.d.ts" />
     <Content Include="Client\Interfaces\ThreeJS\Core\EventTarget.d.ts" />
     <Content Include="Client\Interfaces\ThreeJS\Core\Fog.d.ts" />
+    <TypeScriptCompile Include="Client\Interfaces\ThreeJS\Core\Vector2.d.ts" />
     <Content Include="Client\Interfaces\ThreeJS\Core\Vector3.d.ts" />
     <Content Include="Client\Interfaces\ThreeJS\Geometry\CubeGeometry.d.ts" />
     <Content Include="Client\Interfaces\ThreeJS\Geometry\Geometry.d.ts" />
@@ -182,6 +183,8 @@
     <Content Include="Client\Interfaces\ThreeJS\Renderers\Renderer.d.ts" />
     <Content Include="Client\Interfaces\ThreeJS\Three.d.ts" />
     <TypeScriptCompile Include="Client\ModelHelpers\ModelLibrary.ts" />
+    <TypeScriptCompile Include="Client\Interfaces\TweenJS\Tweenjs.d.ts" />
+    <TypeScriptCompile Include="Client\Interfaces\TweenJS\Tween.d.ts" />
     <Content Include="Client\Main.js">
       <DependentUpon>Main.ts</DependentUpon>
     </Content>
@@ -224,22 +227,22 @@
       <DependentUpon>Size.ts</DependentUpon>
     </Content>
     <Content Include="Client\Utilities\Size.ts" />
-    <Content Include="Client\View\AttachedCameraController.js">
+    <Content Include="Client\Cameras\AttachedCameraController.js">
       <DependentUpon>AttachedCameraController.ts</DependentUpon>
     </Content>
-    <Content Include="Client\View\AttachedCameraController.ts" />
-    <Content Include="Client\View\Camera.js">
+    <Content Include="Client\Cameras\AttachedCameraController.ts" />
+    <Content Include="Client\Cameras\Camera.js">
       <DependentUpon>Camera.ts</DependentUpon>
     </Content>
-    <Content Include="Client\View\Camera.ts" />
-    <Content Include="Client\View\CameraController.js">
+    <Content Include="Client\Cameras\Camera.ts" />
+    <Content Include="Client\Cameras\CameraController.js">
       <DependentUpon>CameraController.ts</DependentUpon>
     </Content>
-    <Content Include="Client\View\CameraController.ts" />
-    <Content Include="Client\View\FreeCameraController.js">
+    <Content Include="Client\Cameras\CameraController.ts" />
+    <Content Include="Client\Cameras\FreeCameraController.js">
       <DependentUpon>FreeCameraController.ts</DependentUpon>
     </Content>
-    <Content Include="Client\View\FreeCameraController.ts" />
+    <Content Include="Client\Cameras\FreeCameraController.ts" />
     <Content Include="default.aspx" />
     <Content Include="Models\Cycles\cycle.js" />
     <Content Include="Models\Cycles\cycle2.js" />
@@ -255,6 +258,7 @@
     <Content Include="Scripts\three.detector.js" />
     <Content Include="Scripts\three.min.js" />
     <Content Include="Scripts\three.trackballcontrols.js" />
+    <Content Include="Scripts\tween.js" />
     <Content Include="Styles\game.css" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -283,7 +287,7 @@
       <DependentUpon>Main.js</DependentUpon>
     </Content>
     <Content Include="Scripts\three.fpscontrols.js" />
-    <Content Include="Client\View\FreeCameraController.js.map">
+    <Content Include="Client\Cameras\FreeCameraController.js.map">
       <DependentUpon>FreeCameraController.ts</DependentUpon>
     </Content>
     <Content Include="Client\Renderers\MapRenderer.js.map">
@@ -292,13 +296,13 @@
     <Content Include="Client\Main.js.map">
       <DependentUpon>Main.ts</DependentUpon>
     </Content>
-    <Content Include="Client\View\CameraController.js.map">
+    <Content Include="Client\Cameras\CameraController.js.map">
       <DependentUpon>CameraController.ts</DependentUpon>
     </Content>
     <Content Include="Client\Renderers\CoreRenderer.js.map">
       <DependentUpon>CoreRenderer.ts</DependentUpon>
     </Content>
-    <Content Include="Client\View\AttachedCameraController.js.map">
+    <Content Include="Client\Cameras\AttachedCameraController.js.map">
       <DependentUpon>AttachedCameraController.ts</DependentUpon>
     </Content>
     <Content Include="Client\Renderers\GameRenderer.js.map">
@@ -313,7 +317,7 @@
     <Content Include="Client\Utilities\Size.js.map">
       <DependentUpon>Size.ts</DependentUpon>
     </Content>
-    <Content Include="Client\View\Camera.js.map">
+    <Content Include="Client\Cameras\Camera.js.map">
       <DependentUpon>Camera.ts</DependentUpon>
     </Content>
     <Content Include="Client\ModelHelpers\ModelLoader.js.map">

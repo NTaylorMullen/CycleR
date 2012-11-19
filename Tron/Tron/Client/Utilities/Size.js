@@ -12,3 +12,4 @@ var Size = (function () {
     };
     return Size;
 })();
+//@ sourceMappingURL=Size.js.map

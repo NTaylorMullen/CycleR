@@ -4,7 +4,9 @@ var CoreRenderer = (function () {
     }
     CoreRenderer.prototype.determineRenderer = function () {
         if(THREE.Detector.webgl) {
-            return new THREE.WebGLRenderer();
+            return new THREE.WebGLRenderer({
+                preserveDrawingBuffer: true
+            });
         } else {
             if(THREE.Detector.canvas) {
                 return new THREE.CanvasRenderer();
@@ -24,3 +26,4 @@ var CoreRenderer = (function () {
     };
     return CoreRenderer;
 })();
+//@ sourceMappingURL=CoreRenderer.js.map

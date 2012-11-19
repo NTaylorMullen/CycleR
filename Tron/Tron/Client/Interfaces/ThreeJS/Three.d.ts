@@ -1,5 +1,6 @@
 /// <reference path="../jquery.d.ts" />
 /// <reference path="Core/Vector3.d.ts" />
+/// <reference path="Core/Vector2.d.ts" />
 /// <reference path="Core/Color.d.ts" />
 /// <reference path="Core/Fog.d.ts" />
 /// <reference path="Core/EventTarget.d.ts" />
@@ -28,13 +29,14 @@ interface IThree {
     MeshBasicMaterial(parameters: any): any;
     Mesh(geometry: IGeometry, material: IMaterial);    
     PerspectiveCamera(fov: number, aspect: number, near: number, far: number): void;
-    WebGLRenderer(): any;
+    WebGLRenderer(options?: any): any;
     SVGRenderer(): any;
     CanvasRenderer(): any;
     Detector: any;
     TrackballControls(camera: ICamera, domElement?: HTMLCanvasElement): any;
     FirstPersonControls(camera: ICamera, domElement?: HTMLCanvasElement): any;
     Vector3(x?: number, y?: number, z?: number): any;
+    Vector2(x?: number, y?: number): any;
     JSONLoader(): any;
     MeshFaceMaterial(): any;
     SceneUtils: any;

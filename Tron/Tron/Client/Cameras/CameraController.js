@@ -1,5 +1,6 @@
 var CameraController = (function () {
-    function CameraController(camera, renderer) {
+    function CameraController(_camera, renderer) {
+        this._camera = _camera;
         this.applyKeyboardMappings();
     }
     CameraController.prototype.applyKeyboardMappings = function () {
@@ -8,3 +9,4 @@ var CameraController = (function () {
     };
     return CameraController;
 })();
+//@ sourceMappingURL=CameraController.js.map

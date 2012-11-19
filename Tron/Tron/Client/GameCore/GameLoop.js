@@ -13,9 +13,11 @@ var GameLoop = (function () {
         this._gameTime.Update();
         this._update.call(this._proxy, this._gameTime);
         this._draw.call(this._proxy);
+        TWEEN.update();
     };
     GameLoop.prototype.Start = function () {
         this.loop();
     };
     return GameLoop;
 })();
+//@ sourceMappingURL=GameLoop.js.map

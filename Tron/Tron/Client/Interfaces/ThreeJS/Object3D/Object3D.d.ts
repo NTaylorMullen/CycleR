@@ -11,6 +11,7 @@ interface IObject3D {
     material: IMaterial;
 
     add(object: IObject3D): void;
+    remove(object: IObject3D): void;
     translate(distance: number, axis: string): void;
     translateX(distance: number): void;
     translateY(distance: number): void;

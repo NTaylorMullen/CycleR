@@ -2,7 +2,7 @@
 /// <reference path="../Space/Map.ts" />
 
 class CycleMovementController extends MovementController {
-    static MAX_SPEED: number = 200;
+    static MAX_SPEED: number = 700;
 
     constructor (private _context: IMesh) {
         super(_context, CycleMovementController.MAX_SPEED);

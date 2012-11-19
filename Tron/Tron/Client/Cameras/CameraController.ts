@@ -1,7 +1,7 @@
 /// <reference path="../Interfaces/ThreeJS/three.d.ts" />
 
 class CameraController {
-    constructor (camera: ICamera, renderer: IRenderer) {
+    constructor (private _camera: ICamera, renderer: IRenderer) {
         this.applyKeyboardMappings();
     }
 

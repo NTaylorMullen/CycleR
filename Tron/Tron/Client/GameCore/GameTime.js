@@ -18,3 +18,4 @@ var GameTime = (function () {
     };
     return GameTime;
 })();
+//@ sourceMappingURL=GameTime.js.map

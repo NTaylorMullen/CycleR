@@ -27,3 +27,4 @@ var Cycle = (function (_super) {
     };
     return Cycle;
 })(Collidable);
+//@ sourceMappingURL=Cycle.js.map

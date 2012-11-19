@@ -1,3 +1,5 @@
+/// <reference path="../Interfaces/TweenJS/Tweenjs.d.ts" />
+/// <reference path="Game.ts" />
 /// <reference path="GameTime.ts" />
 
 class GameLoop {
@@ -14,6 +16,8 @@ class GameLoop {
 
         this._update.call(this._proxy, this._gameTime);
         this._draw.call(this._proxy);
+
+        TWEEN.update();
     }
 
     public Start(): void {

@@ -4,7 +4,7 @@ var Game = (function () {
         this._gameRenderer = new GameRenderer();
         this._camera = new Camera(this._gameRenderer.Renderer);
         this._gameLoop = new GameLoop(this.Update, this.Draw, this);
-        this._gameHandler = new GameHandler();
+        this._gameHandler = new GameHandler(this._camera);
         this.load();
         this._gameLoop.Start();
     }
@@ -19,8 +19,9 @@ var Game = (function () {
         this._gameRenderer.AddAll(this._gameHandler.GetPendingObjects());
     };
     Game.prototype.Update = function (gameTime) {
-        this._camera.Update(gameTime);
         this._gameHandler.Update(gameTime);
+        this._camera.Update(gameTime);
     };
     return Game;
 })();
+//@ sourceMappingURL=Game.js.map

@@ -8,3 +8,4 @@ var MovementController = (function () {
     };
     return MovementController;
 })();
+//@ sourceMappingURL=MovementController.js.map
