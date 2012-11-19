@@ -10,10 +10,6 @@ class AttachedCameraController extends CameraController {
     static CAMERA_DISTANCE: number = 500;
     static TO_RADIANS: number = Math.PI / 360;
 
-    private _currentThetaTween: ITween;
-    private _thetaTweenTo: IVector2;
-    private _thetaTweenFrom: IVector2;
-
     private _attachedTo: IMesh;
     private _lastAttachedPosition: IVector3;
 
@@ -21,7 +17,6 @@ class AttachedCameraController extends CameraController {
     private _mouseStart: IVector2;
     private _readMouse: bool;
     private _theta: number = 0;
-    private _smoothCamera: bool = true;
     private _cameraInverted: bool = true;
 
     constructor (private _camera: ICamera, renderer: IRenderer) {
@@ -70,10 +65,6 @@ class AttachedCameraController extends CameraController {
         this._mouseStart.x = event.clientX;
         this._mouseStart.y = event.clientY;
         this._readMouse = true;
-
-        if (this._currentThetaTween) {
-            this._currentThetaTween.stop();
-        }
     }
 
     private onMouseUp(event: MouseEvent): void {
@@ -85,24 +76,7 @@ class AttachedCameraController extends CameraController {
 
     private tweenThetaOffsetBy(offset: number): void {
         if (!this._readMouse) {
-            if (this._currentThetaTween) {
-                this._currentThetaTween.stop();
-            }
-            this._thetaTweenTo = new THREE.Vector2((this._attachedTo.rotation.y / AttachedCameraController.TO_RADIANS) + offset);
-
-            if (this._smoothCamera) {
-                this._thetaTweenFrom = new THREE.Vector2(this._theta % 360);
-
-                this._currentThetaTween = new TWEEN.Tween(this._thetaTweenFrom).to(this._thetaTweenTo, 1000);
-                this._currentThetaTween.onUpdate(() => {
-                    this._theta = this._thetaTweenFrom.x;
-                });
-
-                this._currentThetaTween.start();
-            }
-            else {
-                this._theta = this._thetaTweenTo.x;
-            }
+            this._theta = (this._attachedTo.rotation.y / AttachedCameraController.TO_RADIANS) + offset;
         }
     }
 
@@ -130,7 +104,6 @@ class AttachedCameraController extends CameraController {
             zDiff: number = this._attachedTo.position.z - this._lastAttachedPosition.z;
 
         if (Math.abs(xDiff) > AttachedCameraController.INTERPOLATE_THRESHOLD) {
-            console.log("INTERPOLATING X because of diff: " + xDiff);
             position.x += (xDiff / Math.abs(xDiff)) * AttachedCameraController.INTERPOLATE_THRESHOLD;
         }
         else {
@@ -138,7 +111,6 @@ class AttachedCameraController extends CameraController {
         }
 
         if (Math.abs(zDiff) > AttachedCameraController.INTERPOLATE_THRESHOLD) {
-            console.log("INTERPOLATING Z because of diff: " + zDiff);
             position.z += (zDiff / Math.abs(zDiff)) * AttachedCameraController.INTERPOLATE_THRESHOLD;
         }
         else {

@@ -10,7 +10,6 @@ var AttachedCameraController = (function (_super) {
         _super.call(this, _camera, renderer);
         this._camera = _camera;
         this._theta = 0;
-        this._smoothCamera = true;
         this._cameraInverted = true;
         this._attachedTo = null;
         this._readMouse = false;
@@ -54,9 +53,6 @@ var AttachedCameraController = (function (_super) {
         this._mouseStart.x = event.clientX;
         this._mouseStart.y = event.clientY;
         this._readMouse = true;
-        if(this._currentThetaTween) {
-            this._currentThetaTween.stop();
-        }
     };
     AttachedCameraController.prototype.onMouseUp = function (event) {
         event.preventDefault();
@@ -64,22 +60,8 @@ var AttachedCameraController = (function (_super) {
         this._thetaIncrementor = 0;
     };
     AttachedCameraController.prototype.tweenThetaOffsetBy = function (offset) {
-        var _this = this;
         if(!this._readMouse) {
-            if(this._currentThetaTween) {
-                this._currentThetaTween.stop();
-            }
-            this._thetaTweenTo = new THREE.Vector2((this._attachedTo.rotation.y / AttachedCameraController.TO_RADIANS) + offset);
-            if(this._smoothCamera) {
-                this._thetaTweenFrom = new THREE.Vector2(this._theta % 360);
-                this._currentThetaTween = new TWEEN.Tween(this._thetaTweenFrom).to(this._thetaTweenTo, 1000);
-                this._currentThetaTween.onUpdate(function () {
-                    _this._theta = _this._thetaTweenFrom.x;
-                });
-                this._currentThetaTween.start();
-            } else {
-                this._theta = this._thetaTweenTo.x;
-            }
+            this._theta = (this._attachedTo.rotation.y / AttachedCameraController.TO_RADIANS) + offset;
         }
     };
     AttachedCameraController.prototype.applyKeyboardBindings = function () {
@@ -103,13 +85,11 @@ var AttachedCameraController = (function (_super) {
         var zDiff = this._attachedTo.position.z - this._lastAttachedPosition.z;
 
         if(Math.abs(xDiff) > AttachedCameraController.INTERPOLATE_THRESHOLD) {
-            console.log("INTERPOLATING X because of diff: " + xDiff);
             position.x += (xDiff / Math.abs(xDiff)) * AttachedCameraController.INTERPOLATE_THRESHOLD;
         } else {
             position.x = this._attachedTo.position.x;
         }
         if(Math.abs(zDiff) > AttachedCameraController.INTERPOLATE_THRESHOLD) {
-            console.log("INTERPOLATING Z because of diff: " + zDiff);
             position.z += (zDiff / Math.abs(zDiff)) * AttachedCameraController.INTERPOLATE_THRESHOLD;
         } else {
             position.z = this._attachedTo.position.z;
