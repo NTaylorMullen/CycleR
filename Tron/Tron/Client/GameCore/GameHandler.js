@@ -24,4 +24,3 @@ var GameHandler = (function (_super) {
     };
     return GameHandler;
 })(SceneObjectCreator);
-//@ sourceMappingURL=GameHandler.js.map

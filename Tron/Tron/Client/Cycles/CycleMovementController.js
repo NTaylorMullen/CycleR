@@ -45,4 +45,3 @@ var CycleMovementController = (function (_super) {
     };
     return CycleMovementController;
 })(MovementController);
-//@ sourceMappingURL=CycleMovementController.js.map

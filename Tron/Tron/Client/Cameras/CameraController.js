@@ -9,4 +9,3 @@ var CameraController = (function () {
     };
     return CameraController;
 })();
-//@ sourceMappingURL=CameraController.js.map

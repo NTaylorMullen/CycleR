@@ -128,4 +128,3 @@ var AttachedCameraController = (function (_super) {
     };
     return AttachedCameraController;
 })(CameraController);
-//@ sourceMappingURL=AttachedCameraController.js.map

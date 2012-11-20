@@ -21,4 +21,3 @@ var CycleManager = (function (_super) {
     };
     return CycleManager;
 })(SceneObjectCreator);
-//@ sourceMappingURL=CycleManager.js.map

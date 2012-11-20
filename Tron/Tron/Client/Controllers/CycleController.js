@@ -10,4 +10,3 @@ var CycleController = (function () {
     };
     return CycleController;
 })();
-//@ sourceMappingURL=CycleController.js.map

@@ -15,4 +15,3 @@ var EnvironmentRenderer = (function () {
     };
     return EnvironmentRenderer;
 })();
-//@ sourceMappingURL=EnvironmentRenderer.js.map

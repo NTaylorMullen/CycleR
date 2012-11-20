@@ -14,15 +14,18 @@ var KeyboardAdapter = (function () {
         this.applyKeyboardMappings();
     }
     KeyboardAdapter.CONTROL_LEFT = [
-        "j"
+        "a", 
+        "Left"
     ];
     KeyboardAdapter.CONTROL_RIGHT = [
-        "l"
+        "d", 
+        "Right"
     ];
     KeyboardAdapter.prototype.applyKeyboardMappings = function () {
         var that = this;
         for(var k = 0; k < this._keyMappings.length; k++) {
             for(var z = 0; z < this._keyMappings[k].key.length; z++) {
+                console.log("Mapping key: " + this._keyMappings[k].key[z]);
                 shortcut.add(that._keyMappings[k].key[z], (function (k) {
                     return function () {
                         that._move.call(that._proxy, that._keyMappings[k].dir);
@@ -33,4 +36,3 @@ var KeyboardAdapter = (function () {
     };
     return KeyboardAdapter;
 })();
-//@ sourceMappingURL=KeyboardAdapter.js.map

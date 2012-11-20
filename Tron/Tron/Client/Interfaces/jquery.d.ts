@@ -1,3 +1,5 @@
+/// <reference path="SignalR/SignalR.d.ts" />
+
 // Typing for the jQuery library, version 1.7.x
 
 /*
@@ -148,6 +150,11 @@ interface JQuerySupport {
    Static members of jQuery (those on $ and jQuery themselves)
 */
 interface JQueryStatic {
+
+   /*******
+    SIGNALR
+   ********/
+    connection: ISignalRConnection;
 
    /****
     AJAX

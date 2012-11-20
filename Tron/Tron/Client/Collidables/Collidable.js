@@ -5,4 +5,3 @@ var Collidable = (function () {
     }
     return Collidable;
 })();
-//@ sourceMappingURL=Collidable.js.map

@@ -24,4 +24,3 @@ var Camera = (function () {
     };
     return Camera;
 })();
-//@ sourceMappingURL=Camera.js.map

@@ -1,5 +1,11 @@
-/// <reference path="GameCore/Game.ts" />
+/// <reference path="Interfaces/jquery.d.ts" />
+
+declare var GameScreenHandler, MainGame;
 
 $(function () {
-    var game = new Game();
+    var gameHub: IHubProxy = $.connection.gameHub;
+
+    var gameScreenHanler = new GameScreenHandler(gameHub);
+
+    gameScreenHanler.Load(MainGame.NAME);
 })

@@ -20,4 +20,3 @@ var GameLoop = (function () {
     };
     return GameLoop;
 })();
-//@ sourceMappingURL=GameLoop.js.map

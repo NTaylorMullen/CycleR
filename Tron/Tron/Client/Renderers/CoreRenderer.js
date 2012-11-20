@@ -26,4 +26,3 @@ var CoreRenderer = (function () {
     };
     return CoreRenderer;
 })();
-//@ sourceMappingURL=CoreRenderer.js.map

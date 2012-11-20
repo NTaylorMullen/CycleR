@@ -1,4 +1,7 @@
+
 $(function () {
-    var game = new Game();
+    var gameHub = $.connection.gameHub;
+    var gameScreenHanler = new GameScreenHandler(gameHub);
+    gameScreenHanler.Load(MainGame.NAME);
 });
-//@ sourceMappingURL=Main.js.map
+//sourceMappingURL=Main.js.map
