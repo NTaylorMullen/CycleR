@@ -11,31 +11,39 @@ class GameHandler extends SceneObjectCreator {
     private _cycleManager: CycleManager;
     private _cycleController: CycleController;
     private _camera: Camera;
+    private _map: Map;
 
     private _models: { [s: string]: IGeometry; };
 
-    constructor (camera: Camera) {
+    constructor (gameHub: IHubProxy, camera: Camera) {
         super();
 
         this._camera = camera;
         this._cycleManager = new CycleManager();
+        this._map = new Map();
+        this._cycleController = new CycleController(gameHub);
     }
 
     public ModelsLoaded(models: { [s: string]: IGeometry; }) {
         this._models = models;
 
-        var c: Cycle = new Cycle(new THREE.Vector3(0,35,0), 0, this._models[ModelLibrary.Cycle.ModelName]);
+        var c: Cycle = new Cycle(new THREE.Vector3(0,35,0), 0, this._models[ModelLibrary.Cycle.ModelName],0xff0000);
         this._cycleManager.Add(c);
-        this._cycleController = new CycleController(c);
+        this._cycleController.AttachTo(c);
         
         var controller: AttachedCameraController = <AttachedCameraController>this._camera.GetController();
-        controller.AttachTo(c.Context);
+        this._map.Add(c);
+        if (controller.AttachTo) {
+            controller.AttachTo(c.Context);
+        }
     }
 
     public Update(gameTime: GameTime): void {
         // Need to add all pending objects to our pending objects list so they can be added to the scene
         this.AddAllToScene(this._cycleManager.GetPendingObjects());
+        this.AddAllToScene(this._map.GetPendingObjects());
 
         this._cycleManager.Update(gameTime);
+        this._map.Update(gameTime);
     }
 }

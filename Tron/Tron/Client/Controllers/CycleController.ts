@@ -5,9 +5,9 @@
 
 class CycleController {
     private _adapter: IAdapter;
+    private _cycle: Cycle;
 
-    constructor (private _cycle: Cycle) {
-        this._adapter = this.determineAdapter();
+    constructor (private _gameHub: IHubProxy) {
     }
 
     private determineAdapter(): IAdapter {
@@ -16,6 +16,16 @@ class CycleController {
     }
 
     private move(direction: string): void {
+    }
 
+    public AttachTo(cycle: Cycle): void {
+        this._cycle = cycle;
+        this._adapter = this.determineAdapter();
+        this._adapter.Activate();
+    }
+
+    public Detach(): void {
+        this._adapter.Deactivate();
+        this._adapter = null;
     }
 }

@@ -2,7 +2,7 @@ var __extends = this.__extends || function (d, b) {
     function __() { this.constructor = d; }
     __.prototype = b.prototype;
     d.prototype = new __();
-}
+};
 var AttachedCameraController = (function (_super) {
     __extends(AttachedCameraController, _super);
     function AttachedCameraController(_camera, renderer) {
@@ -36,9 +36,7 @@ var AttachedCameraController = (function (_super) {
     AttachedCameraController.prototype.onMouseMove = function (event) {
         event.preventDefault();
         if(this._readMouse) {
-            var thetaInverter = -1;
-            var thetaDirection = (this._mouseStart.x - event.clientX);
-
+            var thetaInverter = -1, thetaDirection = (this._mouseStart.x - event.clientX);
             if(thetaDirection !== 0) {
                 thetaDirection /= Math.abs(thetaDirection);
             }
@@ -80,10 +78,7 @@ var AttachedCameraController = (function (_super) {
         });
     };
     AttachedCameraController.prototype.getAttachedPosition = function () {
-        var position = this._lastAttachedPosition.clone();
-        var xDiff = this._attachedTo.position.x - this._lastAttachedPosition.x;
-        var zDiff = this._attachedTo.position.z - this._lastAttachedPosition.z;
-
+        var position = this._lastAttachedPosition.clone(), xDiff = this._attachedTo.position.x - this._lastAttachedPosition.x, zDiff = this._attachedTo.position.z - this._lastAttachedPosition.z;
         if(Math.abs(xDiff) > AttachedCameraController.INTERPOLATE_THRESHOLD) {
             position.x += (xDiff / Math.abs(xDiff)) * AttachedCameraController.INTERPOLATE_THRESHOLD;
         } else {

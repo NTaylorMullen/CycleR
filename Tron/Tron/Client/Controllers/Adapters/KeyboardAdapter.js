@@ -11,7 +11,6 @@ var KeyboardAdapter = (function () {
             key: KeyboardAdapter.CONTROL_RIGHT,
             dir: "Right"
         });
-        this.applyKeyboardMappings();
     }
     KeyboardAdapter.CONTROL_LEFT = [
         "a", 
@@ -21,16 +20,22 @@ var KeyboardAdapter = (function () {
         "d", 
         "Right"
     ];
-    KeyboardAdapter.prototype.applyKeyboardMappings = function () {
+    KeyboardAdapter.prototype.Activate = function () {
         var that = this;
         for(var k = 0; k < this._keyMappings.length; k++) {
             for(var z = 0; z < this._keyMappings[k].key.length; z++) {
-                console.log("Mapping key: " + this._keyMappings[k].key[z]);
                 shortcut.add(that._keyMappings[k].key[z], (function (k) {
                     return function () {
                         that._move.call(that._proxy, that._keyMappings[k].dir);
                     }
                 })(k));
+            }
+        }
+    };
+    KeyboardAdapter.prototype.Deactivate = function () {
+        for(var k = 0; k < this._keyMappings.length; k++) {
+            for(var z = 0; z < this._keyMappings[k].key.length; z++) {
+                shortcut.remove(this._keyMappings[k].key[z]);
             }
         }
     };

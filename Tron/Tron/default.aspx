@@ -12,12 +12,13 @@
             .Add("Styles/game.css")
         .Render("Styles/MAIN.css")
     %>
+
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div id="container">
-        </div>
-    </form>
+    <div id="GameWrapper">
+    </div>
+    <div id="GameScreen">
+    </div>
 
     <%= Bundle.JavaScript()
             .Add("Scripts/jquery-1.8.2.js")
@@ -41,6 +42,8 @@
             .Add("Client/Cameras/FreeCameraController.js")
             .Add("Client/Cameras/AttachedCameraController.js")
             .Add("Client/Cameras/Camera.js")
+            .Add("Client/Trails/Trail.js")
+            .Add("Client/Trails/TrailManager.js")
             .Add("Client/Space/Map.js")            
             .Add("Client/Renderers/CoreRenderer.js")
             .Add("Client/Renderers/EnvironmentRenderer.js")
@@ -49,7 +52,7 @@
             .Add("Client/ModelHelpers/ModelLibrary.js")
             .Add("Client/ModelHelpers/ModelLoader.js")
             .Add("Client/Collidables/MovementControllers/MovementController.js")
-            .Add("Client/Collidables/Collidable.js")
+            .Add("Client/Collidables/Collidable.js")            
             .Add("Client/Controllers/Adapters/KeyboardAdapter.js")
             .Add("Client/Controllers/CycleController.js")
             .Add("Client/Cycles/CycleMovementController.js")

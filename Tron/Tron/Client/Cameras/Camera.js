@@ -5,7 +5,6 @@ var Camera = (function () {
         this.Mode = AttachedCameraController.MODE;
         this.initializeCameraControllers();
     }
-    Camera.DISTANCE = 1000;
     Camera.prototype.initializeGameCamera = function () {
         this.Context = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
         THREEx.WindowResize(this._renderer, this.Context);

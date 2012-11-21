@@ -5,8 +5,6 @@
 /// <reference path="AttachedCameraController.ts" />
 
 class Camera {
-    static DISTANCE: number = 1000;
-
     public Mode: string;
     public Context: IPerspectiveCamera;
 

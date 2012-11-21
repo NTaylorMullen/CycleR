@@ -12,12 +12,12 @@ class Game {
     private _gameHandler: GameHandler;
     private _camera: Camera;
 
-    constructor () {
+    constructor (gameHub: IHubProxy) {
         this._modelLoader = new ModelLoader();
         this._gameRenderer = new GameRenderer();
         this._camera = new Camera(this._gameRenderer.Renderer);
         this._gameLoop = new GameLoop(this.Update, this.Draw, this);
-        this._gameHandler = new GameHandler(this._camera);
+        this._gameHandler = new GameHandler(gameHub, this._camera);
 
         this.load();
         this._gameLoop.Start();

@@ -10,7 +10,7 @@ class CycleMovementController extends MovementController {
         this.Velocity.z = -CycleMovementController.MAX_SPEED;
     }
 
-    private positionOnLine(): void {
+    private positionOnLine(): void {        
         if (this.Velocity.z !== 0) {
             this._context.position.z -= (this._context.position.z % Map.FLOOR_TILE_SIZE.Width) - Map.FLOOR_TILE_SIZE.Width * (this.Velocity.z / Math.abs(this.Velocity.z));
         }

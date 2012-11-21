@@ -12,7 +12,7 @@ class MapRenderer {
 
     private renderFloor(): void {
         var planeTesselated: IPlaneGeometry = new THREE.PlaneGeometry(Map.MAP_SIZE.Width, Map.MAP_SIZE.Height, Map.FLOOR_TILE_SIZE.Width, Map.FLOOR_TILE_SIZE.Height),
-        matWire: IMeshBasicMaterial = new THREE.MeshBasicMaterial({ color: 0x24D613, wireframe: true, wireframeLinewidth: 2 });
+            matWire: IMeshBasicMaterial = new THREE.MeshBasicMaterial({ color: 0x24D613, wireframe: true, wireframeLinewidth: 2 });
 
         this._floor = new THREE.Mesh(planeTesselated, matWire);
         this._floor.position = new THREE.Vector3(0, 0, 0);

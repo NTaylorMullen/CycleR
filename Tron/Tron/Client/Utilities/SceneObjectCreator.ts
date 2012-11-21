@@ -1,5 +1,4 @@
 /// <reference path="../Interfaces/ThreeJS/Three.d.ts" />
-/// <reference path="../Interfaces/Game/Game.d.ts" />
 
 class SceneObjectCreator {
     private _pendingObjects: IObject3D[];

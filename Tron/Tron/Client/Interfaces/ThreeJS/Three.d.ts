@@ -27,6 +27,7 @@ interface IThree {
     DirectionalLight(hex: number, intensity: number, distance?: number): any;
     PlaneGeometry(width: number, height: number, widthSegments?: number, heightSegments?: number): any;
     MeshBasicMaterial(parameters: any): any;
+    MeshNormalMaterial(parameters?: any): any;
     Mesh(geometry: IGeometry, material: IMaterial);    
     PerspectiveCamera(fov: number, aspect: number, near: number, far: number): void;
     WebGLRenderer(options?: any): any;

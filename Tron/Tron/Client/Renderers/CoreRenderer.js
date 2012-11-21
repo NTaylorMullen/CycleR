@@ -18,7 +18,7 @@ var CoreRenderer = (function () {
     CoreRenderer.prototype.Initialize = function () {
         this._renderer = this.determineRenderer();
         this._renderer.setSize(window.innerWidth, window.innerHeight);
-        $("body").append(this._renderer.domElement);
+        $("#GameWrapper").append(this._renderer.domElement);
         return this._renderer;
     };
     CoreRenderer.prototype.Draw = function (camera) {

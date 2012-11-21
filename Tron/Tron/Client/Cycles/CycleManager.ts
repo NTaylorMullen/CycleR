@@ -4,11 +4,11 @@
 /// <reference path="Cycle.ts" />
 
 class CycleManager extends SceneObjectCreator {
-    public Cycles: { [s: any]: Cycle; };
+    public Cycles: { [ID: number]: Cycle; };
 
     constructor () {
         super();
-        this.Cycles = {};
+        this.Cycles = <{ [ID: number]: Cycle; }>{};
     }
 
     public Add(cycle: Cycle): void {

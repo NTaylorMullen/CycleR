@@ -269,6 +269,14 @@
       <DependentUpon>ModelLoader.ts</DependentUpon>
     </Content>
     <TypeScriptCompile Include="Client\Utilities\SceneObjectCreator.ts" />
+    <TypeScriptCompile Include="Client\Trails\Trail.ts" />
+    <Content Include="Client\Trails\Trail.js">
+      <DependentUpon>Trail.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="Client\Trails\TrailManager.ts" />
+    <Content Include="Client\Trails\TrailManager.js">
+      <DependentUpon>TrailManager.ts</DependentUpon>
+    </Content>
     <Content Include="Client\Utilities\SceneObjectCreator.js">
       <DependentUpon>SceneObjectCreator.ts</DependentUpon>
     </Content>
@@ -321,8 +329,14 @@
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Server\Configurations\GameConfiguration.cs" />
+    <Compile Include="Server\GameCore\GameHandler.cs" />
+    <Compile Include="Server\Utilities\HighFrequencyTimer.cs" />
     <Compile Include="Server\GameHub.cs" />
-    <Compile Include="Server\Game.cs" />
+    <Compile Include="Server\GameCore\Game.cs" />
+    <Compile Include="Server\Managers\ConnectionManager.cs" />
+    <Compile Include="Server\Users\User.cs" />
+    <Compile Include="Server\Users\UserHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Client\GameCore\GameLoop.js.map">
@@ -426,6 +440,12 @@
     <Content Include="Client\Main.js.map">
       <DependentUpon>Main.ts</DependentUpon>
     </Content>
+    <Content Include="Client\Trails\Trail.js.map">
+      <DependentUpon>Trail.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Trails\TrailManager.js.map">
+      <DependentUpon>TrailManager.ts</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -433,9 +453,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Server\Configuration\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -464,7 +482,7 @@
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.-->
   <Target Name="BeforeBuild">
-    <Exec Command="&quot;$(PROGRAMFILES)\Microsoft SDKs\TypeScript\0.8.0.0\tsc&quot;     @(TypeScriptCompile ->'&quot;%(fullpath)&quot;', ' ')" />
+    <Exec Command="&quot;$(PROGRAMFILES)\Microsoft SDKs\TypeScript\0.8.1.0\tsc&quot;     @(TypeScriptCompile ->'&quot;%(fullpath)&quot;', ' ')" />
   </Target>
   <!--
   <Target Name="AfterBuild">
