@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Threading;
 
-namespace Microsoft.AspNet.SignalR
+namespace Tron.Utilities
 {
     /// <summary>
     /// A high-resolution FPS timer.

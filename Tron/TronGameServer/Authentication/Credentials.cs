@@ -1,4 +1,4 @@
-﻿namespace Tron.Server
+﻿namespace Tron.GameServer
 {
     public class Credentials
     {

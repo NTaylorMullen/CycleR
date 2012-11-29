@@ -1,5 +1,4 @@
 $(function () {
-    var gameHub = $.connection.GameHub;
-    var gameScreenHanler = new GameScreenHandler(gameHub);
+    var gameServer = $.connection.GameServer, gameScreenHanler = new GameScreenHandler(gameServer);
     gameScreenHanler.Load(MainGame.NAME);
 });

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Tron.Server
+namespace Tron.GameServer
 {
     public class ConnectionManager : IConnectionHandler
     {
@@ -16,7 +16,7 @@ namespace Tron.Server
 
         public void OnConnected(string connectionID)
         {
-            _userHandler.AddUser(new User(connectionID));
+            _userHandler.CreateUser(connectionID);
         }
 
         public void OnReconnected(string connectionID)
@@ -26,7 +26,7 @@ namespace Tron.Server
 
         public void OnDisconnected(string connectionID)
         {
-            _userHandler.RemoveUser(_userHandler.GetUser(connectionID));
+            _userHandler.RemoveUser(connectionID);
         }
     }    
 }

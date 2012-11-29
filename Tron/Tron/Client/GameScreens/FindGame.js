@@ -1,7 +1,7 @@
 var GameScreen = (function () {
-    function GameScreen(name, _onCompletion, GameHub) {
+    function GameScreen(name, _onCompletion, GameServer) {
         this._onCompletion = _onCompletion;
-        this.GameHub = GameHub;
+        this.GameServer = GameServer;
         this.Name = name;
         this.Running = false;
     }
@@ -21,8 +21,8 @@ var __extends = this.__extends || function (d, b) {
 };
 var FindGame = (function (_super) {
     __extends(FindGame, _super);
-    function FindGame(onCompletion, gameHub) {
-        _super.call(this, FindGame.NAME, onCompletion, gameHub);
+    function FindGame(onCompletion, gameServer) {
+        _super.call(this, FindGame.NAME, onCompletion, gameServer);
     }
     FindGame.NAME = "FindGame";
     return FindGame;

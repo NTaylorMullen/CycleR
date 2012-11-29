@@ -4,7 +4,7 @@
 class CreateGame extends GameScreen {
     static NAME: string = "CreateGame";
 
-    constructor (onCompletion: Function, gameHub: IHubProxy) {
-        super(CreateGame.NAME, onCompletion, gameHub);
+    constructor (onCompletion: Function, gameServer: IHubProxy) {
+        super(CreateGame.NAME, onCompletion, gameServer);
     }
 }

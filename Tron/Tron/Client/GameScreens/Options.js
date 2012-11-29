@@ -1,7 +1,7 @@
 var GameScreen = (function () {
-    function GameScreen(name, _onCompletion, GameHub) {
+    function GameScreen(name, _onCompletion, GameServer) {
         this._onCompletion = _onCompletion;
-        this.GameHub = GameHub;
+        this.GameServer = GameServer;
         this.Name = name;
         this.Running = false;
     }
@@ -21,8 +21,8 @@ var __extends = this.__extends || function (d, b) {
 };
 var Options = (function (_super) {
     __extends(Options, _super);
-    function Options(onCompletion, gameHub) {
-        _super.call(this, Options.NAME, onCompletion, gameHub);
+    function Options(onCompletion, gameServer) {
+        _super.call(this, Options.NAME, onCompletion, gameServer);
     }
     Options.NAME = "Options";
     return Options;

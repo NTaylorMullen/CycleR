@@ -4,7 +4,7 @@
 class Loading extends GameScreen {
     static NAME: string = "Loading";
 
-    constructor (onCompletion: Function, gameHub: IHubProxy) {
-        super(Loading.NAME, onCompletion, gameHub);
+    constructor (onCompletion: Function, gameServer: IHubProxy) {
+        super(Loading.NAME, onCompletion, gameServer);
     }
 }

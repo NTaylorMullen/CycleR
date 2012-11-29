@@ -1,7 +1,7 @@
 var GameScreen = (function () {
-    function GameScreen(name, _onCompletion, GameHub) {
+    function GameScreen(name, _onCompletion, GameServer) {
         this._onCompletion = _onCompletion;
-        this.GameHub = GameHub;
+        this.GameServer = GameServer;
         this.Name = name;
         this.Running = false;
     }
@@ -21,48 +21,48 @@ var __extends = this.__extends || function (d, b) {
 };
 var Loading = (function (_super) {
     __extends(Loading, _super);
-    function Loading(onCompletion, gameHub) {
-        _super.call(this, Loading.NAME, onCompletion, gameHub);
+    function Loading(onCompletion, gameServer) {
+        _super.call(this, Loading.NAME, onCompletion, gameServer);
     }
     Loading.NAME = "Loading";
     return Loading;
 })(GameScreen);
 var MainMenu = (function (_super) {
     __extends(MainMenu, _super);
-    function MainMenu(onCompletion, gameHub) {
-        _super.call(this, MainMenu.NAME, onCompletion, gameHub);
+    function MainMenu(onCompletion, gameServer) {
+        _super.call(this, MainMenu.NAME, onCompletion, gameServer);
     }
     MainMenu.NAME = "MainMenu";
     return MainMenu;
 })(GameScreen);
 var QuickMatch = (function (_super) {
     __extends(QuickMatch, _super);
-    function QuickMatch(onCompletion, gameHub) {
-        _super.call(this, QuickMatch.NAME, onCompletion, gameHub);
+    function QuickMatch(onCompletion, gameServer) {
+        _super.call(this, QuickMatch.NAME, onCompletion, gameServer);
     }
     QuickMatch.NAME = "QuickMatch";
     return QuickMatch;
 })(GameScreen);
 var Options = (function (_super) {
     __extends(Options, _super);
-    function Options(onCompletion, gameHub) {
-        _super.call(this, Options.NAME, onCompletion, gameHub);
+    function Options(onCompletion, gameServer) {
+        _super.call(this, Options.NAME, onCompletion, gameServer);
     }
     Options.NAME = "Options";
     return Options;
 })(GameScreen);
 var FindGame = (function (_super) {
     __extends(FindGame, _super);
-    function FindGame(onCompletion, gameHub) {
-        _super.call(this, FindGame.NAME, onCompletion, gameHub);
+    function FindGame(onCompletion, gameServer) {
+        _super.call(this, FindGame.NAME, onCompletion, gameServer);
     }
     FindGame.NAME = "FindGame";
     return FindGame;
 })(GameScreen);
 var CreateGame = (function (_super) {
     __extends(CreateGame, _super);
-    function CreateGame(onCompletion, gameHub) {
-        _super.call(this, CreateGame.NAME, onCompletion, gameHub);
+    function CreateGame(onCompletion, gameServer) {
+        _super.call(this, CreateGame.NAME, onCompletion, gameServer);
     }
     CreateGame.NAME = "CreateGame";
     return CreateGame;
@@ -805,8 +805,8 @@ var Game = (function () {
 })();
 var MainGame = (function (_super) {
     __extends(MainGame, _super);
-    function MainGame(onCompletion, gameHub) {
-        _super.call(this, MainGame.NAME, onCompletion, gameHub);
+    function MainGame(onCompletion, gameServer) {
+        _super.call(this, MainGame.NAME, onCompletion, gameServer);
     }
     MainGame.NAME = "MainGame";
     MainGame.prototype.Load = function () {
@@ -817,20 +817,20 @@ var MainGame = (function (_super) {
     return MainGame;
 })(GameScreen);
 var GameScreenHandler = (function () {
-    function GameScreenHandler(gameHub) {
+    function GameScreenHandler(gameServer) {
         var _this = this;
         var completionCallback = function (nextScreen) {
             _this.screenDone(nextScreen);
         };
         this._screens = {
         };
-        this._screens[Loading.NAME] = new Loading(completionCallback, gameHub);
-        this._screens[MainMenu.NAME] = new MainMenu(completionCallback, gameHub);
-        this._screens[QuickMatch.NAME] = new QuickMatch(completionCallback, gameHub);
-        this._screens[Options.NAME] = new Options(completionCallback, gameHub);
-        this._screens[FindGame.NAME] = new FindGame(completionCallback, gameHub);
-        this._screens[CreateGame.NAME] = new CreateGame(completionCallback, gameHub);
-        this._screens[MainGame.NAME] = new MainGame(completionCallback, gameHub);
+        this._screens[Loading.NAME] = new Loading(completionCallback, gameServer);
+        this._screens[MainMenu.NAME] = new MainMenu(completionCallback, gameServer);
+        this._screens[QuickMatch.NAME] = new QuickMatch(completionCallback, gameServer);
+        this._screens[Options.NAME] = new Options(completionCallback, gameServer);
+        this._screens[FindGame.NAME] = new FindGame(completionCallback, gameServer);
+        this._screens[CreateGame.NAME] = new CreateGame(completionCallback, gameServer);
+        this._screens[MainGame.NAME] = new MainGame(completionCallback, gameServer);
     }
     GameScreenHandler.prototype.screenDone = function (nextScreen) {
         this.Load(nextScreen);

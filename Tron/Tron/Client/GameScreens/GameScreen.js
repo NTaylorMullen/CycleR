@@ -1,7 +1,7 @@
 var GameScreen = (function () {
-    function GameScreen(name, _onCompletion, GameHub) {
+    function GameScreen(name, _onCompletion, GameServer) {
         this._onCompletion = _onCompletion;
-        this.GameHub = GameHub;
+        this.GameServer = GameServer;
         this.Name = name;
         this.Running = false;
     }

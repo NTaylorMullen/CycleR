@@ -1,7 +1,7 @@
 var GameScreen = (function () {
-    function GameScreen(name, _onCompletion, GameHub) {
+    function GameScreen(name, _onCompletion, GameServer) {
         this._onCompletion = _onCompletion;
-        this.GameHub = GameHub;
+        this.GameServer = GameServer;
         this.Name = name;
         this.Running = false;
     }
@@ -21,8 +21,8 @@ var __extends = this.__extends || function (d, b) {
 };
 var Loading = (function (_super) {
     __extends(Loading, _super);
-    function Loading(onCompletion, gameHub) {
-        _super.call(this, Loading.NAME, onCompletion, gameHub);
+    function Loading(onCompletion, gameServer) {
+        _super.call(this, Loading.NAME, onCompletion, gameServer);
     }
     Loading.NAME = "Loading";
     return Loading;

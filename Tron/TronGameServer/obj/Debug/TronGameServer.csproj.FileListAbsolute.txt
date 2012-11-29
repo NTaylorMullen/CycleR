@@ -11,3 +11,4 @@ C:\Users\N.Taylor\Documents\GitHub\Tron\Tron\TronGameServer\bin\Debug\Microsoft.
 C:\Users\N.Taylor\Documents\GitHub\Tron\Tron\TronGameServer\bin\Debug\Newtonsoft.Json.xml
 C:\Users\N.Taylor\Documents\GitHub\Tron\Tron\TronGameServer\obj\Debug\TronGameServer.dll
 C:\Users\N.Taylor\Documents\GitHub\Tron\Tron\TronGameServer\obj\Debug\TronGameServer.pdb
+C:\Users\N.Taylor\Documents\GitHub\Tron\Tron\TronGameServer\obj\Debug\TronGameServer.csprojResolveAssemblyReference.cache

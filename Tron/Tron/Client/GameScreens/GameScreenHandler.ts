@@ -12,20 +12,20 @@ class GameScreenHandler {
     private _screens: { [s: string]: GameScreen; };
     private _currentScreen: GameScreen;
 
-    constructor (gameHub: IHubProxy) {
+    constructor (gameServer: IHubProxy) {
 
         var completionCallback = (nextScreen: string) => {
             this.screenDone(nextScreen);
         };
 
         this._screens = {};
-        this._screens[Loading.NAME] = new Loading(completionCallback, gameHub);
-        this._screens[MainMenu.NAME] = new MainMenu(completionCallback, gameHub);
-        this._screens[QuickMatch.NAME] = new QuickMatch(completionCallback, gameHub);
-        this._screens[Options.NAME] = new Options(completionCallback, gameHub);
-        this._screens[FindGame.NAME] = new FindGame(completionCallback, gameHub);
-        this._screens[CreateGame.NAME] = new CreateGame(completionCallback, gameHub);
-        this._screens[MainGame.NAME] = new MainGame(completionCallback, gameHub);
+        this._screens[Loading.NAME] = new Loading(completionCallback, gameServer);
+        this._screens[MainMenu.NAME] = new MainMenu(completionCallback, gameServer);
+        this._screens[QuickMatch.NAME] = new QuickMatch(completionCallback, gameServer);
+        this._screens[Options.NAME] = new Options(completionCallback, gameServer);
+        this._screens[FindGame.NAME] = new FindGame(completionCallback, gameServer);
+        this._screens[CreateGame.NAME] = new CreateGame(completionCallback, gameServer);
+        this._screens[MainGame.NAME] = new MainGame(completionCallback, gameServer);
     }
 
     private screenDone(nextScreen: string): void {

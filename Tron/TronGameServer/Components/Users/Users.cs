@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Tron.Server
+namespace Tron.GameServer
 {
     public class Users : IConnectionHandler
     {

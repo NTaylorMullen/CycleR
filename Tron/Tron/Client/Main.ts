@@ -3,9 +3,8 @@
 declare var GameScreenHandler, MainGame;
 
 $(function () {
-    var gameHub: IHubProxy = $.connection.GameHub;
-
-    var gameScreenHanler = new GameScreenHandler(gameHub);
+    var gameServer: IHubProxy = $.connection.GameServer,
+        gameScreenHanler = new GameScreenHandler(gameServer);
 
     gameScreenHanler.Load(MainGame.NAME);
 })

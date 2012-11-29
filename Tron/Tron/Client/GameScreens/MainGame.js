@@ -1,7 +1,7 @@
 var GameScreen = (function () {
-    function GameScreen(name, _onCompletion, GameHub) {
+    function GameScreen(name, _onCompletion, GameServer) {
         this._onCompletion = _onCompletion;
-        this.GameHub = GameHub;
+        this.GameServer = GameServer;
         this.Name = name;
         this.Running = false;
     }
@@ -757,8 +757,8 @@ var Game = (function () {
 })();
 var MainGame = (function (_super) {
     __extends(MainGame, _super);
-    function MainGame(onCompletion, gameHub) {
-        _super.call(this, MainGame.NAME, onCompletion, gameHub);
+    function MainGame(onCompletion, gameServer) {
+        _super.call(this, MainGame.NAME, onCompletion, gameServer);
     }
     MainGame.NAME = "MainGame";
     MainGame.prototype.Load = function () {

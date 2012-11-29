@@ -2,6 +2,7 @@
 /// <reference path="../Hubs/Hub.d.ts" />
 
 interface ISignalRConnection {
-    GameHub: IHubProxy;
+    GameServer: IHubProxy;
+    LobbyHub: IHubProxy;
     hub: ISignalRHub;
 }

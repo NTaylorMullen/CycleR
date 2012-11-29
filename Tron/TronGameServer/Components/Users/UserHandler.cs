@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Threading;
 
-namespace Tron.Server
+namespace Tron.GameServer
 {
     public class UserHandler
     {
+        private static long _userIDs = 1;
         private ConcurrentDictionary<string, User> _userList;
 
         public UserHandler()
@@ -12,14 +14,15 @@ namespace Tron.Server
             _userList = new ConcurrentDictionary<string, User>();
         }
 
-        public void AddUser(User user)
+        public void CreateUser(string connectionId)
         {
-            _userList.TryAdd(user.ConnectionID, user);
+            _userList.TryAdd(connectionId, new User(connectionId, Interlocked.Increment(ref _userIDs)));
         }
 
-        public void RemoveUser(User user)
+        public void RemoveUser(string connectionId)
         {
-            _userList.TryRemove(user.ConnectionID, out user);
+            User user;
+            _userList.TryRemove(connectionId, out user);
         }
 
         public User GetUser(string connectionID)

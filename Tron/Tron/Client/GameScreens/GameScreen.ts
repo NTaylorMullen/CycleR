@@ -2,7 +2,7 @@ class GameScreen {
     public Name: string;
     public Running: bool;
 
-    constructor (name: string, private _onCompletion: Function, public GameHub: IHubProxy) {
+    constructor (name: string, private _onCompletion: Function, public GameServer: IHubProxy) {
         this.Name = name;
         this.Running = false;
     }

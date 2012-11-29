@@ -4,7 +4,7 @@
 class MainMenu extends GameScreen {
     static NAME: string = "MainMenu";
 
-    constructor (onCompletion: Function, gameHub: IHubProxy) {
-        super(MainMenu.NAME, onCompletion, gameHub);
+    constructor (onCompletion: Function, gameServer: IHubProxy) {
+        super(MainMenu.NAME, onCompletion, gameServer);
     }
 }

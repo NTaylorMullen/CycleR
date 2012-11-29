@@ -4,7 +4,7 @@
 class QuickMatch extends GameScreen {
     static NAME: string = "QuickMatch";
 
-    constructor (onCompletion: Function, gameHub: IHubProxy) {
-        super(QuickMatch.NAME, onCompletion, gameHub);
+    constructor (onCompletion: Function, gameServer: IHubProxy) {
+        super(QuickMatch.NAME, onCompletion, gameServer);
     }
 }

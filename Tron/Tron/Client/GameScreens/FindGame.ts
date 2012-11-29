@@ -4,7 +4,7 @@
 class FindGame extends GameScreen {
     static NAME: string = "FindGame";
 
-    constructor (onCompletion: Function, gameHub: IHubProxy) {
-        super(FindGame.NAME, onCompletion, gameHub);
+    constructor (onCompletion: Function, gameServer: IHubProxy) {
+        super(FindGame.NAME, onCompletion, gameServer);
     }
 }

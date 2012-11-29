@@ -7,8 +7,8 @@ class MainGame extends GameScreen {
 
     private _game: Game;
 
-    constructor (onCompletion: Function, gameHub: IHubProxy) {
-        super(MainGame.NAME, onCompletion, gameHub);
+    constructor (onCompletion: Function, gameServer: IHubProxy) {
+        super(MainGame.NAME, onCompletion, gameServer);
     }
 
     public Load(): void {
