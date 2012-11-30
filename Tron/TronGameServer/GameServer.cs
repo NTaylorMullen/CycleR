@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.SignalR.Hubs;
+using System;
 using System.Threading.Tasks;
 
 namespace Tron.GameServer
@@ -17,24 +18,12 @@ namespace Tron.GameServer
             _users = users;
         }
 
-        #region Connection Methods
-        public override Task OnConnected()
+        public void MoveCycle(string where)
         {
-            _users.OnConnected(Context.ConnectionId);
-            return base.OnConnected();
+            if (_users.UserExists(Context.ConnectionId))
+            {
+                CycleMovementFlag direction = (CycleMovementFlag)Enum.Parse(typeof(CycleMovementFlag), where);
+            }
         }
-
-        public override Task OnDisconnected()
-        {
-            _users.OnDisconnected(Context.ConnectionId);
-            return base.OnDisconnected();
-        }
-
-        public override Task OnReconnected()
-        {
-            _users.OnReconnected(Context.ConnectionId);
-            return base.OnReconnected();
-        }
-        #endregion
     }
 }

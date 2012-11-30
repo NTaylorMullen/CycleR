@@ -9,9 +9,11 @@ namespace Tron.GameServer
 {
     public class Cycle : Collidable, IDisposable
     {
-        public Cycle(long id, Vector3 startPosition, Vector3 startVelocity, double startRotation)
-            : base(id)
+        public Cycle(User host, Vector3 startPosition, Vector3 startVelocity, double startRotation)
+            : base(host.ID)
         {
+            Owner = host;
+            Owner.Cycle = this;
             MovementController = new CycleMovementController(startPosition, startVelocity, startRotation);
             HeadLocation = Map.GetCycleMapLocation(this);
         }
@@ -29,6 +31,7 @@ namespace Tron.GameServer
         }
 
         public MapLocation HeadLocation { get; set; }
+        public User Owner { get; set; }
 
         public override void HandleCollisionWith(Collidable obj)
         {
@@ -51,6 +54,8 @@ namespace Tron.GameServer
         {
             base.Dispose();
             HeadLocation = null;
+            Owner.Cycle = null;
+            Owner = null;
         }
     
     }

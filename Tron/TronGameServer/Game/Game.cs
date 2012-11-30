@@ -25,7 +25,7 @@ namespace Tron.GameServer
         {
             var spawns = _mode.GetGameSpawns();
 
-            return players.Select((user, index) => new KeyValuePair<long, Cycle>(user.ID, new Cycle(user.ID, spawns[index].StartPosition, spawns[index].StartVelocity, spawns[index].StartRotation)));
+            return players.Select((user, index) => new KeyValuePair<long, Cycle>(user.ID, new Cycle(user, spawns[index].StartPosition, spawns[index].StartVelocity, spawns[index].StartRotation)));
         }
 
         public void Update(GameTime gameTime)
