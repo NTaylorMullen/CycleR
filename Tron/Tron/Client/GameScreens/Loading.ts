@@ -6,5 +6,11 @@ class Loading extends GameScreen {
 
     constructor (onCompletion: Function, gameServer: IHubProxy) {
         super(Loading.NAME, onCompletion, gameServer);
+
+        this.GameServer.client.configure = this.configureGame;
+    }
+
+    private configureGame(configuration): void {
+
     }
 }

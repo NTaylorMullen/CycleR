@@ -7,7 +7,6 @@ namespace Tron.GameServer
     {
         private List<User> _players;        
         private IGameMode _mode;
-        private Game _game;
 
         public Match(IEnumerable<User> players, IGameMode mode, long id)
         {
@@ -15,14 +14,20 @@ namespace Tron.GameServer
             _mode = mode;
             ID = id;
             State = MatchState.Ready;
+
+            foreach (User player in _players)
+            {
+                player.CurrentMatch = this;
+            }
         }
 
         public long ID { get; private set; }
         public MatchState State { get; private set; }
+        public Game Game { get; private set; }
 
         private void initializeGame()
         {
-            _game = new Game(_players, _mode, gameCompleted);
+            Game = new Game(ID, _players, _mode, gameCompleted);
         }
 
         private void gameCompleted()
@@ -41,7 +46,7 @@ namespace Tron.GameServer
 
         public void Update(GameTime gameTime)
         {
-            _game.Update(gameTime);
+            Game.Update(gameTime);
         }
 
         public void Dispose()
@@ -50,8 +55,13 @@ namespace Tron.GameServer
             _players = null;
             _mode = null;
 
-            _game.Dispose();
-            _game = null;
+            Game.Dispose();
+            Game = null;
+
+            foreach (User player in _players)
+            {
+                player.CurrentMatch = this;
+            }
         }
     }
 }

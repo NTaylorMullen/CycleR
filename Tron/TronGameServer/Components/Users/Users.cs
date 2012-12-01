@@ -33,6 +33,11 @@ namespace Tron.GameServer
             return _userHandler.UserExists(connectionID);
         }
 
+        public User GetUser(string connectionID)
+        {
+            return _userHandler.GetUser(connectionID);
+        }
+
         private readonly static Lazy<Users> _instance = new Lazy<Users>(() => new Users());
         public static Users Instance
         {

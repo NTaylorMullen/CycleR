@@ -1,34 +1,3 @@
-var CameraController = (function () {
-    function CameraController(_camera, renderer) {
-        this._camera = _camera;
-        this.applyKeyboardMappings();
-    }
-    CameraController.prototype.applyKeyboardMappings = function () {
-    };
-    CameraController.prototype.Update = function (gameTime) {
-    };
-    return CameraController;
-})();
-var GameTime = (function () {
-    function GameTime() {
-        this.StartedAt = new Date();
-        this.Now = this.LastUpdated = this.StartedAt;
-        this.ElapsedGameTime = 0;
-        this.FPS = 0;
-        this.FractionOfSecond = 0;
-    }
-    GameTime.prototype.TotalGameTime = function () {
-        return this.Now.getTime() - this.StartedAt.getTime();
-    };
-    GameTime.prototype.Update = function () {
-        this.LastUpdated = this.Now;
-        this.Now = new Date();
-        this.ElapsedGameTime = this.Now.getTime() - this.LastUpdated.getTime();
-        this.FPS = 1000 / this.ElapsedGameTime;
-        this.FractionOfSecond = this.ElapsedGameTime / 1000;
-    };
-    return GameTime;
-})();
 var __extends = this.__extends || function (d, b) {
     function __() { this.constructor = d; }
     __.prototype = b.prototype;
@@ -54,3 +23,4 @@ var FreeCameraController = (function (_super) {
     };
     return FreeCameraController;
 })(CameraController);
+//@ sourceMappingURL=FreeCameraController.js.map

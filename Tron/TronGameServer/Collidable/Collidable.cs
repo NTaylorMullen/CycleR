@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tron.Utilities;
 
 namespace Tron.GameServer
 {
@@ -14,10 +15,14 @@ namespace Tron.GameServer
 
         public virtual MovementController MovementController { get; protected set; }
         public bool Alive { get; protected set; }
+        public bool Collided { get; protected set; }
+        public Vector3 CollidedAt { get; protected set; }
         public long ID { get; private set; }
 
         public virtual void HandleCollisionWith(Collidable obj)
         {
+            Collided = true;
+            CollidedAt = MovementController.Position.Clone();
         }
 
         public virtual void Update(GameTime gameTime)

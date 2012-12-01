@@ -1,1 +1,1 @@
-{"version":3,"file":"Options.js","sources":["Options.ts"],"names":[],"mappings":"AAAA;;;;;AAGA;;IAGI,iBAAa,cAAwB;QAHzC,kBAIc,QAAQ,MAAM,cAAc;AACrC;IAJD,eAAsB;IAD1B;GAAsB"}
+{"version":3,"file":"Options.js","sources":["Options.ts"],"names":["Options","Options.constructor"],"mappings":"AAAA;;;;;AAGA;;IAGIA,SAHEA,OAAOA,CAGIA,YAAsBA,EAAEA,UAAqBA;QACtDC,kBAAMA,OAAOA,CAACA,IAAIA,EAAEA,YAAYA,EAAEA,UAAUA,CAEnDA;IADGA,CAACA;IAJDD,eAAsBA,SAASA;AAAAA,IAKnCA;AAACA,CAAAA,EANqB,UAAU,EAM/B;AAAA"}

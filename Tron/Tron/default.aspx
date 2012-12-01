@@ -71,6 +71,7 @@
             .Add("Client/GameScreens/Options.js")
             .Add("Client/GameScreens/QuickMatch.js")
             .Add("Client/GameScreens/GameScreenHandler.js")
+            .Add("Client/ConnectionManagement/ServerConnectionHandler.js")
             .Add("Client/Main.js")
         .Render("coreLIBS.js")
     %>

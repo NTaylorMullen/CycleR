@@ -6,5 +6,6 @@ namespace Tron.GameServer
     public interface IGameMode
     {
         List<GameSpawn> GetGameSpawns();
+        GameConfiguration GetConfiguration();
     }
 }

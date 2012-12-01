@@ -1,1 +1,1 @@
-{"version":3,"file":"MainMenu.js","sources":["MainMenu.ts"],"names":[],"mappings":"AAAA;;;;;AAGA;;IAGI,kBAAa,cAAwB;QAHzC,kBAIc,SAAS,MAAM,cAAc;AACtC;IAJD,gBAAsB;IAD1B;GAAuB"}
+{"version":3,"file":"MainMenu.js","sources":["MainMenu.ts"],"names":["MainMenu","MainMenu.constructor"],"mappings":"AAAA;;;;;AAGA;;IAGIA,SAHEA,QAAQA,CAGGA,YAAsBA,EAAEA,UAAqBA;QACtDC,kBAAMA,QAAQA,CAACA,IAAIA,EAAEA,YAAYA,EAAEA,UAAUA,CAEpDA;IADGA,CAACA;IAJDD,gBAAsBA,UAAUA;AAAAA,IAKpCA;AAACA,CAAAA,EANsB,UAAU,EAMhC;AAAA"}

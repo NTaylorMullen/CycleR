@@ -30,3 +30,4 @@ var ModelLoader = (function () {
     };
     return ModelLoader;
 })();
+//@ sourceMappingURL=ModelLoader.js.map

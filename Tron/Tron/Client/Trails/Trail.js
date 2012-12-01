@@ -1,17 +1,3 @@
-var Size = (function () {
-    function Size(width, height) {
-        this.Width = width;
-        if(height) {
-            this.Height = height;
-        } else {
-            this.Height = width;
-        }
-    }
-    Size.prototype.Half = function () {
-        return new Size(0.5 * this.Width, 0.5 * this.Height);
-    };
-    return Size;
-})();
 var Trail = (function () {
     function Trail(Direction, _startPosition, _color, OwnerID) {
         this.Direction = Direction;
@@ -43,3 +29,4 @@ var Trail = (function () {
     };
     return Trail;
 })();
+//@ sourceMappingURL=Trail.js.map

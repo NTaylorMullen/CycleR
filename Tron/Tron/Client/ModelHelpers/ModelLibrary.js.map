@@ -1,1 +1,1 @@
-{"version":3,"file":"ModelLibrary.js","sources":["ModelLibrary.ts"],"names":[],"mappings":"AAGA;IACI;AACC;IAED,qBAAkC;QAC9B,UAAU;QACV,aAAa;QACb,WAAW;;IAPnB"}
+{"version":3,"file":"ModelLibrary.js","sources":["ModelLibrary.ts"],"names":["ModelLibrary","ModelLibrary.constructor"],"mappings":"AAAA;IAIIA,SADEA,YAAYA;IAEdC,CAACA;IAEDD,qBAAkCA;QAC9BA,QAAQA,EAAEA,0BAA0BA;QACpCA,WAAWA,EAAEA,gBAAgBA;QAC7BA,SAASA,EAAEA,OAAOA;KACrBA;AAAAA,IACLA;AAACA,CAAAA,IAAA;AAAA"}

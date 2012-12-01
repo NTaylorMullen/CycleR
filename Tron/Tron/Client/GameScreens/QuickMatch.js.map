@@ -1,1 +1,1 @@
-{"version":3,"file":"QuickMatch.js","sources":["QuickMatch.ts"],"names":[],"mappings":"AAAA;;;;;AAGA;;IAGI,oBAAa,cAAwB;QAHzC,kBAIc,WAAW,MAAM,cAAc;AACxC;IAJD,kBAAsB;IAD1B;GAAyB"}
+{"version":3,"file":"QuickMatch.js","sources":["QuickMatch.ts"],"names":["QuickMatch","QuickMatch.constructor"],"mappings":"AAAA;;;;;AAGA;;IAGIA,SAHEA,UAAUA,CAGCA,YAAsBA,EAAEA,UAAqBA;QACtDC,kBAAMA,UAAUA,CAACA,IAAIA,EAAEA,YAAYA,EAAEA,UAAUA,CAEtDA;IADGA,CAACA;IAJDD,kBAAsBA,YAAYA;AAAAA,IAKtCA;AAACA,CAAAA,EANwB,UAAU,EAMlC;AAAA"}

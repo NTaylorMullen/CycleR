@@ -8,6 +8,7 @@ namespace Tron.GameServer
     {
         private static int _playerCount = 4;
         private static Random _gen = new Random();
+        private static GameConfiguration _gameConfiguration = new GameConfiguration(new CycleConfiguration(), new MapConfiguration());
 
         private GameSpawn[] _spawns = new GameSpawn[_playerCount];
 
@@ -54,6 +55,12 @@ namespace Tron.GameServer
             _gen.Shuffle<GameSpawn>(spawnsCopy);
 
             return new List<GameSpawn>(spawnsCopy);
+        }
+
+
+        public GameConfiguration GetConfiguration()
+        {
+            return _gameConfiguration;
         }
     }
 }

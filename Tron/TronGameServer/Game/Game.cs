@@ -9,9 +9,9 @@ namespace Tron.GameServer
         private Action _onFinish;
         private IGameMode _mode;
         private CycleManager _cycleManager;
-        private Map _map;        
+        private Map _map;
 
-        public Game(IEnumerable<User> players, IGameMode mode, Action onFinish)
+        public Game(long matchID, IEnumerable<User> players, IGameMode mode, Action onFinish)
         {
             var cycles = createCycles(players);
 
@@ -19,13 +19,16 @@ namespace Tron.GameServer
             _onFinish = onFinish;
             _cycleManager = new CycleManager(cycles);
             _map = new Map(cycles);
+            CommandHandler = new CommandHandler(matchID, players, cycles, _mode.GetConfiguration());
         }
+
+        public CommandHandler CommandHandler { get; private set; }
 
         private IEnumerable<KeyValuePair<long, Cycle>> createCycles(IEnumerable<User> players)
         {
             var spawns = _mode.GetGameSpawns();
 
-            return players.Select((user, index) => new KeyValuePair<long, Cycle>(user.ID, new Cycle(user, spawns[index].StartPosition, spawns[index].StartVelocity, spawns[index].StartRotation)));
+            return players.Select((user, index) => new KeyValuePair<long, Cycle>(user.ID, new Cycle(user.ID, spawns[index].StartPosition, spawns[index].StartVelocity, spawns[index].StartRotation)));
         }
 
         public void Update(GameTime gameTime)

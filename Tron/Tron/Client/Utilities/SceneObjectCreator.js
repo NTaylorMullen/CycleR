@@ -19,3 +19,4 @@ var SceneObjectCreator = (function () {
     };
     return SceneObjectCreator;
 })();
+//@ sourceMappingURL=SceneObjectCreator.js.map

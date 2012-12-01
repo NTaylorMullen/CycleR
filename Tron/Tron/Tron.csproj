@@ -76,6 +76,18 @@
   <ItemGroup>
     <TypeScriptCompile Include="Client\GameCore\Game.ts" />
     <TypeScriptCompile Include="Client\Collidables\Collidable.ts" />
+    <Content Include="Client\Cameras\AttachedCameraController.min.js">
+      <DependentUpon>AttachedCameraController.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Cameras\Camera.min.js">
+      <DependentUpon>Camera.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Cameras\CameraController.min.js">
+      <DependentUpon>CameraController.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Cameras\FreeCameraController.min.js">
+      <DependentUpon>FreeCameraController.ts</DependentUpon>
+    </Content>
     <Content Include="Client\Collidables\Collidable.js">
       <DependentUpon>Collidable.ts</DependentUpon>
     </Content>
@@ -90,29 +102,69 @@
     <Content Include="Client\Collidables\MovementControllers\MovementController.js">
       <DependentUpon>MovementController.ts</DependentUpon>
     </Content>
+    <Content Include="Client\Collidables\MovementControllers\MovementController.min.js">
+      <DependentUpon>MovementController.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="Client\ConnectionManagement\ServerConnectionHandler.ts" />
+    <Content Include="Client\ConnectionManagement\ServerConnectionHandler.js">
+      <DependentUpon>ServerConnectionHandler.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\ConnectionManagement\ServerConnectionHandler.min.js">
+      <DependentUpon>ServerConnectionHandler.ts</DependentUpon>
+    </Content>
     <Content Include="Client\Controllers\Adapters\KeyboardAdapter.js">
       <DependentUpon>KeyboardAdapter.ts</DependentUpon>
     </Content>
     <TypeScriptCompile Include="Client\Interfaces\Game\Controllers\Adapters\KeyMapping.d.ts" />
     <TypeScriptCompile Include="Client\Cycles\CycleMovementController.ts" />
+    <Content Include="Client\Controllers\Adapters\KeyboardAdapter.min.js">
+      <DependentUpon>KeyboardAdapter.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Controllers\CycleController.min.js">
+      <DependentUpon>CycleController.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Cycles\Cycle.min.js">
+      <DependentUpon>Cycle.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Cycles\CycleManager.min.js">
+      <DependentUpon>CycleManager.ts</DependentUpon>
+    </Content>
     <Content Include="Client\Cycles\CycleMovementController.js">
       <DependentUpon>CycleMovementController.ts</DependentUpon>
     </Content>
     <TypeScriptCompile Include="Client\GameScreens\Loading.ts" />
     <TypeScriptCompile Include="Client\GameScreens\FindGame.ts" />
     <TypeScriptCompile Include="Client\GameScreens\CreateGame.ts" />
+    <Content Include="Client\Cycles\CycleMovementController.min.js">
+      <DependentUpon>CycleMovementController.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\GameCore\GameHandler.min.js">
+      <DependentUpon>GameHandler.ts</DependentUpon>
+    </Content>
     <Content Include="Client\GameScreens\CreateGame.js">
+      <DependentUpon>CreateGame.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\GameScreens\CreateGame.min.js">
       <DependentUpon>CreateGame.ts</DependentUpon>
     </Content>
     <Content Include="Client\GameScreens\FindGame.js">
       <DependentUpon>FindGame.ts</DependentUpon>
     </Content>
     <TypeScriptCompile Include="Client\GameScreens\GameScreen.ts" />
+    <Content Include="Client\GameScreens\FindGame.min.js">
+      <DependentUpon>FindGame.ts</DependentUpon>
+    </Content>
     <Content Include="Client\GameScreens\GameScreen.js">
       <DependentUpon>GameScreen.ts</DependentUpon>
     </Content>
     <TypeScriptCompile Include="Client\GameScreens\GameScreenHandler.ts" />
+    <Content Include="Client\GameScreens\GameScreen.min.js">
+      <DependentUpon>GameScreen.ts</DependentUpon>
+    </Content>
     <Content Include="Client\GameScreens\GameScreenHandler.js">
+      <DependentUpon>GameScreenHandler.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\GameScreens\GameScreenHandler.min.js">
       <DependentUpon>GameScreenHandler.ts</DependentUpon>
     </Content>
     <Content Include="Client\GameScreens\Loading.js">
@@ -122,16 +174,31 @@
     <TypeScriptCompile Include="Client\GameScreens\Options.ts" />
     <TypeScriptCompile Include="Client\GameScreens\MainMenu.ts" />
     <TypeScriptCompile Include="Client\GameScreens\MainGame.ts" />
+    <Content Include="Client\GameScreens\Loading.min.js">
+      <DependentUpon>Loading.ts</DependentUpon>
+    </Content>
     <Content Include="Client\GameScreens\MainGame.js">
+      <DependentUpon>MainGame.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\GameScreens\MainGame.min.js">
       <DependentUpon>MainGame.ts</DependentUpon>
     </Content>
     <Content Include="Client\GameScreens\MainMenu.js">
       <DependentUpon>MainMenu.ts</DependentUpon>
     </Content>
+    <Content Include="Client\GameScreens\MainMenu.min.js">
+      <DependentUpon>MainMenu.ts</DependentUpon>
+    </Content>
     <Content Include="Client\GameScreens\Options.js">
       <DependentUpon>Options.ts</DependentUpon>
     </Content>
+    <Content Include="Client\GameScreens\Options.min.js">
+      <DependentUpon>Options.ts</DependentUpon>
+    </Content>
     <Content Include="Client\GameScreens\QuickMatch.js">
+      <DependentUpon>QuickMatch.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\GameScreens\QuickMatch.min.js">
       <DependentUpon>QuickMatch.ts</DependentUpon>
     </Content>
     <Content Include="Client\Interfaces\Game\Controllers\Adapters\KeyMapping.d.js">
@@ -298,27 +365,51 @@
     <Content Include="Client\Main.js">
       <DependentUpon>Main.ts</DependentUpon>
     </Content>
+    <Content Include="Client\Main.min.js">
+      <DependentUpon>Main.ts</DependentUpon>
+    </Content>
     <Content Include="Client\Main.ts" />
     <Content Include="Client\ModelHelpers\ModelLibrary.js">
       <DependentUpon>ModelLibrary.ts</DependentUpon>
     </Content>
+    <Content Include="Client\ModelHelpers\ModelLibrary.min.js">
+      <DependentUpon>ModelLibrary.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\ModelHelpers\ModelLoader.min.js">
+      <DependentUpon>ModelLoader.ts</DependentUpon>
+    </Content>
     <Content Include="Client\Renderers\CoreRenderer.js">
+      <DependentUpon>CoreRenderer.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Renderers\CoreRenderer.min.js">
       <DependentUpon>CoreRenderer.ts</DependentUpon>
     </Content>
     <Content Include="Client\Renderers\CoreRenderer.ts" />
     <Content Include="Client\Renderers\EnvironmentRenderer.js">
       <DependentUpon>EnvironmentRenderer.ts</DependentUpon>
     </Content>
+    <Content Include="Client\Renderers\EnvironmentRenderer.min.js">
+      <DependentUpon>EnvironmentRenderer.ts</DependentUpon>
+    </Content>
     <Content Include="Client\Renderers\EnvironmentRenderer.ts" />
     <Content Include="Client\Renderers\GameRenderer.js">
+      <DependentUpon>GameRenderer.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Renderers\GameRenderer.min.js">
       <DependentUpon>GameRenderer.ts</DependentUpon>
     </Content>
     <Content Include="Client\Renderers\GameRenderer.ts" />
     <Content Include="Client\Renderers\MapRenderer.js">
       <DependentUpon>MapRenderer.ts</DependentUpon>
     </Content>
+    <Content Include="Client\Renderers\MapRenderer.min.js">
+      <DependentUpon>MapRenderer.ts</DependentUpon>
+    </Content>
     <Content Include="Client\Renderers\MapRenderer.ts" />
     <Content Include="Client\Space\Map.js">
+      <DependentUpon>Map.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Space\Map.min.js">
       <DependentUpon>Map.ts</DependentUpon>
     </Content>
     <Content Include="Client\Space\Map.ts" />
@@ -332,13 +423,25 @@
       <DependentUpon>Trail.ts</DependentUpon>
     </Content>
     <TypeScriptCompile Include="Client\Trails\TrailManager.ts" />
+    <Content Include="Client\Trails\Trail.min.js">
+      <DependentUpon>Trail.ts</DependentUpon>
+    </Content>
     <Content Include="Client\Trails\TrailManager.js">
+      <DependentUpon>TrailManager.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Trails\TrailManager.min.js">
       <DependentUpon>TrailManager.ts</DependentUpon>
     </Content>
     <Content Include="Client\Utilities\SceneObjectCreator.js">
       <DependentUpon>SceneObjectCreator.ts</DependentUpon>
     </Content>
+    <Content Include="Client\Utilities\SceneObjectCreator.min.js">
+      <DependentUpon>SceneObjectCreator.ts</DependentUpon>
+    </Content>
     <Content Include="Client\Utilities\Size.js">
+      <DependentUpon>Size.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Utilities\Size.min.js">
       <DependentUpon>Size.ts</DependentUpon>
     </Content>
     <Content Include="Client\Utilities\Size.ts" />
@@ -366,6 +469,9 @@
     <Content Include="packages.config" />
     <Content Include="Client\GameCore\Game.js.map">
       <DependentUpon>Game.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\ConnectionManagement\ServerConnectionHandler.js.map">
+      <DependentUpon>ServerConnectionHandler.ts</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />

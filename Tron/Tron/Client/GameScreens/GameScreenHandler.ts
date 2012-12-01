@@ -13,7 +13,6 @@ class GameScreenHandler {
     private _currentScreen: GameScreen;
 
     constructor (gameServer: IHubProxy) {
-
         var completionCallback = (nextScreen: string) => {
             this.screenDone(nextScreen);
         };

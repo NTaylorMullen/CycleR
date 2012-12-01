@@ -3,6 +3,6 @@
 
 interface ISignalRConnection {
     GameServer: IHubProxy;
-    LobbyHub: IHubProxy;
+    ConnectionHub: IHubProxy;
     hub: ISignalRHub;
 }

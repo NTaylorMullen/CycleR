@@ -9,6 +9,11 @@
 
         public string ConnectionID { get; private set; }
         public long ID { get; private set; }
-        public Cycle Cycle { get; set; }
+        public Match CurrentMatch { get; set; }
+
+        public bool InMatch()
+        {
+            return CurrentMatch != null;
+        }
     }
 }

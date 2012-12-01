@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNet.SignalR.Hubs;
 using System;
-using System.Threading.Tasks;
+using Tron.Utilities;
 
 namespace Tron.GameServer
 {
     [HubName("GameServer")]
     public class GameServer : Hub
-    {        
+    {
         private readonly Matches _matches;
         private readonly Users _users;
 
@@ -18,11 +18,26 @@ namespace Tron.GameServer
             _users = users;
         }
 
-        public void MoveCycle(string where)
+        [HubMethodName("Move")]
+        public void Move(string where)
         {
             if (_users.UserExists(Context.ConnectionId))
             {
-                CycleMovementFlag direction = (CycleMovementFlag)Enum.Parse(typeof(CycleMovementFlag), where);
+                try
+                {
+                    User user = Users.Instance.GetUser(Context.ConnectionId);
+
+                    if (user.InMatch())
+                    {
+                        CycleMovementFlag direction = (CycleMovementFlag)Enum.Parse(typeof(CycleMovementFlag), where);
+
+                        user.CurrentMatch.Game.CommandHandler.MovementCommand(user, direction);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ErrorLog.Instance.Log(ex);
+                }
             }
         }
     }
