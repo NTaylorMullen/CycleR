@@ -3,10 +3,12 @@
 
 class CycleMovementController extends MovementController {
     static MAX_SPEED: number = 700;
+    static Y_OFFSET: number = 35;
 
     constructor (private _context: IMesh) {
         super(_context, CycleMovementController.MAX_SPEED);
 
+        this._context.position.y = CycleMovementController.Y_OFFSET;
         this.Velocity.z = -CycleMovementController.MAX_SPEED;
     }
 

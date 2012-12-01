@@ -14,35 +14,35 @@ namespace Tron.GameServer
 
         public FreeForAll()
         {
-            double halfMapSize = MapConfiguration.MAP_SIZE.Width * .5,
+            double halfMapSize = _gameConfiguration.MapConfig.MAP_SIZE.Width * .5,
                    halfPI = Math.PI / 2;
 
             _spawns[0] = new GameSpawn
             {
-                StartVelocity = new Vector3(CycleConfiguration.MAX_SPEED, 0, 0),
-                StartPosition = new Vector3(-halfMapSize + MapConfiguration.MAP_START_PADDING, CycleConfiguration.Y_OFFSET, -halfMapSize + MapConfiguration.MAP_START_PADDING),
+                StartVelocity = new Vector3(_gameConfiguration.CycleConfig.MAX_SPEED, 0, 0),
+                StartPosition = new Vector3(-halfMapSize + _gameConfiguration.MapConfig.MAP_START_PADDING, _gameConfiguration.CycleConfig.Y_OFFSET, -halfMapSize + _gameConfiguration.MapConfig.MAP_START_PADDING),
                 StartRotation = 0
             };
 
             _spawns[1] = new GameSpawn
             {
-                StartVelocity = new Vector3(0, 0, -CycleConfiguration.MAX_SPEED),
-                StartPosition = new Vector3(halfMapSize - MapConfiguration.MAP_START_PADDING, CycleConfiguration.Y_OFFSET, -halfMapSize + MapConfiguration.MAP_START_PADDING),
+                StartVelocity = new Vector3(0, 0, -_gameConfiguration.CycleConfig.MAX_SPEED),
+                StartPosition = new Vector3(halfMapSize - _gameConfiguration.MapConfig.MAP_START_PADDING, _gameConfiguration.CycleConfig.Y_OFFSET, -halfMapSize + _gameConfiguration.MapConfig.MAP_START_PADDING),
                 StartRotation = -halfPI
             };
 
 
             _spawns[2] = new GameSpawn
             {
-                StartVelocity = new Vector3(0, 0, -CycleConfiguration.MAX_SPEED),
-                StartPosition = new Vector3(-halfMapSize + MapConfiguration.MAP_START_PADDING, CycleConfiguration.Y_OFFSET, halfMapSize - MapConfiguration.MAP_START_PADDING),
+                StartVelocity = new Vector3(0, 0, -_gameConfiguration.CycleConfig.MAX_SPEED),
+                StartPosition = new Vector3(-halfMapSize + _gameConfiguration.MapConfig.MAP_START_PADDING, _gameConfiguration.CycleConfig.Y_OFFSET, halfMapSize - _gameConfiguration.MapConfig.MAP_START_PADDING),
                 StartRotation = halfPI
             };
 
             _spawns[3] = new GameSpawn
             {
-                StartVelocity = new Vector3(-CycleConfiguration.MAX_SPEED, 0, 0),
-                StartPosition = new Vector3(halfMapSize - MapConfiguration.MAP_START_PADDING, CycleConfiguration.Y_OFFSET, halfMapSize - MapConfiguration.MAP_START_PADDING),
+                StartVelocity = new Vector3(-_gameConfiguration.CycleConfig.MAX_SPEED, 0, 0),
+                StartPosition = new Vector3(halfMapSize - _gameConfiguration.MapConfig.MAP_START_PADDING, _gameConfiguration.CycleConfig.Y_OFFSET, halfMapSize - _gameConfiguration.MapConfig.MAP_START_PADDING),
                 StartRotation = Math.PI
             };
         }

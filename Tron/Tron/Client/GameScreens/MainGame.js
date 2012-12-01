@@ -11,7 +11,7 @@ var MainGame = (function (_super) {
     MainGame.NAME = "MainGame";
     MainGame.prototype.Load = function () {
         if(!this._game) {
-            this._game = new Game(this.GameHub);
+            this._game = new Game(this.GameServer);
         }
     };
     return MainGame;

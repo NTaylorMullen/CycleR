@@ -13,7 +13,7 @@ class MainGame extends GameScreen {
 
     public Load(): void {
         if (!this._game) {
-            this._game = new Game(this.GameHub);
+            this._game = new Game(this.GameServer);
         }
     }
 }

@@ -9,6 +9,9 @@ var MainMenu = (function (_super) {
         _super.call(this, MainMenu.NAME, onCompletion, gameServer);
     }
     MainMenu.NAME = "MainMenu";
+    MainMenu.prototype.Load = function () {
+        _super.prototype.Done.call(this, Loading.NAME);
+    };
     return MainMenu;
 })(GameScreen);
 //@ sourceMappingURL=MainMenu.js.map

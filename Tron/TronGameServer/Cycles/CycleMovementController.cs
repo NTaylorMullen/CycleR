@@ -6,28 +6,30 @@ namespace Tron.GameServer
     public class CycleMovementController : MovementController, IDisposable
     {
         private static double HALF_PI = Math.PI / 2;
+        private MapConfiguration _mapConfiguration;
 
-        public CycleMovementController(Vector3 velocity, Vector3 position, double rotation) 
-            : base(velocity, position, rotation)
+        public CycleMovementController(Vector3 position, Vector3 velocity, double rotation, MapConfiguration mapConfiguration)
+            : base(position, velocity, rotation)
         {
+            _mapConfiguration = mapConfiguration;
         }
 
         private void positionOnLine() 
         {        
-            if (Velocity.Z != 0) {
-                Position.Z -= (Position.Z % MapConfiguration.FLOOR_TILE_SIZE.Width) - MapConfiguration.FLOOR_TILE_SIZE.Width * (Velocity.Z / Math.Abs(Velocity.Z));
+            if (Velocity.z != 0) {
+                Position.z -= (Position.z % _mapConfiguration.FLOOR_TILE_SIZE.Width) - _mapConfiguration.FLOOR_TILE_SIZE.Width * (Velocity.z / Math.Abs(Velocity.z));
             }
-            else if (Velocity.X != 0) {
-                Position.X -= (Position.X % MapConfiguration.FLOOR_TILE_SIZE.Width) - MapConfiguration.FLOOR_TILE_SIZE.Width * (Velocity.X / Math.Abs(Velocity.X));
+            else if (Velocity.x != 0) {
+                Position.x -= (Position.x % _mapConfiguration.FLOOR_TILE_SIZE.Width) - _mapConfiguration.FLOOR_TILE_SIZE.Width * (Velocity.x / Math.Abs(Velocity.x));
             }
         }
 
         private void swapXZVelocity() 
         {
             // Swap x and z, aka perform movement switch
-            var temp = Velocity.X;
-            Velocity.X = Velocity.Z;
-            Velocity.Z = temp; 
+            var temp = Velocity.x;
+            Velocity.x = Velocity.z;
+            Velocity.z = temp; 
         }
 
         public void Move(CycleMovementFlag direction)
@@ -37,12 +39,12 @@ namespace Tron.GameServer
             if (direction == CycleMovementFlag.Left) {
                 Rotation += HALF_PI;
 
-                Velocity.X *= -1;
+                Velocity.x *= -1;
             }
             else if (direction == CycleMovementFlag.Right) {
                 Rotation -= HALF_PI;
 
-                Velocity.Z *= -1;
+                Velocity.z *= -1;
             }
 
             this.swapXZVelocity();

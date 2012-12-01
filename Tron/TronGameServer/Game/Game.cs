@@ -10,16 +10,18 @@ namespace Tron.GameServer
         private IGameMode _mode;
         private CycleManager _cycleManager;
         private Map _map;
+        private GameConfiguration _gameConfiguration;
 
-        public Game(long matchID, IEnumerable<User> players, IGameMode mode, Action onFinish)
+        public Game(long matchID, IEnumerable<User> players, IGameMode mode, BroadcastHandler broadcastHandler, Action onFinish)
         {
-            var cycles = createCycles(players);
-
             _mode = mode;
+            _gameConfiguration = _mode.GetConfiguration();
+
+            var cycles = createCycles(players);
             _onFinish = onFinish;
             _cycleManager = new CycleManager(cycles);
-            _map = new Map(cycles);
-            CommandHandler = new CommandHandler(matchID, players, cycles, _mode.GetConfiguration());
+            _map = new Map(cycles, _gameConfiguration.MapConfig);
+            CommandHandler = new CommandHandler(matchID, players, cycles, broadcastHandler, _gameConfiguration);
         }
 
         public CommandHandler CommandHandler { get; private set; }
@@ -28,7 +30,7 @@ namespace Tron.GameServer
         {
             var spawns = _mode.GetGameSpawns();
 
-            return players.Select((user, index) => new KeyValuePair<long, Cycle>(user.ID, new Cycle(user.ID, spawns[index].StartPosition, spawns[index].StartVelocity, spawns[index].StartRotation)));
+            return players.Select((user, index) => new KeyValuePair<long, Cycle>(user.ID, new Cycle(user.ID, spawns[index].StartPosition, spawns[index].StartVelocity, spawns[index].StartRotation, _gameConfiguration.MapConfig)));
         }
 
         public void Update(GameTime gameTime)

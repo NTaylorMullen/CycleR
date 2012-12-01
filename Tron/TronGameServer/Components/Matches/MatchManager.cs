@@ -16,10 +16,14 @@ namespace Tron.GameServer
             _matches = new ConcurrentDictionary<long, Match>();
         }
 
-        public void Create(IEnumerable<User> players, IGameMode mode)
+        public Match Create(IEnumerable<User> players, IGameMode mode)
         {
             long matchID = Interlocked.Increment(ref _matchIDs);
-            _matches.TryAdd(matchID, new Match(players, mode, matchID));
+            Match match = new Match(players, mode, matchID);
+            
+            _matches.TryAdd(matchID, match);
+
+            return match;
         }
 
         public void Update(GameTime gameTime)

@@ -7,4 +7,8 @@ class MainMenu extends GameScreen {
     constructor (onCompletion: Function, gameServer: IHubProxy) {
         super(MainMenu.NAME, onCompletion, gameServer);
     }
+
+    public Load(): void {
+        super.Done(Loading.NAME);
+    }
 }

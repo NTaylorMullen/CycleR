@@ -13,9 +13,9 @@ namespace Tron.GameServer
             MAP_START_PADDING = 500;
         }
 
-        public static Size FLOOR_TILE_SIZE { get; private set; }
-        public static Size MAP_SIZE { get; private set; }
-        public static Size WALL_SIZE { get; private set; }
-        public static int MAP_START_PADDING { get; private set; }
+        public Size FLOOR_TILE_SIZE { get; protected set; }
+        public Size MAP_SIZE { get; protected set; }
+        public Size WALL_SIZE { get; protected set; }
+        public int MAP_START_PADDING { get; protected set; }
     }
 }

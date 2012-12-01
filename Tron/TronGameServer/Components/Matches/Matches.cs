@@ -15,11 +15,12 @@ namespace Tron.GameServer
             _gameTime = new GameTime();
             _matchManager = new MatchManager();
             _updateLoop = new HighFrequencyTimer(1000 / GlobalConfiguration.UPDATE_INTERVAL, id => Update(id));
+            _updateLoop.Start();
         }
 
-        public void Create(IEnumerable<User> players, IGameMode mode)
+        public Match Create(IEnumerable<User> players, IGameMode mode)
         {
-            _matchManager.Create(players, mode);
+            return _matchManager.Create(players, mode);
         }
 
         public void Update(long id)

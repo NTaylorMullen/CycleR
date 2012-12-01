@@ -6,31 +6,31 @@ namespace Tron.Utilities
     {
         public Vector3()
         {
-            X = 0;
-            Y = 0;
-            Z = 0;
+            x = 0;
+            y = 0;
+            z = 0;
         }
 
 
         public Vector3(double x, double y, double z)
         {
-            X = x;
-            Y = y;
-            Z = z;
+            this.x = x;
+            this.y = y;
+            this.z = z;
         }
 
         public Vector3(int x, int y, int z)
         {
-            X = Convert.ToDouble(x);
-            Y = Convert.ToDouble(y);
-            Z = Convert.ToDouble(z);
+            this.x = Convert.ToDouble(x);
+            this.y = Convert.ToDouble(y);
+            this.z = Convert.ToDouble(z);
         }
 
         public Vector3(Vector3 v)
         {
-            X = v.X;
-            Y = v.Y;
-            Z = v.Z;
+            x = v.x;
+            y = v.y;
+            z = v.z;
         }
 
         public static Vector3 Zero
@@ -41,88 +41,88 @@ namespace Tron.Utilities
             }
         }
 
-        public double X { get; set; }
-        public double Y { get; set; }
-        public double Z { get; set; }        
+        public double x { get; set; }
+        public double y { get; set; }
+        public double z { get; set; }        
 
         public Vector3 Abs()
         {
-            return new Vector3(Math.Abs(X), Math.Abs(Y), Math.Abs(Z));
+            return new Vector3(Math.Abs(x), Math.Abs(y), Math.Abs(z));
         }
 
         public double DistanceTo(Vector3 to)
         {
-            return Math.Sqrt(Math.Pow(to.X - X, 2) + Math.Pow(to.Y - Y, 2) + Math.Pow(to.Z - Z, 2));
+            return Math.Sqrt(Math.Pow(to.x - x, 2) + Math.Pow(to.y - y, 2) + Math.Pow(to.z - z, 2));
         }
 
         public static Vector3 operator *(Vector3 v1, Vector3 v2)
         {
-            return new Vector3(v1.X * v2.X, v1.Y * v2.Y, v1.Z * v2.Z);
+            return new Vector3(v1.x * v2.x, v1.y * v2.y, v1.z * v2.z);
         }
 
         public static Vector3 operator *(Vector3 v1, double num)
         {
-            return new Vector3(v1.X * num, v1.Y * num, v1.Z * num);
+            return new Vector3(v1.x * num, v1.y * num, v1.z * num);
         }
 
         public static Vector3 operator *(double num, Vector3 v1)
         {
-            return new Vector3(v1.X * num, v1.Y * num, v1.Z * num);
+            return new Vector3(v1.x * num, v1.y * num, v1.z * num);
         }
 
         public static Vector3 operator /(Vector3 v1, Vector3 v2)
         {
-            return new Vector3(v1.X / v2.X, v1.Y / v2.Y, v1.Z / v2.Z);
+            return new Vector3(v1.x / v2.x, v1.y / v2.y, v1.z / v2.z);
         }
 
         public static Vector3 operator /(Vector3 v1, double num)
         {
-            return new Vector3(v1.X / num, v1.Y / num, v1.Z / num);
+            return new Vector3(v1.x / num, v1.y / num, v1.z / num);
         }
 
         public static Vector3 operator /(double num, Vector3 v1)
         {
-            return new Vector3(num / v1.X, num / v1.Y, num / v1.Z);
+            return new Vector3(num / v1.x, num / v1.y, num / v1.z);
         }
 
         public static Vector3 operator +(Vector3 v1, Vector3 v2)
         {
-            return new Vector3(v1.X + v2.X, v1.Y + v2.Y, v1.Z + v2.Z);
+            return new Vector3(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
         }
 
         public static Vector3 operator +(Vector3 v1, double num)
         {
-            return new Vector3(v1.X + num, v1.Y + num, v1.Z + num);
+            return new Vector3(v1.x + num, v1.y + num, v1.z + num);
         }
 
         public static Vector3 operator +(double num, Vector3 v1)
         {
-            return new Vector3(v1.X + num, v1.Y + num, v1.Z + num);
+            return new Vector3(v1.x + num, v1.y + num, v1.z + num);
         }
 
         public static Vector3 operator -(Vector3 v1, Vector3 v2)
         {
-            return new Vector3(v1.X - v2.X, v1.Y - v2.Y, v1.Z - v2.Z);
+            return new Vector3(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z);
         }
 
         public static Vector3 operator -(Vector3 v1, double num)
         {
-            return new Vector3(v1.X - num, v1.Y - num, v1.Z - num);
+            return new Vector3(v1.x - num, v1.y - num, v1.z - num);
         }
 
         public static Vector3 operator -(double num, Vector3 v1)
         {
-            return new Vector3(num - v1.X, num - v1.Y, num - v1.Z);
+            return new Vector3(num - v1.x, num - v1.y, num - v1.z);
         }
 
         public Vector3 Clone()
         {
-            return new Vector3(X, Y, Z);
+            return new Vector3(x, y, z);
         }
 
         public override string ToString()
         {
-            return "( " + X + " , " + Y + " , " + Z + " )";
+            return "( " + x + " , " + y + " , " + z + " )";
         }
     }
 }

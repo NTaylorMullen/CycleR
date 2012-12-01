@@ -5,13 +5,13 @@ using System.Collections.Generic;
 
 namespace Tron.GameServer
 {
-    public class GameBroadcastHandler : IDisposable
+    public class BroadcastHandler : IDisposable
     {
         private const string RELAY_GROUP_PREFIX = "RELAY_";
         private string _relayGroup = RELAY_GROUP_PREFIX;
         private List<User> _users;
 
-        public GameBroadcastHandler(long matchID, IEnumerable<User> players)
+        public BroadcastHandler(long matchID, IEnumerable<User> players)
         {
             _relayGroup += matchID;
             _users = new List<User>(players);
@@ -46,13 +46,7 @@ namespace Tron.GameServer
 
         public void BroadcastConfiguration(GameConfiguration gameConfig)
         {
-            object configuration = new
-            {
-                GameConfiguration = gameConfig,
-                CompressionContracts = PayloadManager.GetCompressionContacts()
-            };
-
-            getGameContext().Clients.Group(_relayGroup).configure(configuration);
+            getGameContext().Clients.Group(_relayGroup).configure(gameConfig);
         }
 
         public void BroadcastCycle(Cycle cycle)

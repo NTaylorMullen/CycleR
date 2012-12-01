@@ -7,9 +7,9 @@ $(function () {
     var gameServer: IHubProxy = $.connection.GameServer,
         connectionHub: IHubProxy = $.connection.ConnectionHub,
         serverConnectionHandler = new ServerConnectionHandler(connectionHub),
-        gameScreenHanler = new GameScreenHandler(gameServer);
+        gameScreenHanler = new GameScreenHandler(gameServer);    
 
-    gameScreenHanler.Load(MainGame.NAME);
-
-    $.connection.hub.start();
+    $.connection.hub.start().done(() => {
+        gameScreenHanler.Load(MainMenu.NAME);
+    });
 })

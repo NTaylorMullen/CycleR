@@ -21,7 +21,7 @@ namespace Tron.GameServer
 
         public void OnReconnected(string connectionID)
         {
-            throw new NotImplementedException();
+            _userHandler.RemoveUser(connectionID);
         }
 
         public void OnDisconnected(string connectionID)

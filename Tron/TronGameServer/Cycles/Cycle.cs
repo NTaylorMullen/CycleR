@@ -9,11 +9,10 @@ namespace Tron.GameServer
 {
     public class Cycle : Collidable, IDisposable
     {
-        public Cycle(long id, Vector3 startPosition, Vector3 startVelocity, double startRotation)
+        public Cycle(long id, Vector3 startPosition, Vector3 startVelocity, double startRotation, MapConfiguration mapConfiguration)
             : base(id)
         {
-            MovementController = new CycleMovementController(startPosition, startVelocity, startRotation);
-            HeadLocation = Map.GetCycleMapLocation(this);
+            MovementController = new CycleMovementController(startPosition, startVelocity, startRotation, mapConfiguration);
         }
 
         public CycleMovementController MovementController

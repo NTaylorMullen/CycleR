@@ -7,6 +7,8 @@ namespace Tron.GameServer
     {
         private List<User> _players;        
         private IGameMode _mode;
+        private BroadcastHandler _broadcastHandler;
+        private MatchLoadingHandler _loadingHandler;
 
         public Match(IEnumerable<User> players, IGameMode mode, long id)
         {
@@ -19,6 +21,9 @@ namespace Tron.GameServer
             {
                 player.CurrentMatch = this;
             }
+
+            _broadcastHandler = new BroadcastHandler(id, players);
+            _loadingHandler = new MatchLoadingHandler(players, initializeGame);
         }
 
         public long ID { get; private set; }
@@ -27,36 +32,51 @@ namespace Tron.GameServer
 
         private void initializeGame()
         {
-            Game = new Game(ID, _players, _mode, gameCompleted);
+            Game = new Game(ID, _players, _mode, _broadcastHandler, gameCompleted);
+            State = MatchState.Playing;
         }
 
         private void gameCompleted()
         {
             State = MatchState.Completed;
         }
+
+        public void UserReady(User user)
+        {
+            if (State == MatchState.Loading)
+            {
+                _loadingHandler.UserReady(user);
+            }
+        }
         
         public void Start()
         {
             if (State == MatchState.Ready)
             {
-                initializeGame();
-                State = MatchState.Playing;
+                _broadcastHandler.BroadcastConfiguration(_mode.GetConfiguration());
+                State = MatchState.Loading;
             }
         }
 
         public void Update(GameTime gameTime)
         {
-            Game.Update(gameTime);
+            if (State == MatchState.Playing)
+            {
+                Game.Update(gameTime);
+            }
         }
 
         public void Dispose()
-        {           
+        {            
             _players.Clear();
             _players = null;
             _mode = null;
 
             Game.Dispose();
             Game = null;
+
+            _broadcastHandler.Dispose();
+            _loadingHandler.Dispose();
 
             foreach (User player in _players)
             {

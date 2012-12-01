@@ -9,30 +9,37 @@ namespace Tron.GameServer
     {
         private long[,] _map;
         private ConcurrentDictionary<long, Cycle> _cycles;
+        private MapConfiguration _mapConfiguration;
 
-        public Map(IEnumerable<KeyValuePair<long, Cycle>> cycles)
+        public Map(IEnumerable<KeyValuePair<long, Cycle>> cycles, MapConfiguration mapConfiguration)
         {
-            _map = new long[MapConfiguration.MAP_SIZE.Width / MapConfiguration.FLOOR_TILE_SIZE.Width, MapConfiguration.MAP_SIZE.Height / MapConfiguration.FLOOR_TILE_SIZE.Height];
+            _mapConfiguration = mapConfiguration;
+            _map = new long[_mapConfiguration.MAP_SIZE.Width / _mapConfiguration.FLOOR_TILE_SIZE.Width, _mapConfiguration.MAP_SIZE.Height / _mapConfiguration.FLOOR_TILE_SIZE.Height];
             _cycles = new ConcurrentDictionary<long,Cycle>(cycles);
+
+            foreach (var cycle in _cycles.Values)
+            {
+                cycle.HeadLocation = GetCycleMapLocation(cycle);
+            }
         }
 
-        public static MapLocation GetCycleMapLocation(Cycle cycle)
+        public MapLocation GetCycleMapLocation(Cycle cycle)
         {
             Vector3 mapLocation = cycle.MovementController.Position.Clone();            
 
             // Get cycle position as if it were about to turn (aka positioned on line).  This will also ensure that a cycle will be
             // viewed as dead as soon as the front of the cycle hits a line.
-            if (cycle.MovementController.Velocity.Z != 0)
+            if (cycle.MovementController.Velocity.z != 0)
             {
-                mapLocation.Z -= (mapLocation.Z % MapConfiguration.FLOOR_TILE_SIZE.Width) - MapConfiguration.FLOOR_TILE_SIZE.Width * (cycle.MovementController.Velocity.Z / Math.Abs(cycle.MovementController.Velocity.Z));
+                mapLocation.z -= (mapLocation.z % _mapConfiguration.FLOOR_TILE_SIZE.Width) - _mapConfiguration.FLOOR_TILE_SIZE.Width * (cycle.MovementController.Velocity.z / Math.Abs(cycle.MovementController.Velocity.z));
             }
-            else if (cycle.MovementController.Velocity.X != 0)
+            else if (cycle.MovementController.Velocity.x != 0)
             {
-                mapLocation.X -= (mapLocation.X % MapConfiguration.FLOOR_TILE_SIZE.Width) - MapConfiguration.FLOOR_TILE_SIZE.Width * (cycle.MovementController.Velocity.X / Math.Abs(cycle.MovementController.Velocity.X));
+                mapLocation.x -= (mapLocation.x % _mapConfiguration.FLOOR_TILE_SIZE.Width) - _mapConfiguration.FLOOR_TILE_SIZE.Width * (cycle.MovementController.Velocity.x / Math.Abs(cycle.MovementController.Velocity.x));
             }
 
             // Normalize to the quadrant in which the cycle lies
-            MapLocation quadrant = new MapLocation((mapLocation.X / MapConfiguration.FLOOR_TILE_SIZE.Width) - 1, (mapLocation.Z / MapConfiguration.FLOOR_TILE_SIZE.Height) - 1);
+            MapLocation quadrant = new MapLocation(Math.Abs(mapLocation.x / _mapConfiguration.FLOOR_TILE_SIZE.Width) - 1, Math.Abs(mapLocation.z / _mapConfiguration.FLOOR_TILE_SIZE.Height) - 1);
 
             return quadrant;
         }

@@ -71,6 +71,7 @@
     <Compile Include="Collidable\Collidable.cs" />
     <Compile Include="Collidable\MovementControllers\MovementController.cs" />
     <Compile Include="Components\Matches\Matches.cs" />
+    <Compile Include="Components\Matches\MatchLoadingHandler.cs" />
     <Compile Include="ConnectionHub.cs" />
     <Compile Include="Extensions\RandomExtensions.cs" />
     <Compile Include="Game\GameModes\FreeForAll.cs" />

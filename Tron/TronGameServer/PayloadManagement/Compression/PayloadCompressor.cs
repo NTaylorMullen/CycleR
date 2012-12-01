@@ -12,15 +12,15 @@ namespace Tron.GameServer
             result[_collidableCompressionContract.ID] = collidable.ID;
             result[_collidableCompressionContract.Alive] = Convert.ToInt16(collidable.Alive);
             result[_collidableCompressionContract.Collided] = Convert.ToInt16(collidable.Collided);
-            result[_collidableCompressionContract.CollidedAt_X] = Math.Round(collidable.CollidedAt.X, 2);
-            result[_collidableCompressionContract.CollidedAt_Y] = Math.Round(collidable.CollidedAt.Y, 2);
-            result[_collidableCompressionContract.CollidedAt_Z] = Math.Round(collidable.CollidedAt.Z, 2);
-            result[_collidableCompressionContract.Position_X] = Math.Round(collidable.MovementController.Position.X, 2);
-            result[_collidableCompressionContract.Position_Y] = Math.Round(collidable.MovementController.Position.Y, 2);
-            result[_collidableCompressionContract.Position_Z] = Math.Round(collidable.MovementController.Position.Z, 2);
-            result[_collidableCompressionContract.Velocity_X] = Math.Round(collidable.MovementController.Velocity.X, 2);
-            result[_collidableCompressionContract.Velocity_Y] = Math.Round(collidable.MovementController.Velocity.Y, 2);
-            result[_collidableCompressionContract.Velocity_Z] = Math.Round(collidable.MovementController.Velocity.Z, 2);
+            result[_collidableCompressionContract.CollidedAt_X] = Math.Round(collidable.CollidedAt.x, 2);
+            result[_collidableCompressionContract.CollidedAt_Y] = Math.Round(collidable.CollidedAt.y, 2);
+            result[_collidableCompressionContract.CollidedAt_Z] = Math.Round(collidable.CollidedAt.z, 2);
+            result[_collidableCompressionContract.Position_X] = Math.Round(collidable.MovementController.Position.x, 2);
+            result[_collidableCompressionContract.Position_Y] = Math.Round(collidable.MovementController.Position.y, 2);
+            result[_collidableCompressionContract.Position_Z] = Math.Round(collidable.MovementController.Position.z, 2);
+            result[_collidableCompressionContract.Velocity_X] = Math.Round(collidable.MovementController.Velocity.x, 2);
+            result[_collidableCompressionContract.Velocity_Y] = Math.Round(collidable.MovementController.Velocity.y, 2);
+            result[_collidableCompressionContract.Velocity_Z] = Math.Round(collidable.MovementController.Velocity.z, 2);
             result[_collidableCompressionContract.Rotation] = Math.Round(collidable.MovementController.Rotation, 2);
         }
 

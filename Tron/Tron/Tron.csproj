@@ -201,6 +201,18 @@
     <Content Include="Client\GameScreens\QuickMatch.min.js">
       <DependentUpon>QuickMatch.ts</DependentUpon>
     </Content>
+    <TypeScriptCompile Include="Client\Interfaces\Game\Configuration\GameConfiguration.d.ts" />
+    <TypeScriptCompile Include="Client\Interfaces\Game\Configuration\CycleConfiguration.d.ts" />
+    <Content Include="Client\Interfaces\Game\Configuration\CycleConfiguration.d.js">
+      <DependentUpon>CycleConfiguration.d.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Interfaces\Game\Configuration\GameConfiguration.d.js">
+      <DependentUpon>GameConfiguration.d.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="Client\Interfaces\Game\Configuration\MapConfiguration.d.ts" />
+    <Content Include="Client\Interfaces\Game\Configuration\MapConfiguration.d.js">
+      <DependentUpon>MapConfiguration.d.ts</DependentUpon>
+    </Content>
     <Content Include="Client\Interfaces\Game\Controllers\Adapters\KeyMapping.d.js">
       <DependentUpon>KeyMapping.d.ts</DependentUpon>
     </Content>

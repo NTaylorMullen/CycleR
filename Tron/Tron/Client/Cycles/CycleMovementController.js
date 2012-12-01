@@ -8,9 +8,11 @@ var CycleMovementController = (function (_super) {
     function CycleMovementController(_context) {
         _super.call(this, _context, CycleMovementController.MAX_SPEED);
         this._context = _context;
+        this._context.position.y = CycleMovementController.Y_OFFSET;
         this.Velocity.z = -CycleMovementController.MAX_SPEED;
     }
     CycleMovementController.MAX_SPEED = 700;
+    CycleMovementController.Y_OFFSET = 35;
     CycleMovementController.prototype.positionOnLine = function () {
         if(this.Velocity.z !== 0) {
             this._context.position.z -= (this._context.position.z % Map.FLOOR_TILE_SIZE.Width) - Map.FLOOR_TILE_SIZE.Width * (this.Velocity.z / Math.abs(this.Velocity.z));
