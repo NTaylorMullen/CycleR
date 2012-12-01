@@ -11,13 +11,16 @@ namespace Tron.GameServer
     {
         public Collidable(long id)
         {
+            ID = id;
+            Alive = true;            
         }
 
         public virtual MovementController MovementController { get; protected set; }
+
+        public long ID { get; private set; }
         public bool Alive { get; protected set; }
         public bool Collided { get; protected set; }
-        public Vector3 CollidedAt { get; protected set; }
-        public long ID { get; private set; }
+        public Vector3 CollidedAt { get; protected set; }        
 
         public virtual void HandleCollisionWith(Collidable obj)
         {

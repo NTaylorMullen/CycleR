@@ -5,6 +5,7 @@
         public User(string connectionID, long userID)
         {
             ConnectionID = connectionID;
+            ID = userID;
         }
 
         public string ConnectionID { get; private set; }

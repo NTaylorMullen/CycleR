@@ -5,10 +5,10 @@ namespace Tron.GameServer
 {
     public class MovementController : IUpdateable, IDisposable
     {
-        public MovementController(Vector3 velocity, Vector3 position, double rotation)
+        public MovementController(Vector3 position, Vector3 velocity, double rotation)
         {
-            Velocity = velocity;
             Position = position;
+            Velocity = velocity;            
             Rotation = rotation;
         }
 
