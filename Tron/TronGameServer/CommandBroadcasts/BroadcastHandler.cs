@@ -49,6 +49,12 @@ namespace Tron.GameServer
             getGameContext().Clients.Group(_relayGroup).configure(gameConfig);
         }
 
+        public void BroadcastGameStart(List<Cycle> cycles)
+        {
+            var compressedPayload = PayloadManager.BuildPayload(cycles);
+            getGameContext().Clients.Group(_relayGroup).startGame(compressedPayload);
+        }
+
         public void BroadcastCycle(Cycle cycle)
         {
             List<Cycle> cycles = new List<Cycle>(1){cycle};

@@ -13,9 +13,7 @@ class GameHandler extends SceneObjectCreator {
     private _camera: Camera;
     private _map: Map;
 
-    private _models: { [s: string]: IGeometry; };
-
-    constructor (gameHub: IHubProxy, camera: Camera) {
+    constructor (gameHub: IHubProxy, camera: Camera, private _models: { [s: string]: IGeometry; }) {
         super();
 
         this._camera = camera;
@@ -24,9 +22,14 @@ class GameHandler extends SceneObjectCreator {
         this._cycleController = new CycleController(gameHub);
     }
 
+    public Initialize(cycles: Cycle[]): void {
+        this._cycleManager.AddAll(cycles);
+    }
+
     public ModelsLoaded(models: { [s: string]: IGeometry; }) {
         this._models = models;
 
+        /*
         var c: Cycle = new Cycle(new THREE.Vector3(0,35,0), 0, this._models[ModelLibrary.Cycle.ModelName],0xff0000);
         this._cycleManager.Add(c);
         this._cycleController.AttachTo(c);
@@ -35,7 +38,7 @@ class GameHandler extends SceneObjectCreator {
         this._map.Add(c);
         if (controller.AttachTo) {
             controller.AttachTo(c.Context);
-        }
+        }*/
     }
 
     public Update(gameTime: GameTime): void {

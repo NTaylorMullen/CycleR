@@ -9,6 +9,9 @@ var FindGame = (function (_super) {
         _super.call(this, FindGame.NAME, onCompletion, gameServer);
     }
     FindGame.NAME = "FindGame";
+    FindGame.prototype.Load = function () {
+        _super.prototype.Done.call(this, Loading.NAME);
+    };
     return FindGame;
 })(GameScreen);
 //@ sourceMappingURL=FindGame.js.map

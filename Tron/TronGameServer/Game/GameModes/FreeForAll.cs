@@ -21,14 +21,16 @@ namespace Tron.GameServer
             {
                 StartVelocity = new Vector3(_gameConfiguration.CycleConfig.MAX_SPEED, 0, 0),
                 StartPosition = new Vector3(-halfMapSize + _gameConfiguration.MapConfig.MAP_START_PADDING, _gameConfiguration.CycleConfig.Y_OFFSET, -halfMapSize + _gameConfiguration.MapConfig.MAP_START_PADDING),
-                StartRotation = 0
+                StartRotation = 0,
+                TrailColor = 0xff0000
             };
 
             _spawns[1] = new GameSpawn
             {
                 StartVelocity = new Vector3(0, 0, -_gameConfiguration.CycleConfig.MAX_SPEED),
                 StartPosition = new Vector3(halfMapSize - _gameConfiguration.MapConfig.MAP_START_PADDING, _gameConfiguration.CycleConfig.Y_OFFSET, -halfMapSize + _gameConfiguration.MapConfig.MAP_START_PADDING),
-                StartRotation = -halfPI
+                StartRotation = -halfPI,
+                TrailColor = 0x00ff00
             };
 
 
@@ -36,14 +38,16 @@ namespace Tron.GameServer
             {
                 StartVelocity = new Vector3(0, 0, -_gameConfiguration.CycleConfig.MAX_SPEED),
                 StartPosition = new Vector3(-halfMapSize + _gameConfiguration.MapConfig.MAP_START_PADDING, _gameConfiguration.CycleConfig.Y_OFFSET, halfMapSize - _gameConfiguration.MapConfig.MAP_START_PADDING),
-                StartRotation = halfPI
+                StartRotation = halfPI,
+                TrailColor = 0x0000ff
             };
 
             _spawns[3] = new GameSpawn
             {
                 StartVelocity = new Vector3(-_gameConfiguration.CycleConfig.MAX_SPEED, 0, 0),
                 StartPosition = new Vector3(halfMapSize - _gameConfiguration.MapConfig.MAP_START_PADDING, _gameConfiguration.CycleConfig.Y_OFFSET, halfMapSize - _gameConfiguration.MapConfig.MAP_START_PADDING),
-                StartRotation = Math.PI
+                StartRotation = Math.PI,
+                TrailColor = 0xffff00
             };
         }
 

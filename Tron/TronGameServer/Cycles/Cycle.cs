@@ -9,10 +9,11 @@ namespace Tron.GameServer
 {
     public class Cycle : Collidable, IDisposable
     {
-        public Cycle(long id, Vector3 startPosition, Vector3 startVelocity, double startRotation, MapConfiguration mapConfiguration)
+        public Cycle(long id, Vector3 startPosition, Vector3 startVelocity, double startRotation, int trailColor, MapConfiguration mapConfiguration)
             : base(id)
         {
             MovementController = new CycleMovementController(startPosition, startVelocity, startRotation, mapConfiguration);
+            TrailColor = trailColor;
         }
 
         public CycleMovementController MovementController
@@ -28,6 +29,7 @@ namespace Tron.GameServer
         }
 
         public MapLocation HeadLocation { get; set; }
+        public int TrailColor { get; private set; }
 
         public override void HandleCollisionWith(Collidable obj)
         {

@@ -31,8 +31,9 @@ namespace Tron.GameServer
         public Game Game { get; private set; }
 
         private void initializeGame()
-        {
+        {            
             Game = new Game(ID, _players, _mode, _broadcastHandler, gameCompleted);
+            _broadcastHandler.BroadcastGameStart(Game.CyclesInPlay());
             State = MatchState.Playing;
         }
 

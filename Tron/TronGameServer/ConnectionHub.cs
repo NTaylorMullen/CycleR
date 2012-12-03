@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNet.SignalR.Hubs;
+using System;
 using System.Threading.Tasks;
+using Tron.Utilities;
 
 namespace Tron.GameServer
 {
@@ -31,6 +33,22 @@ namespace Tron.GameServer
         {
             _users.OnReconnected(Context.ConnectionId);
             return base.OnReconnected();
+        }
+
+        [HubMethodName("LoadCompressionContracts")]
+        public void LoadCompressionContracts()
+        {
+            if (_users.UserExists(Context.ConnectionId))
+            {
+                try
+                {
+                    Clients.Caller.loadCompressionContracts(PayloadManager.GetCompressionContacts());
+                }
+                catch (Exception ex)
+                {
+                    ErrorLog.Instance.Log(ex);
+                }
+            }
         }
     }
 }

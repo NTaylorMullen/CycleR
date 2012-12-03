@@ -14,6 +14,11 @@ namespace Tron.GameServer
             _cycles = new ConcurrentDictionary<long, Cycle>(cycles);
         }
 
+        public List<Cycle> Cycles()
+        {
+            return new List<Cycle>(_cycles.Values);
+        }
+
         public void Update(GameTime gameTime)
         {
             foreach (var cycle in _cycles.Values)

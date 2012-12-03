@@ -10,6 +10,11 @@ var CycleManager = (function (_super) {
         this.Cycles = {
         };
     }
+    CycleManager.prototype.AddAll = function (cycles) {
+        for(var i = cycles.length - 1; i >= 0; i--) {
+            this.Add(cycles[i]);
+        }
+    };
     CycleManager.prototype.Add = function (cycle) {
         this.Cycles[cycle.ID] = cycle;
         this.AddToScene(cycle.Context);

@@ -13,10 +13,12 @@ namespace Tron.Utilities
 
         public void Log(Exception e, string customMessage = "")
         {
+            throw e;
+            /*
             Task.Factory.StartNew(() =>
             {
                 EventLog.WriteEntry(sSource, e.ToString() + "      CALLSTACK: " + e.StackTrace + "      CUSTOM MESSAGE: " + customMessage);
-            });
+            });*/
         }
 
         public static ErrorLog Instance

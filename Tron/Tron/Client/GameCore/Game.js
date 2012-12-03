@@ -1,18 +1,14 @@
 var Game = (function () {
     function Game(gameHub) {
-        this._modelLoader = new ModelLoader();
         this._gameRenderer = new GameRenderer();
         this._camera = new Camera(this._gameRenderer.Renderer);
         this._gameLoop = new GameLoop(this.Update, this.Draw, this);
-        this._gameHandler = new GameHandler(gameHub, this._camera);
-        this.load();
+        this._gameHandler = new GameHandler(gameHub, this._camera, ModelLoader.GetModels());
         this._gameLoop.Start();
     }
-    Game.prototype.load = function () {
-        var _this = this;
-        this._modelLoader.LoadModel(ModelLibrary.Cycle, function () {
-            _this._gameHandler.ModelsLoaded(_this._modelLoader.GetModels());
-        });
+    Game.prototype.Start = function (initialPayload) {
+        this._gameHandler.Initialize(PayloadConverter.CreateAllCycles(initialPayload.Cycles));
+        this._gameLoop.Start();
     };
     Game.prototype.Draw = function () {
         this._gameRenderer.Draw(this._camera);

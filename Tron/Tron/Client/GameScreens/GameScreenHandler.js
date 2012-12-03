@@ -12,6 +12,7 @@ var GameScreenHandler = (function () {
         this._screens[Options.NAME] = new Options(completionCallback, gameServer);
         this._screens[FindGame.NAME] = new FindGame(completionCallback, gameServer);
         this._screens[CreateGame.NAME] = new CreateGame(completionCallback, gameServer);
+        this._screens[Preloader.NAME] = new Preloader(completionCallback, gameServer);
         this._screens[MainGame.NAME] = new MainGame(completionCallback, gameServer);
     }
     GameScreenHandler.prototype.screenDone = function (nextScreen) {

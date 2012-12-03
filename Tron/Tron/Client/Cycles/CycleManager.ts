@@ -11,6 +11,12 @@ class CycleManager extends SceneObjectCreator {
         this.Cycles = <{ [ID: number]: Cycle; }>{};
     }
 
+    public AddAll(cycles: Cycle[]): void {
+        for (var i: number = cycles.length - 1; i >= 0; i--) {
+            this.Add(cycles[i]);
+        }
+    }
+
     public Add(cycle: Cycle): void {
         this.Cycles[cycle.ID] = cycle;
         this.AddToScene(cycle.Context);

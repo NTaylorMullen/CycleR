@@ -1,5 +1,6 @@
 /// <reference path="../Cycles/Cycle.ts" />
 /// <reference path="GameScreen.ts" />
+/// <reference path="GameScreenHandler.ts" />
 /// <reference path="../Interfaces/SignalR/SignalR.d.ts" />
 /// <reference path="../Interfaces/ThreeJS/Three.d.ts" />
 /// <reference path="../Interfaces/Game/Game.d.ts" />
@@ -12,16 +13,16 @@ class Loading extends GameScreen {
 
         this.GameServer.client.configure = (configuration: IGameConfiguration) => {
             this.configureGame(configuration);
-        }
+        }        
     }
 
     private configureGame(configuration: IGameConfiguration): void {
         this.configureMap(configuration.MapConfig);
         this.configureCycles(configuration.CycleConfig);
 
-        // Notify server that we've been configured, now we're ready to start!
+        // Notify server that we've been configured, now we're ready to start!        
+        super.Done(MainGame.NAME);
         this.GameServer.server.ReadyToStartGame();
-        //super.Done(MainGame.NAME);
     }
 
     private configureMap(configuration: IMapConfiguration): void {
@@ -40,5 +41,9 @@ class Loading extends GameScreen {
 
     public Load(): void {
         this.GameServer.server.StartMatch();
+    }
+
+    public Done(): void {
+        super.Done(MainGame.NAME);
     }
 }

@@ -16,6 +16,7 @@ var Loading = (function (_super) {
     Loading.prototype.configureGame = function (configuration) {
         this.configureMap(configuration.MapConfig);
         this.configureCycles(configuration.CycleConfig);
+        _super.prototype.Done.call(this, MainGame.NAME);
         this.GameServer.server.ReadyToStartGame();
     };
     Loading.prototype.configureMap = function (configuration) {
@@ -32,6 +33,9 @@ var Loading = (function (_super) {
     };
     Loading.prototype.Load = function () {
         this.GameServer.server.StartMatch();
+    };
+    Loading.prototype.Done = function () {
+        _super.prototype.Done.call(this, MainGame.NAME);
     };
     return Loading;
 })(GameScreen);

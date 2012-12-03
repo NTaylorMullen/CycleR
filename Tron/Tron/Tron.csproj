@@ -195,6 +195,13 @@
     <Content Include="Client\GameScreens\Options.min.js">
       <DependentUpon>Options.ts</DependentUpon>
     </Content>
+    <TypeScriptCompile Include="Client\GameScreens\Preloader.ts" />
+    <Content Include="Client\GameScreens\Preloader.js">
+      <DependentUpon>Preloader.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\GameScreens\Preloader.min.js">
+      <DependentUpon>Preloader.ts</DependentUpon>
+    </Content>
     <Content Include="Client\GameScreens\QuickMatch.js">
       <DependentUpon>QuickMatch.ts</DependentUpon>
     </Content>
@@ -253,14 +260,18 @@
     <Content Include="Client\Interfaces\Game\Controllers\Adapters\Adapter.d.js">
       <DependentUpon>Adapter.d.ts</DependentUpon>
     </Content>
-    <Content Include="Client\Interfaces\Game\Game.d.js">
-      <DependentUpon>Game.d.ts</DependentUpon>
-    </Content>
     <Content Include="Client\Interfaces\Game\Game.d.ts" />
     <TypeScriptCompile Include="Client\Interfaces\Game\Loaders\ModelLoadRequest.d.ts" />
     <Content Include="Client\Interfaces\Game\Loaders\ModelLoadRequest.d.js">
       <DependentUpon>ModelLoadRequest.d.ts</DependentUpon>
     </Content>
+    <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Contracts\CollidableCompressionContract.d.ts" />
+    <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Contracts\PayloadCompressionContract.d.ts" />
+    <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\CompressionContracts.d.ts" />
+    <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Decompressed\PayloadDecompressed.d.ts" />
+    <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Decompressed\CycleDecompressed.d.ts" />
+    <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Decompressed\CollidableDecompressed.d.ts" />
+    <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Contracts\CycleCompressionContract.d.ts" />
     <Content Include="Client\Interfaces\jquery.d.js">
       <DependentUpon>jquery.d.ts</DependentUpon>
     </Content>
@@ -390,6 +401,20 @@
     <Content Include="Client\ModelHelpers\ModelLoader.min.js">
       <DependentUpon>ModelLoader.ts</DependentUpon>
     </Content>
+    <TypeScriptCompile Include="Client\PayloadManagement\PayloadDecompressor.ts" />
+    <TypeScriptCompile Include="Client\PayloadManagement\PayloadConverter.ts" />
+    <Content Include="Client\PayloadManagement\PayloadConverter.js">
+      <DependentUpon>PayloadConverter.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\PayloadManagement\PayloadConverter.min.js">
+      <DependentUpon>PayloadConverter.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\PayloadManagement\PayloadDecompressor.js">
+      <DependentUpon>PayloadDecompressor.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\PayloadManagement\PayloadDecompressor.min.js">
+      <DependentUpon>PayloadDecompressor.ts</DependentUpon>
+    </Content>
     <Content Include="Client\Renderers\CoreRenderer.js">
       <DependentUpon>CoreRenderer.ts</DependentUpon>
     </Content>
@@ -484,6 +509,15 @@
     </Content>
     <Content Include="Client\ConnectionManagement\ServerConnectionHandler.js.map">
       <DependentUpon>ServerConnectionHandler.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\PayloadManagement\PayloadDecompressor.js.map">
+      <DependentUpon>PayloadDecompressor.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\GameScreens\Preloader.js.map">
+      <DependentUpon>Preloader.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\PayloadManagement\PayloadConverter.js.map">
+      <DependentUpon>PayloadConverter.ts</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
@@ -628,6 +662,7 @@
       <Name>TronGameServer</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

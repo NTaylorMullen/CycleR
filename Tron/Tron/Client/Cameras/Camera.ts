@@ -13,7 +13,7 @@ class Camera {
     constructor (private _renderer: IRenderer) {        
         this.initializeGameCamera();
 
-        this.Mode = AttachedCameraController.MODE;
+        this.Mode = FreeCameraController.MODE;
         this.initializeCameraControllers();
     }
 

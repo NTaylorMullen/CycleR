@@ -19,5 +19,6 @@ namespace Tron.GameServer
         public Vector3 StartPosition { get; set; }
         public Vector3 StartVelocity { get; set; }
         public double StartRotation { get; set; }
+        public int TrailColor { get; set; }
     }
 }

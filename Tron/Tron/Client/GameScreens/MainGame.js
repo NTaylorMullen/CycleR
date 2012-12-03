@@ -6,7 +6,11 @@ var __extends = this.__extends || function (d, b) {
 var MainGame = (function (_super) {
     __extends(MainGame, _super);
     function MainGame(onCompletion, gameServer) {
+        var _this = this;
         _super.call(this, MainGame.NAME, onCompletion, gameServer);
+        this.GameServer.client.startGame = function (initialPayload) {
+            _this._game.Start(PayloadDecompressor.DecompressPayload(initialPayload));
+        };
     }
     MainGame.NAME = "MainGame";
     MainGame.prototype.Load = function () {

@@ -1,4 +1,5 @@
 /// <reference path="GameScreen.ts" />
+/// <reference path="GameScreenHandler.ts" />
 /// <reference path="../Interfaces/SignalR/SignalR.d.ts" />
 
 class MainMenu extends GameScreen {
@@ -9,6 +10,6 @@ class MainMenu extends GameScreen {
     }
 
     public Load(): void {
-        super.Done(Loading.NAME);
+        super.Done(FindGame.NAME);
     }
 }

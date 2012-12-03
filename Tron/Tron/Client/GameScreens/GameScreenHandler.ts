@@ -6,6 +6,7 @@
 /// <reference path="CreateGame.ts" />
 /// <reference path="GameScreen.ts" />
 /// <reference path="MainGame.ts" />
+/// <reference path="Preloader.ts" />
 /// <reference path="../Interfaces/SignalR/SignalR.d.ts" />
 
 class GameScreenHandler {
@@ -24,6 +25,7 @@ class GameScreenHandler {
         this._screens[Options.NAME] = new Options(completionCallback, gameServer);
         this._screens[FindGame.NAME] = new FindGame(completionCallback, gameServer);
         this._screens[CreateGame.NAME] = new CreateGame(completionCallback, gameServer);
+        this._screens[Preloader.NAME] = new Preloader(completionCallback, gameServer);
         this._screens[MainGame.NAME] = new MainGame(completionCallback, gameServer);
     }
 

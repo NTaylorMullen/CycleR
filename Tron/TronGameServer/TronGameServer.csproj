@@ -98,6 +98,7 @@
     <Compile Include="Components\Matches\MatchManager.cs" />
     <Compile Include="Map\Map.cs" />
     <Compile Include="PayloadManagement\Compression\Contracts\CollidableCompressionContract.cs" />
+    <Compile Include="PayloadManagement\Compression\Contracts\CycleCompressionContract.cs" />
     <Compile Include="PayloadManagement\Compression\Contracts\PayloadCompressionContract.cs" />
     <Compile Include="PayloadManagement\Compression\PayloadCompressor.cs" />
     <Compile Include="PayloadManagement\Payload.cs" />

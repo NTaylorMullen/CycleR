@@ -6,6 +6,7 @@ namespace Tron.GameServer
     {
         private PayloadCompressionContract _payloadCompressionContract = new PayloadCompressionContract();
         private CollidableCompressionContract _collidableCompressionContract = new CollidableCompressionContract();
+        private CycleCompressionContract _cycleCompressionContract = new CycleCompressionContract();
 
         private void setCollidableContractMembers(object[] result, Collidable collidable)
         {
@@ -35,9 +36,11 @@ namespace Tron.GameServer
 
         public object[] Compress(Cycle cycle)
         {
-            object[] result = new object[13];
+            object[] result = new object[14];
 
             setCollidableContractMembers(result, cycle);
+
+            result[_cycleCompressionContract.TrailColor] = cycle.TrailColor;
 
             return result;
         }
@@ -47,6 +50,7 @@ namespace Tron.GameServer
             return new
             {
                 CollidableCompressionContract = _collidableCompressionContract,
+                CycleCompressionContract = _cycleCompressionContract,
                 PayloadCompressionContract = _payloadCompressionContract
             };
         }
