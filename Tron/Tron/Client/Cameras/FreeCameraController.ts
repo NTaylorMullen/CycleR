@@ -3,7 +3,7 @@
 
 class FreeCameraController extends CameraController {
     static MODE: string = "Free";
-    static MOVE_SPEED: number = 1000;
+    static MOVE_SPEED: number = 2000;
     static LOOK_SPEED: number = .075;
 
     private _controls: IFirstPersonControls;

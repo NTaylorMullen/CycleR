@@ -21,6 +21,11 @@ var Map = (function (_super) {
     Map.FLOOR_TILE_SIZE = new Size(100);
     Map.MAP_SIZE = new Size(10000);
     Map.WALL_SIZE = new Size(Map.MAP_SIZE.Width, 2000);
+    Map.prototype.AddAll = function (cycles) {
+        for(var i = cycles.length - 1; i >= 0; i--) {
+            this.Add(cycles[i]);
+        }
+    };
     Map.prototype.Add = function (cycle) {
         this._contents[cycle.ID] = cycle;
     };

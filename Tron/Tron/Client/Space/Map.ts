@@ -26,6 +26,12 @@ class Map extends SceneObjectCreator {
         }
     }
 
+    public AddAll(cycles: Cycle[]): void {
+        for (var i: number = cycles.length - 1; i >= 0; i--) {
+            this.Add(cycles[i]);
+        }
+    }
+
     public Add(cycle: Cycle): void {
         this._contents[cycle.ID] = cycle;
     }

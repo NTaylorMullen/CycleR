@@ -15,6 +15,7 @@ var GameHandler = (function (_super) {
     }
     GameHandler.prototype.Initialize = function (cycles) {
         this._cycleManager.AddAll(cycles);
+        this._map.AddAll(cycles);
     };
     GameHandler.prototype.ModelsLoaded = function (models) {
         this._models = models;

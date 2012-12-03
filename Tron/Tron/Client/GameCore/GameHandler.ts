@@ -24,6 +24,7 @@ class GameHandler extends SceneObjectCreator {
 
     public Initialize(cycles: Cycle[]): void {
         this._cycleManager.AddAll(cycles);
+        this._map.AddAll(cycles);
     }
 
     public ModelsLoaded(models: { [s: string]: IGeometry; }) {

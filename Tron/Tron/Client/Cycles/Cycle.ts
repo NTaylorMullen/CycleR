@@ -13,12 +13,12 @@ class Cycle extends Collidable {
     public MovementController: CycleMovementController;
     public TrailManager: TrailManager;
 
-    constructor (startPosition: IVector3, id: number, rawModel: IGeometry, trailColor: number) {
+    constructor (startPosition: IVector3, startVelocity: IVector3, id: number, rawModel: IGeometry, trailColor: number) {
         super(id);
         this.Context = this.createContext(rawModel);
         this.Context.position = startPosition;
 
-        this.MovementController = new CycleMovementController(this.Context);
+        this.MovementController = new CycleMovementController(this.Context, startVelocity);
         this.TrailManager = new TrailManager(trailColor, this);
     }
 

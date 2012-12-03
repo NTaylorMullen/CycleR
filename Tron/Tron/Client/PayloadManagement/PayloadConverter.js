@@ -6,11 +6,10 @@ var PayloadConverter;
     }
     PayloadConverter.InitializeModels = InitializeModels;
     function CreateCycle(cycleRaw) {
-        var cycle = new Cycle(cycleRaw.Position, cycleRaw.ID, models[ModelLibrary.Cycle.ModelName], cycleRaw.TrailColor);
+        var cycle = new Cycle(cycleRaw.Position, cycleRaw.Velocity, cycleRaw.ID, models[ModelLibrary.Cycle.ModelName], cycleRaw.TrailColor);
         cycle.Alive = cycleRaw.Alive;
         cycle.Collided = cycleRaw.Collided;
         cycle.CollidedAt = cycleRaw.CollidedAt;
-        cycle.MovementController.Velocity = cycleRaw.Velocity;
         cycle.Context.rotation.y = cycleRaw.Rotation;
         return cycle;
     }

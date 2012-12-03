@@ -5,11 +5,10 @@ var __extends = this.__extends || function (d, b) {
 };
 var CycleMovementController = (function (_super) {
     __extends(CycleMovementController, _super);
-    function CycleMovementController(_context) {
-        _super.call(this, _context, CycleMovementController.MAX_SPEED);
+    function CycleMovementController(_context, startVelocity) {
+        _super.call(this, _context, startVelocity, CycleMovementController.MAX_SPEED);
         this._context = _context;
         this._context.position.y = CycleMovementController.Y_OFFSET;
-        this.Velocity.z = -CycleMovementController.MAX_SPEED;
     }
     CycleMovementController.MAX_SPEED = 700;
     CycleMovementController.Y_OFFSET = 35;

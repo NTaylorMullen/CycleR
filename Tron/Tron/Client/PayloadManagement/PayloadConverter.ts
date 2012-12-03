@@ -10,12 +10,11 @@ module PayloadConverter {
     }
 
     export function CreateCycle(cycleRaw: ICycleDecompressed): Cycle {
-        var cycle: Cycle = new Cycle(cycleRaw.Position, cycleRaw.ID, models[ModelLibrary.Cycle.ModelName], cycleRaw.TrailColor);
+        var cycle: Cycle = new Cycle(cycleRaw.Position, cycleRaw.Velocity, cycleRaw.ID, models[ModelLibrary.Cycle.ModelName], cycleRaw.TrailColor);
 
         cycle.Alive = cycleRaw.Alive;
         cycle.Collided = cycleRaw.Collided;
         cycle.CollidedAt = cycleRaw.CollidedAt;
-        cycle.MovementController.Velocity = cycleRaw.Velocity;
         cycle.Context.rotation.y = cycleRaw.Rotation;
 
         return cycle;

@@ -5,11 +5,11 @@ var __extends = this.__extends || function (d, b) {
 };
 var Cycle = (function (_super) {
     __extends(Cycle, _super);
-    function Cycle(startPosition, id, rawModel, trailColor) {
+    function Cycle(startPosition, startVelocity, id, rawModel, trailColor) {
         _super.call(this, id);
         this.Context = this.createContext(rawModel);
         this.Context.position = startPosition;
-        this.MovementController = new CycleMovementController(this.Context);
+        this.MovementController = new CycleMovementController(this.Context, startVelocity);
         this.TrailManager = new TrailManager(trailColor, this);
     }
     Cycle.BASE_CYCLE_SCALE = new THREE.Vector3(2.68648, 2.60262, 1.750692);
