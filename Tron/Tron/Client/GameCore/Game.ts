@@ -36,6 +36,10 @@ class Game {
         this._gameHandler.ServerMovementPayload(payload);
     }
 
+    public ServerDeathPayload(payload: IDeathPayloadDecompressed): void {
+        this._gameRenderer.Remove(this._gameHandler.ServerDeathPayload(payload).Context);
+    }
+
     public Update(gameTime: GameTime): void {
         this._gameHandler.Update(gameTime);
         this._camera.Update(gameTime);        
