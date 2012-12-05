@@ -20,6 +20,9 @@ var Cycle = (function (_super) {
         context.scale = Cycle.SCALE;
         return context;
     };
+    Cycle.prototype.Die = function (diedAt) {
+        this.TrailManager.CurrentTrail.ExtendTo(diedAt);
+    };
     Cycle.prototype.Move = function (direction) {
         this.MovementController.Move(direction);
         this.TrailManager.StartTrail(this.MovementController.Velocity, this.Context.position);

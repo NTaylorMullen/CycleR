@@ -39,7 +39,7 @@ namespace Tron.GameServer
         {
             var spawns = _mode.GetGameSpawns();
 
-            return players.Select((user, index) => new Cycle(user.ID, spawns[index].StartPosition, spawns[index].StartVelocity, spawns[index].StartRotation, spawns[index].TrailColor, _gameConfiguration.MapConfig,_broadcastHandler.BroadcastMovement));
+            return players.Select((user, index) => new Cycle(user.ID, spawns[index].StartPosition, spawns[index].StartVelocity, spawns[index].StartRotation, spawns[index].TrailColor, _gameConfiguration.MapConfig,_broadcastHandler.BroadcastMovement, _broadcastHandler.BroadcastDeath));
         }
 
         public List<Cycle> CyclesInPlay()

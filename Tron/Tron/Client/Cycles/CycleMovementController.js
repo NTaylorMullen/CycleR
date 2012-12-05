@@ -10,7 +10,7 @@ var CycleMovementController = (function (_super) {
         this._context = _context;
         this._context.position.y = CycleMovementController.Y_OFFSET;
     }
-    CycleMovementController.MAX_SPEED = 700;
+    CycleMovementController.MAX_SPEED = 1000;
     CycleMovementController.Y_OFFSET = 35;
     CycleMovementController.prototype.positionOnLine = function () {
         if(this.Velocity.z !== 0) {

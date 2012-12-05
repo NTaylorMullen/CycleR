@@ -1,6 +1,6 @@
 var PayloadDecompressor;
 (function (PayloadDecompressor) {
-    var collidableContract, cycleContract, initializationPayloadContract, movementPayloadContract;
+    var collidableContract, cycleContract, initializationPayloadContract, movementPayloadContract, deathPayloadContract;
     function decompressCollidable(compressedCollidable) {
         return {
             ID: compressedCollidable[collidableContract.ID],
@@ -22,8 +22,17 @@ var PayloadDecompressor;
         cycleContract = contracts.CycleCompressionContract;
         initializationPayloadContract = contracts.InitializationPayloadCompressionContract;
         movementPayloadContract = contracts.MovementPayloadCompressionContract;
+        deathPayloadContract = contracts.DeathPayloadCompressionContract;
     }
     PayloadDecompressor.LoadContracts = LoadContracts;
+    function DecompressDeathPayload(compressedPayload) {
+        var decompressedPayload = {
+        };
+        decompressedPayload.ID = compressedPayload[deathPayloadContract.ID];
+        decompressedPayload.DiedAt = new THREE.Vector3(compressedPayload[deathPayloadContract.DiedAt_X], compressedPayload[deathPayloadContract.DiedAt_Y], compressedPayload[deathPayloadContract.DiedAt_Z]);
+        return decompressedPayload;
+    }
+    PayloadDecompressor.DecompressDeathPayload = DecompressDeathPayload;
     function DecompressMovementPayload(compressedPayload) {
         var decompressedPayload = {
         };

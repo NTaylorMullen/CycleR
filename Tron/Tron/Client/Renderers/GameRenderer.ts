@@ -32,6 +32,10 @@ class GameRenderer {
         }
     }
 
+    public Remove(object: IObject3D): void {
+        this._scene.remove(object);
+    }
+
     public Draw(camera: Camera): void {
         this._coreRenderer.Draw(camera);
     }

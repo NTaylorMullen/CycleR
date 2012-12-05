@@ -102,9 +102,11 @@
     <Compile Include="Map\Map.cs" />
     <Compile Include="PayloadManagement\Compression\Contracts\CollidableCompressionContract.cs" />
     <Compile Include="PayloadManagement\Compression\Contracts\CycleCompressionContract.cs" />
+    <Compile Include="PayloadManagement\Compression\Contracts\DeathPayloadCompressionContract.cs" />
     <Compile Include="PayloadManagement\Compression\Contracts\InitializationPayloadCompressionContract.cs" />
     <Compile Include="PayloadManagement\Compression\Contracts\MovementPayloadCompressionContract.cs" />
     <Compile Include="PayloadManagement\Compression\PayloadCompressor.cs" />
+    <Compile Include="PayloadManagement\Payloads\DeathPayload.cs" />
     <Compile Include="PayloadManagement\Payloads\InitializationPayload.cs" />
     <Compile Include="PayloadManagement\PayloadManager.cs" />
     <Compile Include="PayloadManagement\Payloads\MovementPayload.cs" />

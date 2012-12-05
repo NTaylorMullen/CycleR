@@ -17,6 +17,9 @@ var Game = (function () {
     Game.prototype.ServerMovementPayload = function (payload) {
         this._gameHandler.ServerMovementPayload(payload);
     };
+    Game.prototype.ServerDeathPayload = function (payload) {
+        this._gameRenderer.Remove(this._gameHandler.ServerDeathPayload(payload).Context);
+    };
     Game.prototype.Update = function (gameTime) {
         this._gameHandler.Update(gameTime);
         this._camera.Update(gameTime);

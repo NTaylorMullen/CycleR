@@ -14,6 +14,9 @@ var GameRenderer = (function () {
             this._scene.add(objects[i]);
         }
     };
+    GameRenderer.prototype.Remove = function (object) {
+        this._scene.remove(object);
+    };
     GameRenderer.prototype.Draw = function (camera) {
         this._coreRenderer.Draw(camera);
     };

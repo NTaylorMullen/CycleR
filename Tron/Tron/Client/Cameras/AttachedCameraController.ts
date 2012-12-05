@@ -135,6 +135,7 @@ class AttachedCameraController extends CameraController {
     public Detach(): void {
         if (this._attachedTo !== null) {
             this._attachedTo = null;
+            this._lastAttachedPosition = null;
         }
         else {
             throw new Error("Camera is not attached to an objects.");

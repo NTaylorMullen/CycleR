@@ -22,6 +22,14 @@ class CycleManager extends SceneObjectCreator {
         this.AddToScene(cycle.Context);
     }
 
+    public Remove(cycleID: number): Cycle {
+        var cycle = this.Cycles[cycleID];
+
+        delete this.Cycles[cycleID];
+
+        return cycle;
+    }
+
     public ServerMovementPayload(payload: IMovementPayloadDecompressed): void {
         var cycle = this.Cycles[payload.ID];
         cycle.Context.position = payload.Position;

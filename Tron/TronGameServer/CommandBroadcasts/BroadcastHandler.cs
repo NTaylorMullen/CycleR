@@ -61,6 +61,12 @@ namespace Tron.GameServer
             getGameContext().Clients.Group(_relayGroup).movementPayload(compressedPayload);
         }
 
+        public void BroadcastDeath(Cycle cycle)
+        {
+            var compressedPayload = PayloadManager.BuildDeathPayload(cycle);
+            getGameContext().Clients.Group(_relayGroup).deathPayload(compressedPayload);
+        }
+
         public void Dispose()
         {
             leaveBroadcastGroup();

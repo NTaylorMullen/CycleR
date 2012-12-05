@@ -7,7 +7,8 @@ module PayloadDecompressor {
     var collidableContract: ICollidableCompressionContract,
         cycleContract: ICycleCompressionContract,
         initializationPayloadContract: IInitializationPayloadCompressionContract,
-        movementPayloadContract: IMovementPayloadCompressionContract;
+        movementPayloadContract: IMovementPayloadCompressionContract,
+        deathPayloadContract: IDeathPayloadCompressionContract;
 
     function decompressCollidable(compressedCollidable: any[]): ICollidableDecompressed {
         return <ICollidableDecompressed>{
@@ -34,6 +35,16 @@ module PayloadDecompressor {
         cycleContract = contracts.CycleCompressionContract;
         initializationPayloadContract = contracts.InitializationPayloadCompressionContract;
         movementPayloadContract = contracts.MovementPayloadCompressionContract;
+        deathPayloadContract = contracts.DeathPayloadCompressionContract;
+    }
+
+    export function DecompressDeathPayload(compressedPayload: any): IDeathPayloadDecompressed {
+        var decompressedPayload: IDeathPayloadDecompressed = <IDeathPayloadDecompressed>{};
+
+        decompressedPayload.ID = compressedPayload[deathPayloadContract.ID];
+        decompressedPayload.DiedAt = new THREE.Vector3(compressedPayload[deathPayloadContract.DiedAt_X], compressedPayload[deathPayloadContract.DiedAt_Y], compressedPayload[deathPayloadContract.DiedAt_Z]);
+
+        return decompressedPayload;
     }
 
     export function DecompressMovementPayload(compressedPayload: any): IMovementPayloadDecompressed {

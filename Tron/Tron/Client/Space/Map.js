@@ -29,8 +29,8 @@ var Map = (function (_super) {
     Map.prototype.Add = function (cycle) {
         this._contents[cycle.ID] = cycle;
     };
-    Map.prototype.Remove = function (cycle) {
-        delete this._contents[cycle.ID];
+    Map.prototype.Remove = function (cycleID) {
+        delete this._contents[cycleID];
     };
     Map.prototype.Update = function (gameTime) {
         for(var id in this._contents) {

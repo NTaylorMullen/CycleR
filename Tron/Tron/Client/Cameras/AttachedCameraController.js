@@ -104,6 +104,7 @@ var AttachedCameraController = (function (_super) {
     AttachedCameraController.prototype.Detach = function () {
         if(this._attachedTo !== null) {
             this._attachedTo = null;
+            this._lastAttachedPosition = null;
         } else {
             throw new Error("Camera is not attached to an objects.");
         }

@@ -24,6 +24,17 @@ var GameHandler = (function (_super) {
     GameHandler.prototype.ServerMovementPayload = function (payload) {
         this._cycleManager.ServerMovementPayload(payload);
     };
+    GameHandler.prototype.ServerDeathPayload = function (payload) {
+        var cycle = this._cycleManager.Remove(payload.ID);
+        this._map.Remove(payload.ID);
+        if(payload.ID === ConnectionManager.UserID) {
+            this._cycleController.Detach();
+            (this._camera.GetController()).Detach();
+            this._camera.Mode = FreeCameraController.MODE;
+        }
+        cycle.Die(payload.DiedAt);
+        return cycle;
+    };
     GameHandler.prototype.Update = function (gameTime) {
         this.AddAllToScene(this._cycleManager.GetPendingObjects());
         this.AddAllToScene(this._map.GetPendingObjects());

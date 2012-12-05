@@ -12,13 +12,15 @@ namespace Tron.GameServer
     public class Cycle : Collidable, IDisposable
     {
         private PendingMovementManager _pendingMovementManager;
+        private Action<Cycle> _broadcastDeath;
 
-        public Cycle(long id, Vector3 startPosition, Vector3 startVelocity, double startRotation, int trailColor, MapConfiguration mapConfiguration, Action<Cycle, CycleMovementFlag> broadcastMovement)
+        public Cycle(long id, Vector3 startPosition, Vector3 startVelocity, double startRotation, int trailColor, MapConfiguration mapConfiguration, Action<Cycle, CycleMovementFlag> broadcastMovement, Action<Cycle> broadcastDeath)
             : base(id)
         {
             MovementController = new CycleMovementController(startPosition, startVelocity, startRotation, mapConfiguration);
             TrailColor = trailColor;
             _pendingMovementManager = new PendingMovementManager(this, broadcastMovement);
+            _broadcastDeath = broadcastDeath;
         }
 
         public CycleMovementController MovementController
@@ -41,6 +43,7 @@ namespace Tron.GameServer
             base.HandleCollisionWith(obj);
 
             Alive = false;
+            _broadcastDeath(this);
         }
 
         public void RegisterMove(CycleMovementFlag direction, Action<Cycle, CycleMovementFlag> broadcastMovement)

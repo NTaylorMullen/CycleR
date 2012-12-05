@@ -6,6 +6,7 @@
 /// <reference path="Controllers/Adapters/KeyMapping.d.ts" />
 /// <reference path="PayloadManagement/Decompressed/InitializationPayloadDecompressed.d.ts" />
 /// <reference path="PayloadManagement/Decompressed/MovementPayloadDecompressed.d.ts" />
+/// <reference path="PayloadManagement/Decompressed/DeathPayloadDecompressed.d.ts" />
 /// <reference path="PayloadManagement/CompressionContracts.d.ts" />
 
 declare var shortcut;

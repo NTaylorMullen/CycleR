@@ -6,8 +6,9 @@ namespace Tron.GameServer
     {
         private InitializationPayloadCompressionContract _initializationPayloadCompressionContract = new InitializationPayloadCompressionContract();
         private MovementPayloadCompressionContract _movementPayloadCompressionContract = new MovementPayloadCompressionContract();
+        private DeathPayloadCompressionContract _deathPayloadCompressionContract = new DeathPayloadCompressionContract();
         private CollidableCompressionContract _collidableCompressionContract = new CollidableCompressionContract();
-        private CycleCompressionContract _cycleCompressionContract = new CycleCompressionContract();
+        private CycleCompressionContract _cycleCompressionContract = new CycleCompressionContract();        
 
         private void setCollidableContractMembers(object[] result, Collidable collidable)
         {
@@ -48,6 +49,18 @@ namespace Tron.GameServer
             return result;
         }
 
+        public object[] Compress(DeathPayload payload)
+        {
+            object[] result = new object[4];
+
+            result[_deathPayloadCompressionContract.ID] = payload.ID;
+            result[_deathPayloadCompressionContract.DiedAt_X] = Math.Round(payload.DiedAt.x, 2);
+            result[_deathPayloadCompressionContract.DiedAt_Y] = Math.Round(payload.DiedAt.y, 2);
+            result[_deathPayloadCompressionContract.DiedAt_Z] = Math.Round(payload.DiedAt.z, 2);
+
+            return result;
+        }
+
         public object[] Compress(Cycle cycle)
         {
             object[] result = new object[15];
@@ -66,7 +79,8 @@ namespace Tron.GameServer
                 CollidableCompressionContract = _collidableCompressionContract,
                 CycleCompressionContract = _cycleCompressionContract,
                 InitializationPayloadCompressionContract = _initializationPayloadCompressionContract,
-                MovementPayloadCompressionContract = _movementPayloadCompressionContract
+                MovementPayloadCompressionContract = _movementPayloadCompressionContract,
+                DeathPayloadCompressionContract = _deathPayloadCompressionContract
             };
         }
     }

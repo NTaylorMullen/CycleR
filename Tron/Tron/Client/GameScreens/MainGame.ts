@@ -19,6 +19,10 @@ class MainGame extends GameScreen {
         this.GameServer.client.movementPayload = (payload: any) => {
             this._game.ServerMovementPayload(PayloadDecompressor.DecompressMovementPayload(payload));
         };
+
+        this.GameServer.client.deathPayload = (payload: any) => {
+            this._game.ServerDeathPayload(PayloadDecompressor.DecompressDeathPayload(payload));
+        };
     }
 
     public Load(): void {

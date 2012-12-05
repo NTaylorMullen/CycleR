@@ -273,10 +273,9 @@
     <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Decompressed\CollidableDecompressed.d.ts" />
     <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Contracts\CycleCompressionContract.d.ts" />
     <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Contracts\MovementPayloadCompressionContract.d.ts" />
-    <Content Include="Client\Interfaces\Game\PayloadManagement\Contracts\MovementPayloadCompressionContract.d.js">
-      <DependentUpon>MovementPayloadCompressionContract.d.ts</DependentUpon>
-    </Content>
+    <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Contracts\DeathPayloadCompressionContract.d.ts" />
     <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Decompressed\MovementPayloadDecompressed.d.ts" />
+    <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Decompressed\DeathPayloadDecompressed.d.ts" />
     <Content Include="Client\Interfaces\jquery.d.js">
       <DependentUpon>jquery.d.ts</DependentUpon>
     </Content>

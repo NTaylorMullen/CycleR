@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Tron.Utilities;
 
 namespace Tron.GameServer
 {
@@ -30,6 +31,17 @@ namespace Tron.GameServer
                 ID = cycle.ID,
                 Direction = direction,
                 Position = cycle.MovementController.Position
+            };
+
+            return _compressor.Compress(payload);
+        }
+
+        public static object[] BuildDeathPayload(Cycle cycle)
+        {
+            DeathPayload payload = new DeathPayload
+            {
+                ID = cycle.ID,
+                DiedAt = cycle.MovementController.Position,
             };
 
             return _compressor.Compress(payload);

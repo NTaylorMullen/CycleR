@@ -36,8 +36,8 @@ class Map extends SceneObjectCreator {
         this._contents[cycle.ID] = cycle;
     }
 
-    public Remove(cycle: Cycle): void {
-        delete this._contents[cycle.ID];
+    public Remove(cycleID: number): void {
+        delete this._contents[cycleID];
     }
 
     public Update(gameTime: GameTime): void {

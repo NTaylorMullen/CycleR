@@ -29,6 +29,10 @@ class Cycle extends Collidable {
         return context;
     }
 
+    public Die(diedAt: IVector3): void {
+        this.TrailManager.CurrentTrail.ExtendTo(diedAt);
+    }
+
     public Move(direction: string): void {
         this.MovementController.Move(direction);
         this.TrailManager.StartTrail(this.MovementController.Velocity, this.Context.position);

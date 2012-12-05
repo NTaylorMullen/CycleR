@@ -19,6 +19,11 @@ var CycleManager = (function (_super) {
         this.Cycles[cycle.ID] = cycle;
         this.AddToScene(cycle.Context);
     };
+    CycleManager.prototype.Remove = function (cycleID) {
+        var cycle = this.Cycles[cycleID];
+        delete this.Cycles[cycleID];
+        return cycle;
+    };
     CycleManager.prototype.ServerMovementPayload = function (payload) {
         var cycle = this.Cycles[payload.ID];
         cycle.Context.position = payload.Position;

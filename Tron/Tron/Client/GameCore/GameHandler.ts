@@ -28,6 +28,7 @@ class GameHandler extends SceneObjectCreator {
         this._map.AddAll(cycles);
 
         this._cycleController.AttachTo(this._cycleManager.Cycles[ConnectionManager.UserID]);
+
         var controller: AttachedCameraController = <AttachedCameraController>this._camera.GetController();
         if (controller.AttachTo) {
             controller.AttachTo(this._cycleManager.Cycles[ConnectionManager.UserID].Context);
@@ -36,6 +37,24 @@ class GameHandler extends SceneObjectCreator {
 
     public ServerMovementPayload(payload: IMovementPayloadDecompressed): void {
         this._cycleManager.ServerMovementPayload(payload);
+    }
+
+    public ServerDeathPayload(payload: IDeathPayloadDecompressed): Cycle {
+        var cycle = this._cycleManager.Remove(payload.ID);
+        this._map.Remove(payload.ID);
+
+        // If we died disable controller and camera
+        if (payload.ID === ConnectionManager.UserID) {
+            this._cycleController.Detach();
+            (<AttachedCameraController>this._camera.GetController()).Detach();
+
+            // Change to Free controller
+            this._camera.Mode = FreeCameraController.MODE;
+        }
+
+        cycle.Die(payload.DiedAt);
+
+        return cycle;
     }
 
     public Update(gameTime: GameTime): void {
