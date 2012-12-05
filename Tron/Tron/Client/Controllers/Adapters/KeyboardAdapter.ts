@@ -1,13 +1,15 @@
+/// <reference path="../../Interfaces/Game/Game.d.ts" />
+
 class KeyboardAdapter implements IAdapter {
     static CONTROL_LEFT: string[] = ["a", "Left"];
     static CONTROL_RIGHT: string[] = ["d", "Right"];
 
     private _keyMappings: KeyMapping[];
 
-    constructor (private _move: Function, private _proxy: Cycle) {
+    constructor (private _move: Function, private _proxy: any) {
         this._keyMappings = [];
-        this._keyMappings.push({ key: KeyboardAdapter.CONTROL_LEFT, dir: "Left" });
-        this._keyMappings.push({ key: KeyboardAdapter.CONTROL_RIGHT, dir: "Right" }); 
+        this._keyMappings.push({ key: KeyboardAdapter.CONTROL_LEFT, dir: "Left", active: false });
+        this._keyMappings.push({ key: KeyboardAdapter.CONTROL_RIGHT, dir: "Right", active: false }); 
     }
 
     public Activate(): void {
@@ -17,9 +19,20 @@ class KeyboardAdapter implements IAdapter {
             for (var z = 0; z < this._keyMappings[k].key.length; z++) {
                 shortcut.add(that._keyMappings[k].key[z], (function (k) {
                     return function () {
-                        that._move.call(that._proxy, that._keyMappings[k].dir);
+                        if (!that._keyMappings[k].active) {
+                            that._keyMappings[k].active = true;
+                            that._move.call(that._proxy, that._keyMappings[k].dir);
+                        }
                     };
-                })(k));
+                })(k), { 'type': 'keydown' });
+
+                shortcut.add(that._keyMappings[k].key[z], (function (k) {
+                    return function () {
+                        if (that._keyMappings[k].active) {
+                            that._keyMappings[k].active = false;
+                        }
+                    };
+                })(k), { 'type': 'keyup' });
             }
         }
     }

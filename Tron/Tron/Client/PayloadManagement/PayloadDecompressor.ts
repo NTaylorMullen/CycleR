@@ -6,13 +6,8 @@
 module PayloadDecompressor {
     var collidableContract: ICollidableCompressionContract,
         cycleContract: ICycleCompressionContract,
-        payloadContract: IPayloadCompressionContract;
-
-    function loadContracts (contracts: ICompressionContracts): void {
-        collidableContract = contracts.CollidableCompressionContract;
-        cycleContract = contracts.CycleCompressionContract;
-        payloadContract = contracts.PayloadCompressionContract;
-    }
+        initializationPayloadContract: IInitializationPayloadCompressionContract,
+        movementPayloadContract: IMovementPayloadCompressionContract;
 
     function decompressCollidable(compressedCollidable: any[]): ICollidableDecompressed {
         return <ICollidableDecompressed>{
@@ -34,17 +29,28 @@ module PayloadDecompressor {
         return decompressedCycle;
     }
 
-    export function Initialize(connectionHub: IHubProxy): void {
-        connectionHub.client.loadCompressionContracts = (contracts: ICompressionContracts) => {
-            loadContracts(contracts);
-        };
+    export function LoadContracts(contracts: ICompressionContracts): void {
+        collidableContract = contracts.CollidableCompressionContract;
+        cycleContract = contracts.CycleCompressionContract;
+        initializationPayloadContract = contracts.InitializationPayloadCompressionContract;
+        movementPayloadContract = contracts.MovementPayloadCompressionContract;
     }
 
-    export function DecompressPayload(compressedPayload: any): IPayloadDecompressed {
-        var decompressedPayload: IPayloadDecompressed = <IPayloadDecompressed>{},
-            decompressedCycles: ICycleDecompressed[] = [];
+    export function DecompressMovementPayload(compressedPayload: any): IMovementPayloadDecompressed {
+        var decompressedPayload: IMovementPayloadDecompressed = <IMovementPayloadDecompressed>{};
 
-        decompressedPayload.Cycles = compressedPayload[payloadContract.Cycles];
+        decompressedPayload.ID = compressedPayload[movementPayloadContract.ID];
+        decompressedPayload.Direction = compressedPayload[movementPayloadContract.Direction];
+        decompressedPayload.Position = new THREE.Vector3(compressedPayload[movementPayloadContract.Position_X], compressedPayload[movementPayloadContract.Position_Y], compressedPayload[movementPayloadContract.Position_Z]);
+
+        return decompressedPayload;
+    }
+
+    export function DecompressInitializationPayload(compressedPayload: any): IInitializationPayloadDecompressed {
+        var decompressedPayload: IInitializationPayloadDecompressed = <IInitializationPayloadDecompressed>{},
+        decompressedCycles: ICycleDecompressed[] = [];
+
+        decompressedPayload.Cycles = compressedPayload[initializationPayloadContract.Cycles];
 
         for (var i: number = decompressedPayload.Cycles.length - 1; i >= 0; i--) {
             decompressedCycles.push(decompressCycle(<any>decompressedPayload.Cycles[i]));

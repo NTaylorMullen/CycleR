@@ -6,7 +6,7 @@ namespace Tron.GameServer
     {
         private static PayloadCompressor _compressor = new PayloadCompressor();
 
-        public static object[] BuildPayload(List<Cycle> cycles)
+        public static object[] BuildInitializationPayload(List<Cycle> cycles)
         {
             var compressedCycles = new List<object>(cycles.Count);
 
@@ -15,9 +15,21 @@ namespace Tron.GameServer
                 compressedCycles.Add(_compressor.Compress(cycle));
             }
 
-            Payload payload = new Payload
+            InitializationPayload payload = new InitializationPayload
             {
                 Cycles = compressedCycles
+            };
+
+            return _compressor.Compress(payload);
+        }
+
+        public static object[] BuildMovementPayload(Cycle cycle, CycleMovementFlag direction)
+        {
+            MovementPayload payload = new MovementPayload
+            {
+                ID = cycle.ID,
+                Direction = direction,
+                Position = cycle.MovementController.Position
             };
 
             return _compressor.Compress(payload);

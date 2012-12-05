@@ -7,15 +7,16 @@ class CycleController {
     private _adapter: IAdapter;
     private _cycle: Cycle;
 
-    constructor (private _gameHub: IHubProxy) {
+    constructor (private _gameServer: IHubProxy) {
     }
 
     private determineAdapter(): IAdapter {
         // TODO: implement touch adapter/mouse adapter
-        return new KeyboardAdapter(this._cycle.Move, this._cycle);
+        return new KeyboardAdapter(this.move, this);
     }
 
     private move(direction: string): void {
+        this._gameServer.server.Move(direction);
     }
 
     public AttachTo(cycle: Cycle): void {

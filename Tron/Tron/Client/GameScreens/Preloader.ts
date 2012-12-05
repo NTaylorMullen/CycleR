@@ -12,11 +12,15 @@ class Preloader extends GameScreen {
     }
 
     private modelsLoaded(): void {
+        console.log("Models loaded!");
         PayloadConverter.InitializeModels(ModelLoader.GetModels());
+        console.log("Loading Main Menu...");
         super.Done(MainMenu.NAME);
     }
 
     public Load(): void {
+        console.log("Preloader loaded!");
+        console.log("Loading models...");
         ModelLoader.LoadModel(ModelLibrary.Cycle, () => {
             this.modelsLoaded();
         });        

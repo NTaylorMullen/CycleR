@@ -14,9 +14,12 @@ namespace Tron.GameServer
             _userList = new ConcurrentDictionary<string, User>();
         }
 
-        public void CreateUser(string connectionId)
+        public User CreateUser(string connectionId)
         {
-            _userList.TryAdd(connectionId, new User(connectionId, Interlocked.Increment(ref _userIDs)));
+            User user = new User(connectionId, Interlocked.Increment(ref _userIDs));
+            _userList.TryAdd(connectionId, user);
+
+            return user;
         }
 
         public void RemoveUser(string connectionId)

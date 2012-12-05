@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNet.SignalR;
+using Microsoft.AspNet.SignalR.Hubs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,9 +16,14 @@ namespace Tron.GameServer
             _userHandler = userHandler;
         }
 
+        private IHubContext getConnectionContext()
+        {
+            return GlobalHost.ConnectionManager.GetHubContext<ConnectionHub>();
+        }
+
         public void OnConnected(string connectionID)
         {
-            _userHandler.CreateUser(connectionID);
+            getConnectionContext().Clients.Client(connectionID).successfulConnection(_userHandler.CreateUser(connectionID).ID);
         }
 
         public void OnReconnected(string connectionID)

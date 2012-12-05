@@ -12,16 +12,16 @@ class Game {
     private _gameHandler: GameHandler;
     private _camera: Camera;
 
-    constructor (gameHub: IHubProxy) {
+    constructor (gameServer: IHubProxy) {
         this._gameRenderer = new GameRenderer();
         this._camera = new Camera(this._gameRenderer.Renderer);
         this._gameLoop = new GameLoop(this.Update, this.Draw, this);
-        this._gameHandler = new GameHandler(gameHub, this._camera, ModelLoader.GetModels());
+        this._gameHandler = new GameHandler(gameServer, this._camera);
 
         this._gameLoop.Start();
-    }
+    }    
 
-    public Start(initialPayload: IPayloadDecompressed): void {
+    public Start(initialPayload: IInitializationPayloadDecompressed): void {
         this._gameHandler.Initialize(PayloadConverter.CreateAllCycles(initialPayload.Cycles));
 
         this._gameLoop.Start();
@@ -30,6 +30,10 @@ class Game {
     public Draw(): void {
         this._gameRenderer.Draw(this._camera);
         this._gameRenderer.AddAll(this._gameHandler.GetPendingObjects());
+    }
+
+    public ServerMovementPayload(payload: IMovementPayloadDecompressed): void {
+        this._gameHandler.ServerMovementPayload(payload);
     }
 
     public Update(gameTime: GameTime): void {

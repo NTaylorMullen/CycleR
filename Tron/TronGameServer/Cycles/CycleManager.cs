@@ -9,9 +9,9 @@ namespace Tron.GameServer
     {
         private ConcurrentDictionary<long, Cycle> _cycles;
 
-        public CycleManager(IEnumerable<KeyValuePair<long, Cycle>> cycles)
+        public CycleManager(ConcurrentDictionary<long, Cycle> cycles)
         {
-            _cycles = new ConcurrentDictionary<long, Cycle>(cycles);
+            _cycles = cycles;
         }
 
         public List<Cycle> Cycles()

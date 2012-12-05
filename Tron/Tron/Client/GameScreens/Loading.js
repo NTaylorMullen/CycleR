@@ -9,6 +9,7 @@ var Loading = (function (_super) {
         var _this = this;
         _super.call(this, Loading.NAME, onCompletion, gameServer);
         this.GameServer.client.configure = function (configuration) {
+            console.log("Match initialized!");
             _this.configureGame(configuration);
         };
     }
@@ -16,6 +17,7 @@ var Loading = (function (_super) {
     Loading.prototype.configureGame = function (configuration) {
         this.configureMap(configuration.MapConfig);
         this.configureCycles(configuration.CycleConfig);
+        console.log("Starting Game...");
         _super.prototype.Done.call(this, MainGame.NAME);
         this.GameServer.server.ReadyToStartGame();
     };
@@ -32,6 +34,8 @@ var Loading = (function (_super) {
         CycleMovementController.MAX_SPEED = configuration.MAX_SPEED;
     };
     Loading.prototype.Load = function () {
+        console.log("Loading screen loaded!");
+        console.log("Initializing Match...");
         this.GameServer.server.StartMatch();
     };
     Loading.prototype.Done = function () {

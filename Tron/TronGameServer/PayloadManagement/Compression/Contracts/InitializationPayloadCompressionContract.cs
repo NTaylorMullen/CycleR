@@ -1,6 +1,6 @@
 ﻿namespace Tron.GameServer
 {
-    public class PayloadCompressionContract
+    public class InitializationPayloadCompressionContract
     {
         public short Cycles = 0;
     }

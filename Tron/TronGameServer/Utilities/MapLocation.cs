@@ -27,5 +27,10 @@ namespace Tron.Utilities
         {
             return Row == mapLocation.Row && Column == mapLocation.Column;
         }
+
+        public override string ToString()
+        {
+            return "( " + Row + ", " + Column + " )";
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Linq;
 
 namespace Tron.GameServer
@@ -11,26 +12,34 @@ namespace Tron.GameServer
         private CycleManager _cycleManager;
         private Map _map;
         private GameConfiguration _gameConfiguration;
+        private BroadcastHandler _broadcastHandler;
 
         public Game(long matchID, IEnumerable<User> players, IGameMode mode, BroadcastHandler broadcastHandler, Action onFinish)
         {
             _mode = mode;
             _gameConfiguration = _mode.GetConfiguration();
+            _broadcastHandler = broadcastHandler;
 
             var cycles = createCycles(players);
+            var cycleDictionary = new ConcurrentDictionary<long, Cycle>();
+            foreach (Cycle cycle in cycles)
+            {
+                cycleDictionary.TryAdd(cycle.ID, cycle);
+            }
+
             _onFinish = onFinish;
-            _cycleManager = new CycleManager(cycles);
-            _map = new Map(cycles, _gameConfiguration.MapConfig);
-            CommandHandler = new CommandHandler(matchID, players, cycles, broadcastHandler, _gameConfiguration);
+            _cycleManager = new CycleManager(cycleDictionary);
+            _map = new Map(cycleDictionary, _gameConfiguration.MapConfig);
+            CommandHandler = new CommandHandler(matchID, players, cycleDictionary, broadcastHandler, _gameConfiguration);            
         }
 
         public CommandHandler CommandHandler { get; private set; }
 
-        private IEnumerable<KeyValuePair<long, Cycle>> createCycles(IEnumerable<User> players)
+        private IEnumerable<Cycle> createCycles(IEnumerable<User> players)
         {
             var spawns = _mode.GetGameSpawns();
 
-            return players.Select((user, index) => new KeyValuePair<long, Cycle>(user.ID, new Cycle(user.ID, spawns[index].StartPosition, spawns[index].StartVelocity, spawns[index].StartRotation, spawns[index].TrailColor, _gameConfiguration.MapConfig)));
+            return players.Select((user, index) => new Cycle(user.ID, spawns[index].StartPosition, spawns[index].StartVelocity, spawns[index].StartRotation, spawns[index].TrailColor, _gameConfiguration.MapConfig,_broadcastHandler.BroadcastMovement));
         }
 
         public List<Cycle> CyclesInPlay()

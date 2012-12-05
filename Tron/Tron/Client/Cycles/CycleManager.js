@@ -19,6 +19,11 @@ var CycleManager = (function (_super) {
         this.Cycles[cycle.ID] = cycle;
         this.AddToScene(cycle.Context);
     };
+    CycleManager.prototype.ServerMovementPayload = function (payload) {
+        var cycle = this.Cycles[payload.ID];
+        cycle.Context.position = payload.Position;
+        cycle.Move(payload.Direction);
+    };
     CycleManager.prototype.Update = function (gameTime) {
         for(var id in this.Cycles) {
             this.Cycles[id].Update(gameTime);

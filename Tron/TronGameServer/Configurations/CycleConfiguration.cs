@@ -11,7 +11,7 @@ namespace Tron.GameServer
             SCALE = new Vector3(37.22342991572615, 40, 35);
             SIZE = new Vector2(200, 100);
             Y_OFFSET = 35;
-            MAX_SPEED = 20;
+            MAX_SPEED = 1000;
         }
 
         public Vector3 BASE_CYCLE_SCALE { get; protected set; }

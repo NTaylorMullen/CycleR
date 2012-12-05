@@ -10,6 +10,8 @@ class MainMenu extends GameScreen {
     }
 
     public Load(): void {
+        console.log("Main Menu loaded!");
+        console.log("Loading 'Find Game'...");
         super.Done(FindGame.NAME);
     }
 }

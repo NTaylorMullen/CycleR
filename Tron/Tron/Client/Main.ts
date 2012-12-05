@@ -1,20 +1,24 @@
 /// <reference path="Interfaces/jquery.d.ts" />
 /// <reference path="GameScreens/GameScreenHandler.ts" />
-/// <reference path="ConnectionManagement/ServerConnectionHandler.ts" />
+/// <reference path="ConnectionManagement/ConnectionManager.ts" />
 /// <reference path="GameScreens/MainGame.ts" />
 /// <reference path="PayloadManagement/PayloadDecompressor.ts" />
 
 $(function () {
+    $.connection.hub.logging = true;
+
     var gameServer: IHubProxy = $.connection.GameServer,
         connectionHub: IHubProxy = $.connection.ConnectionHub,
-        serverConnectionHandler = new ServerConnectionHandler(connectionHub),
-        gameScreenHanler = new GameScreenHandler(gameServer);
+        gameScreenHandler: GameScreenHandler = new GameScreenHandler(gameServer);
 
-    PayloadDecompressor.Initialize(connectionHub);
-
-    $.connection.hub.start().done(() => {
+    var connectionManager = new ConnectionManager(connectionHub, () => {
+        console.log("Loading Compression Contracts...");
         connectionHub.server.LoadCompressionContracts().done(function () {
-            gameScreenHanler.Load(Preloader.NAME);
-        });
-    });
+            console.log("Compression Contracts Loaded!");
+            console.log("Loading initialization data...");
+            gameScreenHandler.Load(Preloader.NAME);
+        });        
+    });    
+
+    $.connection.hub.start({ transport: "serverSentEvents" });
 })

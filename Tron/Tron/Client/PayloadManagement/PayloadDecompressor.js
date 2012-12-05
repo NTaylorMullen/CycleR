@@ -1,11 +1,6 @@
 var PayloadDecompressor;
 (function (PayloadDecompressor) {
-    var collidableContract, cycleContract, payloadContract;
-    function loadContracts(contracts) {
-        collidableContract = contracts.CollidableCompressionContract;
-        cycleContract = contracts.CycleCompressionContract;
-        payloadContract = contracts.PayloadCompressionContract;
-    }
+    var collidableContract, cycleContract, initializationPayloadContract, movementPayloadContract;
     function decompressCollidable(compressedCollidable) {
         return {
             ID: compressedCollidable[collidableContract.ID],
@@ -22,22 +17,32 @@ var PayloadDecompressor;
         decompressedCycle.TrailColor = compressedCycle[cycleContract.TrailColor];
         return decompressedCycle;
     }
-    function Initialize(connectionHub) {
-        connectionHub.client.loadCompressionContracts = function (contracts) {
-            loadContracts(contracts);
-        };
+    function LoadContracts(contracts) {
+        collidableContract = contracts.CollidableCompressionContract;
+        cycleContract = contracts.CycleCompressionContract;
+        initializationPayloadContract = contracts.InitializationPayloadCompressionContract;
+        movementPayloadContract = contracts.MovementPayloadCompressionContract;
     }
-    PayloadDecompressor.Initialize = Initialize;
-    function DecompressPayload(compressedPayload) {
+    PayloadDecompressor.LoadContracts = LoadContracts;
+    function DecompressMovementPayload(compressedPayload) {
+        var decompressedPayload = {
+        };
+        decompressedPayload.ID = compressedPayload[movementPayloadContract.ID];
+        decompressedPayload.Direction = compressedPayload[movementPayloadContract.Direction];
+        decompressedPayload.Position = new THREE.Vector3(compressedPayload[movementPayloadContract.Position_X], compressedPayload[movementPayloadContract.Position_Y], compressedPayload[movementPayloadContract.Position_Z]);
+        return decompressedPayload;
+    }
+    PayloadDecompressor.DecompressMovementPayload = DecompressMovementPayload;
+    function DecompressInitializationPayload(compressedPayload) {
         var decompressedPayload = {
         }, decompressedCycles = [];
-        decompressedPayload.Cycles = compressedPayload[payloadContract.Cycles];
+        decompressedPayload.Cycles = compressedPayload[initializationPayloadContract.Cycles];
         for(var i = decompressedPayload.Cycles.length - 1; i >= 0; i--) {
             decompressedCycles.push(decompressCycle(decompressedPayload.Cycles[i]));
         }
         decompressedPayload.Cycles = decompressedCycles;
         return decompressedPayload;
     }
-    PayloadDecompressor.DecompressPayload = DecompressPayload;
+    PayloadDecompressor.DecompressInitializationPayload = DecompressInitializationPayload;
 })(PayloadDecompressor || (PayloadDecompressor = {}));
 //@ sourceMappingURL=PayloadDecompressor.js.map

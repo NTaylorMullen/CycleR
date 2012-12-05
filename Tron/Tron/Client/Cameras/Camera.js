@@ -2,7 +2,7 @@ var Camera = (function () {
     function Camera(_renderer) {
         this._renderer = _renderer;
         this.initializeGameCamera();
-        this.Mode = FreeCameraController.MODE;
+        this.Mode = AttachedCameraController.MODE;
         this.initializeCameraControllers();
     }
     Camera.prototype.initializeGameCamera = function () {

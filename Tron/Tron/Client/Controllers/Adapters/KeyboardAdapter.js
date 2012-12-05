@@ -5,11 +5,13 @@ var KeyboardAdapter = (function () {
         this._keyMappings = [];
         this._keyMappings.push({
             key: KeyboardAdapter.CONTROL_LEFT,
-            dir: "Left"
+            dir: "Left",
+            active: false
         });
         this._keyMappings.push({
             key: KeyboardAdapter.CONTROL_RIGHT,
-            dir: "Right"
+            dir: "Right",
+            active: false
         });
     }
     KeyboardAdapter.CONTROL_LEFT = [
@@ -26,9 +28,23 @@ var KeyboardAdapter = (function () {
             for(var z = 0; z < this._keyMappings[k].key.length; z++) {
                 shortcut.add(that._keyMappings[k].key[z], (function (k) {
                     return function () {
-                        that._move.call(that._proxy, that._keyMappings[k].dir);
+                        if(!that._keyMappings[k].active) {
+                            that._keyMappings[k].active = true;
+                            that._move.call(that._proxy, that._keyMappings[k].dir);
+                        }
                     }
-                })(k));
+                })(k), {
+                    'type': 'keydown'
+                });
+                shortcut.add(that._keyMappings[k].key[z], (function (k) {
+                    return function () {
+                        if(that._keyMappings[k].active) {
+                            that._keyMappings[k].active = false;
+                        }
+                    }
+                })(k), {
+                    'type': 'keyup'
+                });
             }
         }
     };

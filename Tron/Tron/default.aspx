@@ -37,7 +37,7 @@
 
     <%= Bundle.JavaScript()
             .Add("Client/Utilities/Size.js")
-            .Add("Client/Utilities/SceneObjectCreator.js")
+            .Add("Client/Utilities/SceneObjectCreator.js")            
             .Add("Client/PayloadManagement/PayloadDecompressor.js")
             .Add("Client/Cameras/CameraController.js")
             .Add("Client/Cameras/FreeCameraController.js")
@@ -74,7 +74,7 @@
             .Add("Client/GameScreens/QuickMatch.js")
             .Add("Client/GameScreens/Preloader.js")
             .Add("Client/GameScreens/GameScreenHandler.js")
-            .Add("Client/ConnectionManagement/ServerConnectionHandler.js")
+            .Add("Client/ConnectionManagement/ConnectionManager.js")
             .Add("Client/Main.js")
         .Render("coreLIBS.js")
     %>

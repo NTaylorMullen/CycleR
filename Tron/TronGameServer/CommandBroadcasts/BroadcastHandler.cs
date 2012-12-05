@@ -51,20 +51,14 @@ namespace Tron.GameServer
 
         public void BroadcastGameStart(List<Cycle> cycles)
         {
-            var compressedPayload = PayloadManager.BuildPayload(cycles);
+            var compressedPayload = PayloadManager.BuildInitializationPayload(cycles);
             getGameContext().Clients.Group(_relayGroup).startGame(compressedPayload);
         }
 
-        public void BroadcastCycle(Cycle cycle)
+        public void BroadcastMovement(Cycle cycle, CycleMovementFlag direction)
         {
-            List<Cycle> cycles = new List<Cycle>(1){cycle};
-            BroadcastCycles(cycles);
-        }
-
-        public void BroadcastCycles(List<Cycle> cycles)
-        {
-            var compressedPayload = PayloadManager.BuildPayload(cycles);
-            getGameContext().Clients.Group(_relayGroup).serverPayload(compressedPayload);
+            var compressedPayload = PayloadManager.BuildMovementPayload(cycle, direction);
+            getGameContext().Clients.Group(_relayGroup).movementPayload(compressedPayload);
         }
 
         public void Dispose()

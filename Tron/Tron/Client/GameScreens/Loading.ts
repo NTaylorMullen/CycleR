@@ -12,6 +12,7 @@ class Loading extends GameScreen {
         super(Loading.NAME, onCompletion, gameServer);
 
         this.GameServer.client.configure = (configuration: IGameConfiguration) => {
+            console.log("Match initialized!");
             this.configureGame(configuration);
         }        
     }
@@ -20,7 +21,8 @@ class Loading extends GameScreen {
         this.configureMap(configuration.MapConfig);
         this.configureCycles(configuration.CycleConfig);
 
-        // Notify server that we've been configured, now we're ready to start!        
+        // Notify server that we've been configured, now we're ready to start!
+        console.log("Starting Game...");
         super.Done(MainGame.NAME);
         this.GameServer.server.ReadyToStartGame();
     }
@@ -40,6 +42,8 @@ class Loading extends GameScreen {
     }
 
     public Load(): void {
+        console.log("Loading screen loaded!");
+        console.log("Initializing Match...");
         this.GameServer.server.StartMatch();
     }
 

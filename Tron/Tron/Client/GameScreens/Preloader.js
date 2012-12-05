@@ -10,11 +10,15 @@ var Preloader = (function (_super) {
     }
     Preloader.NAME = "Preloader";
     Preloader.prototype.modelsLoaded = function () {
+        console.log("Models loaded!");
         PayloadConverter.InitializeModels(ModelLoader.GetModels());
+        console.log("Loading Main Menu...");
         _super.prototype.Done.call(this, MainMenu.NAME);
     };
     Preloader.prototype.Load = function () {
         var _this = this;
+        console.log("Preloader loaded!");
+        console.log("Loading models...");
         ModelLoader.LoadModel(ModelLibrary.Cycle, function () {
             _this.modelsLoaded();
         });

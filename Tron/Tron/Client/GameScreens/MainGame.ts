@@ -12,7 +12,12 @@ class MainGame extends GameScreen {
         super(MainGame.NAME, onCompletion, gameServer);
 
         this.GameServer.client.startGame = (initialPayload: any) => {
-            this._game.Start(PayloadDecompressor.DecompressPayload(initialPayload));
+            console.log("Game Started!");
+            this._game.Start(PayloadDecompressor.DecompressInitializationPayload(initialPayload));
+        };
+
+        this.GameServer.client.movementPayload = (payload: any) => {
+            this._game.ServerMovementPayload(PayloadDecompressor.DecompressMovementPayload(payload));
         };
     }
 

@@ -9,7 +9,11 @@ var MainGame = (function (_super) {
         var _this = this;
         _super.call(this, MainGame.NAME, onCompletion, gameServer);
         this.GameServer.client.startGame = function (initialPayload) {
-            _this._game.Start(PayloadDecompressor.DecompressPayload(initialPayload));
+            console.log("Game Started!");
+            _this._game.Start(PayloadDecompressor.DecompressInitializationPayload(initialPayload));
+        };
+        this.GameServer.client.movementPayload = function (payload) {
+            _this._game.ServerMovementPayload(PayloadDecompressor.DecompressMovementPayload(payload));
         };
     }
     MainGame.NAME = "MainGame";

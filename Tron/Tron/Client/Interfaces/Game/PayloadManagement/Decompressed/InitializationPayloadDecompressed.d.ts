@@ -1,5 +1,5 @@
 /// <reference path="CycleDecompressed.d.ts" />
 
-interface IPayloadDecompressed {
+interface IInitializationPayloadDecompressed {
     Cycles: ICycleDecompressed[];
 }

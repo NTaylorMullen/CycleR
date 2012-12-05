@@ -22,6 +22,12 @@ class CycleManager extends SceneObjectCreator {
         this.AddToScene(cycle.Context);
     }
 
+    public ServerMovementPayload(payload: IMovementPayloadDecompressed): void {
+        var cycle = this.Cycles[payload.ID];
+        cycle.Context.position = payload.Position;
+        cycle.Move(payload.Direction);
+    }
+
     public Update(gameTime: GameTime): void {
         for (var id in this.Cycles) {
             this.Cycles[id].Update(gameTime);

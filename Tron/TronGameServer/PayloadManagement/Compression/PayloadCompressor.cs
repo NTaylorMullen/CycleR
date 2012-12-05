@@ -4,7 +4,8 @@ namespace Tron.GameServer
 {
     public class PayloadCompressor
     {
-        private PayloadCompressionContract _payloadCompressionContract = new PayloadCompressionContract();
+        private InitializationPayloadCompressionContract _initializationPayloadCompressionContract = new InitializationPayloadCompressionContract();
+        private MovementPayloadCompressionContract _movementPayloadCompressionContract = new MovementPayloadCompressionContract();
         private CollidableCompressionContract _collidableCompressionContract = new CollidableCompressionContract();
         private CycleCompressionContract _cycleCompressionContract = new CycleCompressionContract();
 
@@ -25,18 +26,31 @@ namespace Tron.GameServer
             result[_collidableCompressionContract.Rotation] = Math.Round(collidable.MovementController.Rotation, 2);
         }
 
-        public object[] Compress(Payload payload)
+        public object[] Compress(InitializationPayload payload)
         {
             object[] result = new object[1];
 
-            result[_payloadCompressionContract.Cycles] = payload.Cycles;
+            result[_initializationPayloadCompressionContract.Cycles] = payload.Cycles;
+
+            return result;
+        }
+
+        public object[] Compress(MovementPayload payload)
+        {
+            object[] result = new object[5];
+
+            result[_movementPayloadCompressionContract.ID] = payload.ID;
+            result[_movementPayloadCompressionContract.Direction] = payload.Direction.ToString();
+            result[_movementPayloadCompressionContract.Position_X] = Math.Round(payload.Position.x, 2);
+            result[_movementPayloadCompressionContract.Position_Y] = Math.Round(payload.Position.y, 2);
+            result[_movementPayloadCompressionContract.Position_Z] = Math.Round(payload.Position.z, 2);
 
             return result;
         }
 
         public object[] Compress(Cycle cycle)
         {
-            object[] result = new object[14];
+            object[] result = new object[15];
 
             setCollidableContractMembers(result, cycle);
 
@@ -51,7 +65,8 @@ namespace Tron.GameServer
             {
                 CollidableCompressionContract = _collidableCompressionContract,
                 CycleCompressionContract = _cycleCompressionContract,
-                PayloadCompressionContract = _payloadCompressionContract
+                InitializationPayloadCompressionContract = _initializationPayloadCompressionContract,
+                MovementPayloadCompressionContract = _movementPayloadCompressionContract
             };
         }
     }

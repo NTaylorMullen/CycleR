@@ -2,12 +2,8 @@
 
 namespace Tron.GameServer
 {
-    public class Payload
+    public class InitializationPayload : IPayload
     {
-        public Payload()
-        {
-        }
-
         public List<object> Cycles { get; set; }
     }
 }

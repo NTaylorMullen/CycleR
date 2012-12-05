@@ -105,12 +105,12 @@
     <Content Include="Client\Collidables\MovementControllers\MovementController.min.js">
       <DependentUpon>MovementController.ts</DependentUpon>
     </Content>
-    <TypeScriptCompile Include="Client\ConnectionManagement\ServerConnectionHandler.ts" />
-    <Content Include="Client\ConnectionManagement\ServerConnectionHandler.js">
-      <DependentUpon>ServerConnectionHandler.ts</DependentUpon>
+    <TypeScriptCompile Include="Client\ConnectionManagement\ConnectionManager.ts" />
+    <Content Include="Client\ConnectionManagement\ConnectionManager.js">
+      <DependentUpon>ConnectionManager.ts</DependentUpon>
     </Content>
-    <Content Include="Client\ConnectionManagement\ServerConnectionHandler.min.js">
-      <DependentUpon>ServerConnectionHandler.ts</DependentUpon>
+    <Content Include="Client\ConnectionManagement\ConnectionManager.min.js">
+      <DependentUpon>ConnectionManager.ts</DependentUpon>
     </Content>
     <Content Include="Client\Controllers\Adapters\KeyboardAdapter.js">
       <DependentUpon>KeyboardAdapter.ts</DependentUpon>
@@ -266,12 +266,17 @@
       <DependentUpon>ModelLoadRequest.d.ts</DependentUpon>
     </Content>
     <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Contracts\CollidableCompressionContract.d.ts" />
-    <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Contracts\PayloadCompressionContract.d.ts" />
+    <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Contracts\InitializationPayloadCompressionContract.d.ts" />
     <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\CompressionContracts.d.ts" />
-    <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Decompressed\PayloadDecompressed.d.ts" />
+    <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Decompressed\InitializationPayloadDecompressed.d.ts" />
     <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Decompressed\CycleDecompressed.d.ts" />
     <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Decompressed\CollidableDecompressed.d.ts" />
     <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Contracts\CycleCompressionContract.d.ts" />
+    <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Contracts\MovementPayloadCompressionContract.d.ts" />
+    <Content Include="Client\Interfaces\Game\PayloadManagement\Contracts\MovementPayloadCompressionContract.d.js">
+      <DependentUpon>MovementPayloadCompressionContract.d.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Decompressed\MovementPayloadDecompressed.d.ts" />
     <Content Include="Client\Interfaces\jquery.d.js">
       <DependentUpon>jquery.d.ts</DependentUpon>
     </Content>
@@ -507,9 +512,6 @@
     <Content Include="Client\GameCore\Game.js.map">
       <DependentUpon>Game.ts</DependentUpon>
     </Content>
-    <Content Include="Client\ConnectionManagement\ServerConnectionHandler.js.map">
-      <DependentUpon>ServerConnectionHandler.ts</DependentUpon>
-    </Content>
     <Content Include="Client\PayloadManagement\PayloadDecompressor.js.map">
       <DependentUpon>PayloadDecompressor.ts</DependentUpon>
     </Content>
@@ -518,6 +520,9 @@
     </Content>
     <Content Include="Client\PayloadManagement\PayloadConverter.js.map">
       <DependentUpon>PayloadConverter.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\ConnectionManagement\ConnectionManager.js.map">
+      <DependentUpon>ConnectionManager.ts</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />

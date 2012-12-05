@@ -10,6 +10,8 @@ class FindGame extends GameScreen {
     }
 
     public Load(): void {
+        console.log("Find Game loaded!");
+        console.log("Loading 'loading' screen...");
         super.Done(Loading.NAME);
     }
 }

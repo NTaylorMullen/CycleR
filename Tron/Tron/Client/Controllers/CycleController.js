@@ -1,11 +1,12 @@
 var CycleController = (function () {
-    function CycleController(_gameHub) {
-        this._gameHub = _gameHub;
+    function CycleController(_gameServer) {
+        this._gameServer = _gameServer;
     }
     CycleController.prototype.determineAdapter = function () {
-        return new KeyboardAdapter(this._cycle.Move, this._cycle);
+        return new KeyboardAdapter(this.move, this);
     };
     CycleController.prototype.move = function (direction) {
+        this._gameServer.server.Move(direction);
     };
     CycleController.prototype.AttachTo = function (cycle) {
         this._cycle = cycle;

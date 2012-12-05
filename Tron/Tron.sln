@@ -2,6 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tron", "Tron\Tron.csproj", "{797E22C6-2768-4FBF-80DF-9DB7DE96F535}"
+	ProjectSection(ProjectDependencies) = postProject
+		{530CBB1D-AC08-4C26-9931-46CBF5F5D2E4} = {530CBB1D-AC08-4C26-9931-46CBF5F5D2E4}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TronGameServer", "TronGameServer\TronGameServer.csproj", "{530CBB1D-AC08-4C26-9931-46CBF5F5D2E4}"
 EndProject

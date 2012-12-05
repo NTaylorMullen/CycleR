@@ -10,6 +10,8 @@ var MainMenu = (function (_super) {
     }
     MainMenu.NAME = "MainMenu";
     MainMenu.prototype.Load = function () {
+        console.log("Main Menu loaded!");
+        console.log("Loading 'Find Game'...");
         _super.prototype.Done.call(this, FindGame.NAME);
     };
     return MainMenu;

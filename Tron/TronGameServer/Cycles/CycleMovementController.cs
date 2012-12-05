@@ -6,12 +6,12 @@ namespace Tron.GameServer
     public class CycleMovementController : MovementController, IDisposable
     {
         private static double HALF_PI = Math.PI / 2;
-        private MapConfiguration _mapConfiguration;
+        private MapConfiguration _mapConfiguration;        
 
         public CycleMovementController(Vector3 position, Vector3 velocity, double rotation, MapConfiguration mapConfiguration)
             : base(position, velocity, rotation)
         {
-            _mapConfiguration = mapConfiguration;
+            _mapConfiguration = mapConfiguration;            
         }
 
         private void positionOnLine() 

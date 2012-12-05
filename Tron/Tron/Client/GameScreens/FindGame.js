@@ -10,6 +10,8 @@ var FindGame = (function (_super) {
     }
     FindGame.NAME = "FindGame";
     FindGame.prototype.Load = function () {
+        console.log("Find Game loaded!");
+        console.log("Loading 'loading' screen...");
         _super.prototype.Done.call(this, Loading.NAME);
     };
     return FindGame;

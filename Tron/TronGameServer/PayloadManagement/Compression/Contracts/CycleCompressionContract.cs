@@ -9,5 +9,6 @@ namespace Tron.GameServer
     public class CycleCompressionContract
     {
         public short TrailColor = 13;
+        public short LastMovement = 14;
     }
 }
