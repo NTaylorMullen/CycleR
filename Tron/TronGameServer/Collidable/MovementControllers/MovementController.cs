@@ -12,7 +12,7 @@ namespace Tron.GameServer
             Rotation = rotation;
         }
 
-        public Vector3 Velocity { get; protected set; }
+        public Vector3 Velocity { get; set; }
         public Vector3 Position { get; set; }
         public double Rotation { get; protected set; }
 

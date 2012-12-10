@@ -21,6 +21,11 @@ var GameHandler = (function (_super) {
             controller.AttachTo(this._cycleManager.Cycles[ConnectionManager.UserID].Context);
         }
     };
+    GameHandler.prototype.ServerCollisionPayload = function (payload) {
+        var cycle = this._cycleManager.Cycles[payload.ID];
+        cycle.Context.position = payload.CollidedAt;
+        cycle.HandleCollisionWith(null);
+    };
     GameHandler.prototype.ServerMovementPayload = function (payload) {
         this._cycleManager.ServerMovementPayload(payload);
     };

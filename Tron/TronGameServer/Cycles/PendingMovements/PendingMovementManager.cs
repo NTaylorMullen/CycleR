@@ -12,21 +12,20 @@ namespace Tron.GameServer
 
         private Cycle _owner;
         private Queue<PendingMovement> _pendingMovements;
-        private Action<Cycle, CycleMovementFlag> _broadcastMovement;
-        private object _locker;
 
-        public PendingMovementManager(Cycle owner, Action<Cycle, CycleMovementFlag> broadcastMovement)
+        public PendingMovementManager(Cycle owner)
         {
             _owner = owner;
             _pendingMovements = new Queue<PendingMovement>();
-            _broadcastMovement = broadcastMovement;
         }
 
         private void applyMovement(PendingMovement movement)        
         {
-            _owner.MovementController.Position = movement.StartLocation;
-                _broadcastMovement(_owner, movement.Direction);
-            _owner.MovementController.Move(movement.Direction);
+            if (_owner.CanMove(movement.Direction))
+            {
+                _owner.MovementController.Position = movement.StartLocation;
+                _owner.Move(movement.Direction);               
+            }
             movement.Dispose();
         }
 
@@ -40,7 +39,7 @@ namespace Tron.GameServer
 
         public void Update(GameTime gameTime)
         {
-            if (_pendingMovements.Count > 0 && _pendingMovements.Peek().ReadyToMove(_owner.HeadLocation))
+            if (_pendingMovements.Count > 0 && _pendingMovements.Peek().ReadyToMove(_owner))
             {
                 PendingMovement currentMovement = _pendingMovements.Dequeue();
                 applyMovement(currentMovement);

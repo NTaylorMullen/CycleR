@@ -20,6 +20,9 @@ var Cycle = (function (_super) {
         context.scale = Cycle.SCALE;
         return context;
     };
+    Cycle.prototype.HandleCollisionWith = function (obj) {
+        this.MovementController.Velocity = new THREE.Vector3();
+    };
     Cycle.prototype.Die = function (diedAt) {
         this.TrailManager.CurrentTrail.ExtendTo(diedAt);
     };

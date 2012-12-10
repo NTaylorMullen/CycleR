@@ -40,6 +40,10 @@ class Game {
         this._gameRenderer.Remove(this._gameHandler.ServerDeathPayload(payload).Context);
     }
 
+    public ServerCollisionPayload(payload: ICollisionPayloadDecompressed): void {
+        this._gameHandler.ServerCollisionPayload(payload);
+    }
+
     public Update(gameTime: GameTime): void {
         this._gameHandler.Update(gameTime);
         this._camera.Update(gameTime);        

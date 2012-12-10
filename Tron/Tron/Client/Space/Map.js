@@ -7,14 +7,15 @@ var Map = (function (_super) {
     __extends(Map, _super);
     function Map() {
         _super.call(this);
-        this._mapArea = [];
-        this._contents = {
+        this._halfMapSize = new Size(Map.MAP_SIZE.Width * 0.5, Map.MAP_SIZE.Height * 0.5);
+        this._dimensions = new Size(Map.MAP_SIZE.Width / Map.FLOOR_TILE_SIZE.Width, Map.MAP_SIZE.Height / Map.FLOOR_TILE_SIZE.Height);
+        this._map = [];
+        this._cycles = {
         };
-        var actualTileSize = Map.MAP_SIZE.Width / Map.FLOOR_TILE_SIZE.Width;
-        for(var i = 0; i < Map.MAP_SIZE.Width; i += actualTileSize) {
-            this._mapArea[i] = [];
-            for(var j = 0; j < Map.MAP_SIZE.Height; j += actualTileSize) {
-                this._mapArea[i][j] = -1;
+        for(var i = 0; i < this._dimensions.Width; i++) {
+            this._map[i] = [];
+            for(var j = 0; j < this._dimensions.Height; j++) {
+                this._map[i][j] = 0;
             }
         }
     }
@@ -27,14 +28,15 @@ var Map = (function (_super) {
         }
     };
     Map.prototype.Add = function (cycle) {
-        this._contents[cycle.ID] = cycle;
+        this._cycles[cycle.ID] = cycle;
     };
     Map.prototype.Remove = function (cycleID) {
-        delete this._contents[cycleID];
+        delete this._cycles[cycleID];
     };
     Map.prototype.Update = function (gameTime) {
-        for(var id in this._contents) {
-            this.AddAllToScene(this._contents[id].TrailManager.PullPendingContexts());
+        for(var id in this._cycles) {
+            var cycle = this._cycles[id];
+            this.AddAllToScene(cycle.TrailManager.PullPendingContexts());
         }
     };
     return Map;

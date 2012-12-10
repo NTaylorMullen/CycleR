@@ -5,48 +5,72 @@ class CycleMovementController extends MovementController {
     static MAX_SPEED: number = 1000;
     static Y_OFFSET: number = 35;
 
-    constructor (private _context: IMesh, startVelocity: IVector3) {
+    static HALF_PI: number = Math.PI / 2;
+    static TWO_PI: number = Math.PI * 2;
+
+    static Velocities: IVector3[];
+
+    constructor(private _context: IMesh, startVelocity: IVector3) {
         super(_context, startVelocity, CycleMovementController.MAX_SPEED);
 
         this._context.position.y = CycleMovementController.Y_OFFSET;
+
+        if (!CycleMovementController.Velocities) {
+            this.calculateVelocities();
+        }
     }
 
-    private positionOnLine(): void {        
+    private calculateVelocities(): void {
+        CycleMovementController.Velocities = [];
+        CycleMovementController.Velocities[0] = new THREE.Vector3(0, 0, -CycleMovementController.MAX_SPEED);
+        CycleMovementController.Velocities[Math.round(CycleMovementController.HALF_PI)] = new THREE.Vector3(-CycleMovementController.MAX_SPEED, 0, 0);
+        CycleMovementController.Velocities[Math.round(Math.PI)] = new THREE.Vector3(0, 0, CycleMovementController.MAX_SPEED);
+        CycleMovementController.Velocities[Math.round(Math.PI + CycleMovementController.HALF_PI)] = new THREE.Vector3(CycleMovementController.MAX_SPEED, 0, 0);
+    }
+
+    private positionOnLine(): void {
         if (this.Velocity.z !== 0) {
             this._context.position.z -= (this._context.position.z % Map.FLOOR_TILE_SIZE.Width) - Map.FLOOR_TILE_SIZE.Width * (this.Velocity.z / Math.abs(this.Velocity.z));
         }
         else if (this.Velocity.x !== 0) {
             this._context.position.x -= (this._context.position.x % Map.FLOOR_TILE_SIZE.Width) - Map.FLOOR_TILE_SIZE.Width * (this.Velocity.x / Math.abs(this.Velocity.x));
         }
-    }
-
-    private swapXZVelocity(): void {
-        // Swap x and z, aka perform movement switch
-        var temp = this.Velocity.x;
-        this.Velocity.x = this.Velocity.z;
-        this.Velocity.z = temp; 
+        else // We weren't moving
+        {
+            this._context.position.z -= (this._context.position.z % Map.FLOOR_TILE_SIZE.Width);
+            this._context.position.x -= (this._context.position.x % Map.FLOOR_TILE_SIZE.Width);
+        }
     }
 
     public Move(direction: string): void {
         this.positionOnLine();
 
         if (direction === "Left") {
-            this._context.rotation.y += (Math.PI / 2);
+            this._context.rotation.y = (this._context.rotation.y + CycleMovementController.HALF_PI) % CycleMovementController.TWO_PI;
 
-            this.Velocity.x *= -1;
+            if (Math.round(this._context.rotation.y) == 6) { // Above two pi            
+                this._context.rotation.y = 0;
+            }
         }
         else if (direction === "Right") {
-            this._context.rotation.y -= (Math.PI / 2);
+            this._context.rotation.y -= CycleMovementController.HALF_PI;
 
-            this.Velocity.z *= -1;
+            if (this._context.rotation.y < 0) {
+                if (Math.round(this._context.rotation.y) === 0) {
+                    this._context.rotation.y = 0;
+                }
+                else {
+                    this._context.rotation.y += CycleMovementController.TWO_PI;
+                }
+            }
         }
 
-        this.swapXZVelocity();
+        this.Velocity = CycleMovementController.Velocities[Math.round(this._context.rotation.y)];
     }
 
     public Update(gameTime: GameTime): void {
         super.Update(gameTime);
-        
+
         var incrementor: IVector3 = this.Velocity.clone().multiplyScalar(gameTime.FractionOfSecond);
         this._context.position.addSelf(incrementor);
     }

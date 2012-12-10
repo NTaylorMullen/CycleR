@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 
 namespace Tron.GameServer
@@ -44,6 +45,16 @@ namespace Tron.GameServer
             }
         }
 
+        public void RegisterCycles(ConcurrentDictionary<long, Cycle> cycles)
+        {
+            foreach (var cycle in cycles.Values)
+            {
+                cycle.OnDeath += BroadcastDeath;
+                cycle.OnMove += BroadcastMovement;
+                cycle.OnCollision += BroadcastCollision;
+            }
+        }
+
         public void BroadcastConfiguration(GameConfiguration gameConfig)
         {
             getGameContext().Clients.Group(_relayGroup).configure(gameConfig);
@@ -55,16 +66,22 @@ namespace Tron.GameServer
             getGameContext().Clients.Group(_relayGroup).startGame(compressedPayload);
         }
 
-        public void BroadcastMovement(Cycle cycle, CycleMovementFlag direction)
+        public void BroadcastMovement(object sender, MoveEventArgs e)
         {
-            var compressedPayload = PayloadManager.BuildMovementPayload(cycle, direction);
+            var compressedPayload = PayloadManager.BuildMovementPayload(sender as Cycle, e.Direction);
             getGameContext().Clients.Group(_relayGroup).movementPayload(compressedPayload);
         }
 
-        public void BroadcastDeath(Cycle cycle)
+        public void BroadcastDeath(object sender, DeathEventArgs e)
         {
-            var compressedPayload = PayloadManager.BuildDeathPayload(cycle);
+            var compressedPayload = PayloadManager.BuildDeathPayload(sender as Cycle);
             getGameContext().Clients.Group(_relayGroup).deathPayload(compressedPayload);
+        }
+
+        public void BroadcastCollision(object sender, CollisionEventArgs e)
+        {
+            var compressedPayload = PayloadManager.BuildCollisionPayload(sender as Cycle);
+            getGameContext().Clients.Group(_relayGroup).collisionPayload(compressedPayload);
         }
 
         public void Dispose()

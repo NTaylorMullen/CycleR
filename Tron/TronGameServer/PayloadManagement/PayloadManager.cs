@@ -16,7 +16,7 @@ namespace Tron.GameServer
                 compressedCycles.Add(_compressor.Compress(cycle));
             }
 
-            InitializationPayload payload = new InitializationPayload
+            var payload = new InitializationPayload
             {
                 Cycles = compressedCycles
             };
@@ -24,9 +24,9 @@ namespace Tron.GameServer
             return _compressor.Compress(payload);
         }
 
-        public static object[] BuildMovementPayload(Cycle cycle, CycleMovementFlag direction)
+        public static object[] BuildMovementPayload(Cycle cycle, MovementFlag direction)
         {
-            MovementPayload payload = new MovementPayload
+            var payload = new MovementPayload
             {
                 ID = cycle.ID,
                 Direction = direction,
@@ -38,10 +38,21 @@ namespace Tron.GameServer
 
         public static object[] BuildDeathPayload(Cycle cycle)
         {
-            DeathPayload payload = new DeathPayload
+            var payload = new DeathPayload
             {
                 ID = cycle.ID,
                 DiedAt = cycle.MovementController.Position,
+            };
+
+            return _compressor.Compress(payload);
+        }
+
+        public static object[] BuildCollisionPayload(Cycle cycle)
+        {
+            CollisionPayload payload = new CollisionPayload
+            {
+                ID = cycle.ID,
+                CollidedAt = cycle.MovementController.Position
             };
 
             return _compressor.Compress(payload);

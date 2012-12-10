@@ -8,16 +8,13 @@ namespace Tron.GameServer
         private MovementPayloadCompressionContract _movementPayloadCompressionContract = new MovementPayloadCompressionContract();
         private DeathPayloadCompressionContract _deathPayloadCompressionContract = new DeathPayloadCompressionContract();
         private CollidableCompressionContract _collidableCompressionContract = new CollidableCompressionContract();
-        private CycleCompressionContract _cycleCompressionContract = new CycleCompressionContract();        
+        private CycleCompressionContract _cycleCompressionContract = new CycleCompressionContract();
+        private CollisionPayloadCompressionContract _collisionCompressionContract = new CollisionPayloadCompressionContract();
 
         private void setCollidableContractMembers(object[] result, Collidable collidable)
         {
             result[_collidableCompressionContract.ID] = collidable.ID;
             result[_collidableCompressionContract.Alive] = Convert.ToInt16(collidable.Alive);
-            result[_collidableCompressionContract.Collided] = Convert.ToInt16(collidable.Collided);
-            result[_collidableCompressionContract.CollidedAt_X] = Math.Round(collidable.CollidedAt.x, 2);
-            result[_collidableCompressionContract.CollidedAt_Y] = Math.Round(collidable.CollidedAt.y, 2);
-            result[_collidableCompressionContract.CollidedAt_Z] = Math.Round(collidable.CollidedAt.z, 2);
             result[_collidableCompressionContract.Position_X] = Math.Round(collidable.MovementController.Position.x, 2);
             result[_collidableCompressionContract.Position_Y] = Math.Round(collidable.MovementController.Position.y, 2);
             result[_collidableCompressionContract.Position_Z] = Math.Round(collidable.MovementController.Position.z, 2);
@@ -32,6 +29,18 @@ namespace Tron.GameServer
             object[] result = new object[1];
 
             result[_initializationPayloadCompressionContract.Cycles] = payload.Cycles;
+
+            return result;
+        }
+
+        public object[] Compress(CollisionPayload payload)
+        {
+            object[] result = new object[4];
+
+            result[_collisionCompressionContract.ID] = payload.ID;
+            result[_collisionCompressionContract.CollidedAt_X] = Math.Round(payload.CollidedAt.x, 2);
+            result[_collisionCompressionContract.CollidedAt_Y] = Math.Round(payload.CollidedAt.y, 2);
+            result[_collisionCompressionContract.CollidedAt_Z] = Math.Round(payload.CollidedAt.z, 2);
 
             return result;
         }
@@ -63,7 +72,7 @@ namespace Tron.GameServer
 
         public object[] Compress(Cycle cycle)
         {
-            object[] result = new object[15];
+            object[] result = new object[10];
 
             setCollidableContractMembers(result, cycle);
 
@@ -78,9 +87,10 @@ namespace Tron.GameServer
             {
                 CollidableCompressionContract = _collidableCompressionContract,
                 CycleCompressionContract = _cycleCompressionContract,
-                InitializationPayloadCompressionContract = _initializationPayloadCompressionContract,
-                MovementPayloadCompressionContract = _movementPayloadCompressionContract,
-                DeathPayloadCompressionContract = _deathPayloadCompressionContract
+                InitializationCompressionContract = _initializationPayloadCompressionContract,
+                MovementCompressionContract = _movementPayloadCompressionContract,
+                DeathCompressionContract = _deathPayloadCompressionContract,
+                CollisionCompressionContract = _collisionCompressionContract
             };
         }
     }

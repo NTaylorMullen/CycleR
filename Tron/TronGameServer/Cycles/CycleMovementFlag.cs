@@ -2,7 +2,7 @@
 
 namespace Tron.GameServer
 {
-    public enum CycleMovementFlag
+    public enum MovementFlag
     {
         Left,
         Right

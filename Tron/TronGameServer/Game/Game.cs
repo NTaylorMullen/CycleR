@@ -19,6 +19,7 @@ namespace Tron.GameServer
             _mode = mode;
             _gameConfiguration = _mode.GetConfiguration();
             _broadcastHandler = broadcastHandler;
+            _map = new Map(_gameConfiguration.MapConfig);
 
             var cycles = createCycles(players);
             var cycleDictionary = new ConcurrentDictionary<long, Cycle>();
@@ -29,8 +30,10 @@ namespace Tron.GameServer
 
             _onFinish = onFinish;
             _cycleManager = new CycleManager(cycleDictionary);
-            _map = new Map(cycleDictionary, _gameConfiguration.MapConfig);
-            CommandHandler = new CommandHandler(matchID, players, cycleDictionary, broadcastHandler, _gameConfiguration);            
+            CommandHandler = new CommandHandler(matchID, players, cycleDictionary);            
+
+            _map.RegisterCycles(cycleDictionary);
+            _broadcastHandler.RegisterCycles(cycleDictionary);            
         }
 
         public CommandHandler CommandHandler { get; private set; }
@@ -39,7 +42,7 @@ namespace Tron.GameServer
         {
             var spawns = _mode.GetGameSpawns();
 
-            return players.Select((user, index) => new Cycle(user.ID, spawns[index].StartPosition, spawns[index].StartVelocity, spawns[index].StartRotation, spawns[index].TrailColor, _gameConfiguration.MapConfig,_broadcastHandler.BroadcastMovement, _broadcastHandler.BroadcastDeath));
+            return players.Select((user, index) => new Cycle(user.ID, spawns[index].StartPosition, spawns[index].StartVelocity, spawns[index].StartRotation, spawns[index].TrailColor, _map, _gameConfiguration));
         }
 
         public List<Cycle> CyclesInPlay()

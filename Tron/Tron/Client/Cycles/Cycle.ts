@@ -3,6 +3,7 @@
 /// <reference path="../Trails/TrailManager.ts" />
 /// <reference path="../Collidables/Collidable.ts" />
 /// <reference path="CycleMovementController.ts" />
+/// <reference path="../Space/MapLocation.ts" />
 
 class Cycle extends Collidable {
     static BASE_CYCLE_SCALE: IVector3 = new THREE.Vector3(2.68648, 2.60262, 1.750692);
@@ -13,7 +14,7 @@ class Cycle extends Collidable {
     public MovementController: CycleMovementController;
     public TrailManager: TrailManager;
 
-    constructor (startPosition: IVector3, startVelocity: IVector3, id: number, rawModel: IGeometry, trailColor: number) {
+    constructor(startPosition: IVector3, startVelocity: IVector3, id: number, rawModel: IGeometry, trailColor: number) {
         super(id);
         this.Context = this.createContext(rawModel);
         this.Context.position = startPosition;
@@ -27,6 +28,10 @@ class Cycle extends Collidable {
         context.scale = Cycle.SCALE;
 
         return context;
+    }
+
+    public HandleCollisionWith(obj: Collidable): void {
+        this.MovementController.Velocity = new THREE.Vector3(); // 0 out the velocity
     }
 
     public Die(diedAt: IVector3): void {

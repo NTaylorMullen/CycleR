@@ -10,19 +10,15 @@ namespace Tron.GameServer
     {
         // Maps User IDs to cycles
         private ConcurrentDictionary<long, Cycle> _cycles;
-        private BroadcastHandler _broadcastHandler;
-        private GameConfiguration _gameConfiguration;
 
-        public CommandHandler(long matchID, IEnumerable<User> players, ConcurrentDictionary<long, Cycle> cycles, BroadcastHandler broadcastHandler, GameConfiguration gameConfiguration)
+        public CommandHandler(long matchID, IEnumerable<User> players, ConcurrentDictionary<long, Cycle> cycles)
         {
             _cycles = cycles;
-            _broadcastHandler = broadcastHandler;
-            _gameConfiguration = gameConfiguration;
         }
 
-        public void MovementCommand(User by, CycleMovementFlag direction)
+        public void MovementCommand(User by, MovementFlag direction)
         {
-            _cycles[by.ID].RegisterMove(direction, _broadcastHandler.BroadcastMovement);
+            _cycles[by.ID].RegisterMove(direction);
         }
 
         public void Dispose()
@@ -33,8 +29,6 @@ namespace Tron.GameServer
             }
             _cycles.Clear();
             _cycles = null;
-
-            _broadcastHandler.Dispose();
         }
     }
 }

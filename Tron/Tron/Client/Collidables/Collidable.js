@@ -3,9 +3,9 @@ var Collidable = (function () {
         this.Disposed = false;
         this.ID = id;
         this.Alive = true;
-        this.Collided = false;
-        this.CollidedAt = new THREE.Vector3();
     }
+    Collidable.prototype.HandleCollisionWith = function (obj) {
+    };
     return Collidable;
 })();
 //@ sourceMappingURL=Collidable.js.map

@@ -20,6 +20,9 @@ var Game = (function () {
     Game.prototype.ServerDeathPayload = function (payload) {
         this._gameRenderer.Remove(this._gameHandler.ServerDeathPayload(payload).Context);
     };
+    Game.prototype.ServerCollisionPayload = function (payload) {
+        this._gameHandler.ServerCollisionPayload(payload);
+    };
     Game.prototype.Update = function (gameTime) {
         this._gameHandler.Update(gameTime);
         this._camera.Update(gameTime);

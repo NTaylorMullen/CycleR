@@ -1,3 +1,0 @@
-interface IInitializationPayloadCompressionContract {
-    Cycles: number;
-}

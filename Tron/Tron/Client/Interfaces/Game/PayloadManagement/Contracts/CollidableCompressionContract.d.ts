@@ -1,10 +1,6 @@
 interface ICollidableCompressionContract {
     ID: number;
     Alive: number;
-    Collided: number;
-    CollidedAt_X: number;
-    CollidedAt_Y: number;
-    CollidedAt_Z: number;
     Position_X: number;
     Position_Y: number;
     Position_Z: number;

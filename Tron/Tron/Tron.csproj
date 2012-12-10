@@ -266,16 +266,18 @@
       <DependentUpon>ModelLoadRequest.d.ts</DependentUpon>
     </Content>
     <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Contracts\CollidableCompressionContract.d.ts" />
-    <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Contracts\InitializationPayloadCompressionContract.d.ts" />
+    <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Contracts\InitializationCompressionContract.d.ts" />
     <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\CompressionContracts.d.ts" />
     <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Decompressed\InitializationPayloadDecompressed.d.ts" />
     <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Decompressed\CycleDecompressed.d.ts" />
     <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Decompressed\CollidableDecompressed.d.ts" />
     <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Contracts\CycleCompressionContract.d.ts" />
-    <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Contracts\MovementPayloadCompressionContract.d.ts" />
-    <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Contracts\DeathPayloadCompressionContract.d.ts" />
+    <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Contracts\MovementCompressionContract.d.ts" />
+    <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Contracts\DeathCompressionContract.d.ts" />
     <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Decompressed\MovementPayloadDecompressed.d.ts" />
     <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Decompressed\DeathPayloadDecompressed.d.ts" />
+    <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Contracts\CollisionCompressionContract.d.ts" />
+    <TypeScriptCompile Include="Client\Interfaces\Game\PayloadManagement\Decompressed\CollisionPayloadDecompressed.d.ts" />
     <Content Include="Client\Interfaces\jquery.d.js">
       <DependentUpon>jquery.d.ts</DependentUpon>
     </Content>
@@ -460,6 +462,13 @@
     </Content>
     <TypeScriptCompile Include="Client\Utilities\SceneObjectCreator.ts" />
     <TypeScriptCompile Include="Client\Trails\Trail.ts" />
+    <TypeScriptCompile Include="Client\Space\MapLocation.ts" />
+    <Content Include="Client\Space\MapLocation.js">
+      <DependentUpon>MapLocation.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Space\MapLocation.min.js">
+      <DependentUpon>MapLocation.ts</DependentUpon>
+    </Content>
     <Content Include="Client\Trails\Trail.js">
       <DependentUpon>Trail.ts</DependentUpon>
     </Content>
@@ -506,6 +515,7 @@
     <Content Include="Models\Cycles\cycle.js" />
     <Content Include="Models\Cycles\cycle2.js" />
     <Content Include="Models\Cycles\cycle3.js" />
+    <Content Include="Models\Cycles\cycle4.js" />
     <Content Include="Models\Cycles\jet.png" />
     <Content Include="packages.config" />
     <Content Include="Client\GameCore\Game.js.map">
@@ -522,6 +532,9 @@
     </Content>
     <Content Include="Client\ConnectionManagement\ConnectionManager.js.map">
       <DependentUpon>ConnectionManager.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Space\MapLocation.js.map">
+      <DependentUpon>MapLocation.ts</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />

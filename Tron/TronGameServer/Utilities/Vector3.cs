@@ -115,6 +115,11 @@ namespace Tron.Utilities
             return new Vector3(num - v1.x, num - v1.y, num - v1.z);
         }
 
+        public bool IsZero()
+        {
+            return x == 0 && y == 0 && z == 0;
+        }
+
         public Vector3 Clone()
         {
             return new Vector3(x, y, z);

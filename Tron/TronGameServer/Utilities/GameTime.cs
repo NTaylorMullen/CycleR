@@ -11,7 +11,8 @@ namespace Tron.GameServer
             Now = _lastUpdated;
             FractionOfSecond = 0;
         }
-        
+
+        public static DateTime LastUpdated { get; private set; }
         public DateTime Now { get; private set; }
 
         /// <summary>
@@ -31,7 +32,7 @@ namespace Tron.GameServer
             FractionOfSecond = CalculateFractionOfSecond(_lastUpdated);
 
             Elapsed = Now - _lastUpdated;
-            _lastUpdated = Now;
+            _lastUpdated = LastUpdated = Now;
         }
     }
 }

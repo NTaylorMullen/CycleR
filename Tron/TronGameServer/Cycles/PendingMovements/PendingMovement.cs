@@ -9,7 +9,7 @@ namespace Tron.GameServer
 {
     public class PendingMovement : IDisposable
     {
-        public PendingMovement(MapLocation currentMapLocation, Vector3 startLocation, CycleMovementFlag direction)
+        public PendingMovement(MapLocation currentMapLocation, Vector3 startLocation, MovementFlag direction)
         {
             CurrentMapLocation = currentMapLocation;
             StartLocation = startLocation;
@@ -17,13 +17,13 @@ namespace Tron.GameServer
         }
 
         public Vector3 StartLocation { get; set; }
-        public CycleMovementFlag Direction { get; set; }
+        public MovementFlag Direction { get; set; }
         public MapLocation CurrentMapLocation { get; set; }
         public bool Disposed { get; private set; }
 
-        public bool ReadyToMove(MapLocation currentLocation)
+        public bool ReadyToMove(Cycle owner)
         {
-            return !CurrentMapLocation.SameAs(currentLocation);
+            return !CurrentMapLocation.SameAs(owner.HeadLocation) || owner.MovementController.Velocity.IsZero();
         }
 
         public void Dispose()

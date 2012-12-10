@@ -65,6 +65,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AI\Cycles\CycleAI.cs" />
+    <Compile Include="AI\UserAI.cs" />
     <Compile Include="App_Start\RegisterHubs.cs" />
     <Compile Include="Authentication\Credentials.cs" />
     <Compile Include="CommandBroadcasts\BroadcastHandler.cs" />
@@ -73,8 +75,13 @@
     <Compile Include="Components\Matches\Matches.cs" />
     <Compile Include="Components\Matches\MatchLoadingHandler.cs" />
     <Compile Include="ConnectionHub.cs" />
+    <Compile Include="Cycles\DeathHandlers\CycleDeathHandler.cs" />
     <Compile Include="Cycles\PendingMovements\PendingMovement.cs" />
     <Compile Include="Cycles\PendingMovements\PendingMovementManager.cs" />
+    <Compile Include="EventHandlers\CollisionEventHandler.cs" />
+    <Compile Include="EventHandlers\DeathEventHandler.cs" />
+    <Compile Include="EventHandlers\MoveEventHandler.cs" />
+    <Compile Include="Extensions\MathExtensions.cs" />
     <Compile Include="Extensions\RandomExtensions.cs" />
     <Compile Include="Game\GameModes\FreeForAll.cs" />
     <Compile Include="Components\Matches\MatchState.cs" />
@@ -101,11 +108,13 @@
     <Compile Include="Components\Matches\MatchManager.cs" />
     <Compile Include="Map\Map.cs" />
     <Compile Include="PayloadManagement\Compression\Contracts\CollidableCompressionContract.cs" />
+    <Compile Include="PayloadManagement\Compression\Contracts\CollisionPayloadCompressionContract.cs" />
     <Compile Include="PayloadManagement\Compression\Contracts\CycleCompressionContract.cs" />
     <Compile Include="PayloadManagement\Compression\Contracts\DeathPayloadCompressionContract.cs" />
     <Compile Include="PayloadManagement\Compression\Contracts\InitializationPayloadCompressionContract.cs" />
     <Compile Include="PayloadManagement\Compression\Contracts\MovementPayloadCompressionContract.cs" />
     <Compile Include="PayloadManagement\Compression\PayloadCompressor.cs" />
+    <Compile Include="PayloadManagement\Payloads\CollisionPayload.cs" />
     <Compile Include="PayloadManagement\Payloads\DeathPayload.cs" />
     <Compile Include="PayloadManagement\Payloads\InitializationPayload.cs" />
     <Compile Include="PayloadManagement\PayloadManager.cs" />

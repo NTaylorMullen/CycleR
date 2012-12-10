@@ -35,6 +35,12 @@ class GameHandler extends SceneObjectCreator {
         }
     }
 
+    public ServerCollisionPayload(payload: ICollisionPayloadDecompressed): void {
+        var cycle = this._cycleManager.Cycles[payload.ID];
+        cycle.Context.position = payload.CollidedAt;
+        cycle.HandleCollisionWith(null);
+    }
+
     public ServerMovementPayload(payload: IMovementPayloadDecompressed): void {
         this._cycleManager.ServerMovementPayload(payload);
     }

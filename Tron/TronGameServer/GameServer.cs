@@ -73,7 +73,7 @@ namespace Tron.GameServer
 
                     if (user.InMatch())
                     {
-                        CycleMovementFlag direction = (CycleMovementFlag)Enum.Parse(typeof(CycleMovementFlag), where);
+                        MovementFlag direction = (MovementFlag)Enum.Parse(typeof(MovementFlag), where);
 
                         user.CurrentMatch.Game.CommandHandler.MovementCommand(user, direction);
                     }

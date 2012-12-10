@@ -28,6 +28,11 @@ namespace Tron.Utilities
             return Row == mapLocation.Row && Column == mapLocation.Column;
         }
 
+        public MapLocation Clone()
+        {
+            return new MapLocation(Row, Column);
+        }
+
         public override string ToString()
         {
             return "( " + Row + ", " + Column + " )";

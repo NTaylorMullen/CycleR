@@ -7,21 +7,21 @@ class Map extends SceneObjectCreator {
     static MAP_SIZE: Size = new Size(10000);
     static WALL_SIZE: Size = new Size(Map.MAP_SIZE.Width, 2000);
 
-    private _mapArea: number[][];
-    private _contents: { [ID: number]: Cycle; };
+    private _map: number[][];
+    private _cycles: { [ID: number]: Cycle; };
+    private _halfMapSize: Size = new Size(Map.MAP_SIZE.Width * .5, Map.MAP_SIZE.Height * .5);
+    private _dimensions: Size = new Size(Map.MAP_SIZE.Width / Map.FLOOR_TILE_SIZE.Width, Map.MAP_SIZE.Height / Map.FLOOR_TILE_SIZE.Height);
 
-    constructor () {
+    constructor() {
         super();
 
-        this._mapArea = [];
-        this._contents = <{ [ID: number]: Cycle; }>{};
+        this._map = [];
+        this._cycles = <{ [ID: number]: Cycle; }>{};
 
-        var actualTileSize = Map.MAP_SIZE.Width / Map.FLOOR_TILE_SIZE.Width;
-
-        for (var i = 0; i < Map.MAP_SIZE.Width; i += actualTileSize) {
-            this._mapArea[i] = [];
-            for (var j = 0; j < Map.MAP_SIZE.Height; j += actualTileSize) {
-                this._mapArea[i][j] = -1; // -1 is empty
+        for (var i = 0; i < this._dimensions.Width; i++) {
+            this._map[i] = [];
+            for (var j = 0; j < this._dimensions.Height; j++) {
+                this._map[i][j] = 0; // 0 is empty
             }
         }
     }
@@ -33,16 +33,17 @@ class Map extends SceneObjectCreator {
     }
 
     public Add(cycle: Cycle): void {
-        this._contents[cycle.ID] = cycle;
+        this._cycles[cycle.ID] = cycle;
     }
 
     public Remove(cycleID: number): void {
-        delete this._contents[cycleID];
+        delete this._cycles[cycleID];
     }
 
     public Update(gameTime: GameTime): void {
-        for (var id in this._contents) {
-            this.AddAllToScene(this._contents[id].TrailManager.PullPendingContexts());
+        for (var id in this._cycles) {
+            var cycle: Cycle = this._cycles[id];
+            this.AddAllToScene(cycle.TrailManager.PullPendingContexts());
         }
     }
 }

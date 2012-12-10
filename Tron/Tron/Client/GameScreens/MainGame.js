@@ -18,6 +18,9 @@ var MainGame = (function (_super) {
         this.GameServer.client.deathPayload = function (payload) {
             _this._game.ServerDeathPayload(PayloadDecompressor.DecompressDeathPayload(payload));
         };
+        this.GameServer.client.collisionPayload = function (payload) {
+            _this._game.ServerCollisionPayload(PayloadDecompressor.DecompressCollisionPayload(payload));
+        };
     }
     MainGame.NAME = "MainGame";
     MainGame.prototype.Load = function () {
