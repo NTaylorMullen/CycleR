@@ -8,7 +8,7 @@ var CycleMovementController = (function (_super) {
     function CycleMovementController(_context, startVelocity) {
         _super.call(this, _context, startVelocity, CycleMovementController.MAX_SPEED);
         this._context = _context;
-        this._context.position.y = CycleMovementController.Y_OFFSET;
+        this._context.position.y = 50;
         if(!CycleMovementController.Velocities) {
             this.calculateVelocities();
         }
@@ -26,14 +26,24 @@ var CycleMovementController = (function (_super) {
         CycleMovementController.Velocities[Math.round(Math.PI + CycleMovementController.HALF_PI)] = new THREE.Vector3(CycleMovementController.MAX_SPEED, 0, 0);
     };
     CycleMovementController.prototype.positionOnLine = function () {
-        if(this.Velocity.z !== 0) {
-            this._context.position.z -= (this._context.position.z % Map.FLOOR_TILE_SIZE.Width) - Map.FLOOR_TILE_SIZE.Width * (this.Velocity.z / Math.abs(this.Velocity.z));
+        var currentVelocity, wasZero = false;
+        if(this.Velocity.isZero()) {
+            wasZero = true;
+            currentVelocity = CycleMovementController.Velocities[Math.round(this._context.rotation.y)];
         } else {
-            if(this.Velocity.x !== 0) {
-                this._context.position.x -= (this._context.position.x % Map.FLOOR_TILE_SIZE.Width) - Map.FLOOR_TILE_SIZE.Width * (this.Velocity.x / Math.abs(this.Velocity.x));
-            } else {
-                this._context.position.z -= (this._context.position.z % Map.FLOOR_TILE_SIZE.Width);
+            currentVelocity = this.Velocity;
+        }
+        if(currentVelocity.z !== 0) {
+            this._context.position.z -= (this._context.position.z % Map.FLOOR_TILE_SIZE.Width);
+            if(wasZero) {
+                this._context.position.z -= Map.FLOOR_TILE_SIZE.Width * (currentVelocity.z / Math.abs(currentVelocity.z));
+            }
+        } else {
+            if(currentVelocity.x !== 0) {
                 this._context.position.x -= (this._context.position.x % Map.FLOOR_TILE_SIZE.Width);
+                if(wasZero) {
+                    this._context.position.x -= Map.FLOOR_TILE_SIZE.Width * (currentVelocity.x / Math.abs(currentVelocity.x));
+                }
             }
         }
     };

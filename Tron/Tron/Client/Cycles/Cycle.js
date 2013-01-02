@@ -5,19 +5,22 @@ var __extends = this.__extends || function (d, b) {
 };
 var Cycle = (function (_super) {
     __extends(Cycle, _super);
-    function Cycle(startPosition, startVelocity, id, rawModel, trailColor) {
+    function Cycle(startPosition, startVelocity, id, rawModel, _trailColor) {
         _super.call(this, id);
+        this._trailColor = _trailColor;
         this.Context = this.createContext(rawModel);
         this.Context.position = startPosition;
         this.MovementController = new CycleMovementController(this.Context, startVelocity);
-        this.TrailManager = new TrailManager(trailColor, this);
+        this.TrailManager = new TrailManager(_trailColor, this);
     }
     Cycle.BASE_CYCLE_SCALE = new THREE.Vector3(2.68648, 2.60262, 1.750692);
     Cycle.SCALE = new THREE.Vector3(37.22342991572615, 40, 35);
     Cycle.SIZE = new THREE.Vector2(200, 100);
     Cycle.prototype.createContext = function (rawModel) {
-        var context = new THREE.Mesh(rawModel, new THREE.MeshFaceMaterial());
-        context.scale = Cycle.SCALE;
+        var context = new THREE.Mesh(new THREE.CubeGeometry(1, 1, 1), new THREE.MeshBasicMaterial({
+            color: 16777215
+        }));
+        context.scale = new THREE.Vector3(100, 100, 100);
         return context;
     };
     Cycle.prototype.HandleCollisionWith = function (obj) {

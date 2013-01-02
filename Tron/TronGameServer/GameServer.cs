@@ -47,10 +47,7 @@ namespace Tron.GameServer
             {
                 try
                 {
-                    List<User> users = new List<User>(){Users.Instance.GetUser(Context.ConnectionId),
-                    new User(Guid.NewGuid().ToString(), 100),
-                    new User(Guid.NewGuid().ToString(), 200),
-                    new User(Guid.NewGuid().ToString(), 300)};
+                    List<User> users = new List<User>() { Users.Instance.GetUser(Context.ConnectionId) };
 
 
                     Matches.Instance.Create(users, new FreeForAll()).Start();

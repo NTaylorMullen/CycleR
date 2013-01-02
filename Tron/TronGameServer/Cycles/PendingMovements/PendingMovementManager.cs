@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tron.GameServer
 {
-    public class PendingMovementManager : IUpdateable
+    public class PendingMovementManager : IUpdateable, IDisposable
     {
         public const int MAX_MOVEMENTS_IN_QUEUE = 2;
 
@@ -19,12 +16,12 @@ namespace Tron.GameServer
             _pendingMovements = new Queue<PendingMovement>();
         }
 
-        private void applyMovement(PendingMovement movement)        
+        private void applyMovement(PendingMovement movement)
         {
             if (_owner.CanMove(movement.Direction))
             {
-                _owner.MovementController.Position = movement.StartLocation;
-                _owner.Move(movement.Direction);               
+                // _owner.MovementController.Position = movement.StartLocation;
+                _owner.Move(movement.Direction);
             }
             movement.Dispose();
         }
@@ -52,6 +49,13 @@ namespace Tron.GameServer
                     nextMovement.CurrentMapLocation = _owner.HeadLocation;
                 }
             }
+        }
+
+        public void Dispose()
+        {
+            _owner = null;
+            _pendingMovements.Clear();
+            _pendingMovements = null;
         }
     }
 }

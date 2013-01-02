@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace Tron.GameServer
 {
-    public class CycleDeathHandler : IUpdateable
+    public class CycleDeathHandler : IUpdateable, IDisposable
     {
         private static readonly TimeSpan DEATH_AFTER = TimeSpan.FromSeconds(3);
 
         private DateTime? _deathStartedAt;
         private Collidable _killedBy;
-        private Action<Cycle> _broadcastDeath;
         private Cycle _owner;
 
         public CycleDeathHandler(Cycle owner)
@@ -46,6 +45,14 @@ namespace Tron.GameServer
                 _deathStartedAt = null;
                 _killedBy = null;
             }
+        }
+
+        public void Dispose()
+        {
+            _deathStartedAt = null;
+            _killedBy = null;
+            _owner.OnCollision -= collision;
+            _owner = null; ;
         }
     }
 }

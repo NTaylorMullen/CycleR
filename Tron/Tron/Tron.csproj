@@ -482,6 +482,13 @@
     <Content Include="Client\Trails\TrailManager.min.js">
       <DependentUpon>TrailManager.ts</DependentUpon>
     </Content>
+    <Content Include="Client\Utilities\MapLocation.js">
+      <DependentUpon>MapLocation.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Utilities\MapLocation.min.js">
+      <DependentUpon>MapLocation.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Utilities\MapLocation.ts" />
     <Content Include="Client\Utilities\SceneObjectCreator.js">
       <DependentUpon>SceneObjectCreator.ts</DependentUpon>
     </Content>
@@ -534,6 +541,9 @@
       <DependentUpon>ConnectionManager.ts</DependentUpon>
     </Content>
     <Content Include="Client\Space\MapLocation.js.map">
+      <DependentUpon>MapLocation.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Utilities\MapLocation.js.map">
       <DependentUpon>MapLocation.ts</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />

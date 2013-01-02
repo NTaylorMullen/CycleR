@@ -23,7 +23,7 @@ namespace Tron.GameServer
             {
                 _playersLoading.Remove(user.ID);
 
-                if (_playersLoading.Count == 3)
+                if (_playersLoading.Count == 0)
                 {
                     _loadingComplete();
                 }

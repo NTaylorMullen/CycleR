@@ -28,18 +28,37 @@ namespace Tron.GameServer
 
         private void positionOnLine()
         {
-            if (Velocity.z != 0)
+            Vector3 currentVelocity;
+            bool wasZero = false;
+            
+            // If our velocity was zero then deterine the velocity based on the current rotation (This happens when we've collided)
+            if (Velocity.IsZero())
             {
-                Position.z -= (Position.z % _gameConfiguration.MapConfig.FLOOR_TILE_SIZE.Width) - _gameConfiguration.MapConfig.FLOOR_TILE_SIZE.Width * (Velocity.z / Math.Abs(Velocity.z));
+                wasZero = true;
+                currentVelocity = _velocities[Math.Round(Rotation)];
             }
-            else if (Velocity.x != 0)
+            else
             {
-                Position.x -= (Position.x % _gameConfiguration.MapConfig.FLOOR_TILE_SIZE.Width) - _gameConfiguration.MapConfig.FLOOR_TILE_SIZE.Width * (Velocity.x / Math.Abs(Velocity.x));
+                currentVelocity = Velocity;
             }
-            else // We weren't moving
+
+            if (currentVelocity.z != 0)
             {
                 Position.z -= (Position.z % _gameConfiguration.MapConfig.FLOOR_TILE_SIZE.Width);
+
+                if (wasZero)
+                {
+                    Position.z -= _gameConfiguration.MapConfig.FLOOR_TILE_SIZE.Width * (currentVelocity.z / Math.Abs(currentVelocity.z));
+                }
+            }
+            else if (currentVelocity.x != 0)
+            {
                 Position.x -= (Position.x % _gameConfiguration.MapConfig.FLOOR_TILE_SIZE.Width);
+
+                if (wasZero)
+                {
+                    Position.x -= _gameConfiguration.MapConfig.FLOOR_TILE_SIZE.Width * (currentVelocity.x / Math.Abs(currentVelocity.x));
+                }
             }
         }
 

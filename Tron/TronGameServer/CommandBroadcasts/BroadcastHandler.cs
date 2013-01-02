@@ -3,6 +3,7 @@ using Microsoft.AspNet.SignalR.Hubs;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Tron.GameServer
 {
@@ -11,11 +12,12 @@ namespace Tron.GameServer
         private const string RELAY_GROUP_PREFIX = "RELAY_";
         private string _relayGroup = RELAY_GROUP_PREFIX;
         private List<User> _users;
+        private ConcurrentDictionary<long, Cycle> _cycles;
 
         public BroadcastHandler(long matchID, IEnumerable<User> players)
         {
             _relayGroup += matchID;
-            _users = new List<User>(players);
+            _users = players.ToList<User>();
 
             joinBroadcastGroup();
         }
@@ -53,6 +55,8 @@ namespace Tron.GameServer
                 cycle.OnMove += BroadcastMovement;
                 cycle.OnCollision += BroadcastCollision;
             }
+
+            _cycles = cycles;
         }
 
         public void BroadcastConfiguration(GameConfiguration gameConfig)
@@ -90,6 +94,15 @@ namespace Tron.GameServer
 
             _users.Clear();
             _users = null;
+
+            foreach (var cycle in _cycles.Values)
+            {
+                cycle.OnDeath -= BroadcastDeath;
+                cycle.OnMove -= BroadcastMovement;
+                cycle.OnCollision -= BroadcastCollision;
+            }
+
+            _cycles = null;
         }
     }
 }

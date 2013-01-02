@@ -5,13 +5,14 @@ class MapRenderer {
     private _floor: IMesh;
     private _walls: IMesh[];
 
-    constructor (private _scene: IScene) {
+    constructor(private _scene: IScene) {
         this.renderFloor();
         this.renderWalls();
     }
 
     private renderFloor(): void {
-        var planeTesselated: IPlaneGeometry = new THREE.PlaneGeometry(Map.MAP_SIZE.Width, Map.MAP_SIZE.Height, Map.FLOOR_TILE_SIZE.Width, Map.FLOOR_TILE_SIZE.Height),
+        var floorSizeIncrementor = new Size(Map.MAP_SIZE.Width / Map.FLOOR_TILE_SIZE.Width, Map.MAP_SIZE.Height / Map.FLOOR_TILE_SIZE.Height),
+            planeTesselated: IPlaneGeometry = new THREE.PlaneGeometry(Map.MAP_SIZE.Width, Map.MAP_SIZE.Height, floorSizeIncrementor.Width, floorSizeIncrementor.Height),
             matWire: IMeshBasicMaterial = new THREE.MeshBasicMaterial({ color: 0x24D613, wireframe: true, wireframeLinewidth: 2 });
 
         this._floor = new THREE.Mesh(planeTesselated, matWire);
@@ -31,7 +32,7 @@ class MapRenderer {
 
         for (var i = 0; i < 4; i++) {
             var wall: IMesh = new THREE.Mesh(wallGeometry, wallMaterial);
-            wall.position = new THREE.Vector3(wallPositions[i][0],wallPositions[i][1],wallPositions[i][2]);
+            wall.position = new THREE.Vector3(wallPositions[i][0], wallPositions[i][1], wallPositions[i][2]);
             wall.rotation.y = wallPositions[i][3];
             this._walls.push(wall);
             this._scene.add(wall);

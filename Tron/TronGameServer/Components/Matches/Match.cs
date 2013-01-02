@@ -32,7 +32,7 @@ namespace Tron.GameServer
 
         private void initializeGame()
         {            
-            Game = new Game(ID, _players, _mode, _broadcastHandler, gameCompleted);
+            Game = new Game(_players, _mode, _broadcastHandler, gameCompleted);
             _broadcastHandler.BroadcastGameStart(Game.CyclesInPlay());
             State = MatchState.Playing;
         }

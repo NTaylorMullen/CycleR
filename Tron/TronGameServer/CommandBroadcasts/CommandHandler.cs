@@ -11,7 +11,7 @@ namespace Tron.GameServer
         // Maps User IDs to cycles
         private ConcurrentDictionary<long, Cycle> _cycles;
 
-        public CommandHandler(long matchID, IEnumerable<User> players, ConcurrentDictionary<long, Cycle> cycles)
+        public CommandHandler(ConcurrentDictionary<long, Cycle> cycles)
         {
             _cycles = cycles;
         }
@@ -23,11 +23,6 @@ namespace Tron.GameServer
 
         public void Dispose()
         {
-            foreach (var cycle in _cycles.Values)
-            {
-                cycle.Dispose();
-            }
-            _cycles.Clear();
             _cycles = null;
         }
     }

@@ -5,7 +5,7 @@ var MapRenderer = (function () {
         this.renderWalls();
     }
     MapRenderer.prototype.renderFloor = function () {
-        var planeTesselated = new THREE.PlaneGeometry(Map.MAP_SIZE.Width, Map.MAP_SIZE.Height, Map.FLOOR_TILE_SIZE.Width, Map.FLOOR_TILE_SIZE.Height), matWire = new THREE.MeshBasicMaterial({
+        var floorSizeIncrementor = new Size(Map.MAP_SIZE.Width / Map.FLOOR_TILE_SIZE.Width, Map.MAP_SIZE.Height / Map.FLOOR_TILE_SIZE.Height), planeTesselated = new THREE.PlaneGeometry(Map.MAP_SIZE.Width, Map.MAP_SIZE.Height, floorSizeIncrementor.Width, floorSizeIncrementor.Height), matWire = new THREE.MeshBasicMaterial({
 color: 2414099,
 wireframe: true,
 wireframeLinewidth: 2        });

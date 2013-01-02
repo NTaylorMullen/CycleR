@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Tron.GameServer
@@ -14,35 +14,43 @@ namespace Tron.GameServer
         private GameConfiguration _gameConfiguration;
         private BroadcastHandler _broadcastHandler;
 
-        public Game(long matchID, IEnumerable<User> players, IGameMode mode, BroadcastHandler broadcastHandler, Action onFinish)
+        public Game(IEnumerable<User> players, IGameMode mode, BroadcastHandler broadcastHandler, Action onFinish)
         {
             _mode = mode;
             _gameConfiguration = _mode.GetConfiguration();
             _broadcastHandler = broadcastHandler;
             _map = new Map(_gameConfiguration.MapConfig);
 
-            var cycles = createCycles(players);
+            var cycleDictionary = createCycles(players);
+
+
+            _onFinish = onFinish;
+            _cycleManager = new CycleManager(cycleDictionary);
+
+            _map.RegisterCycles(cycleDictionary);
+            _broadcastHandler.RegisterCycles(cycleDictionary);
+
+            CommandHandler = new CommandHandler(cycleDictionary);
+        }
+
+        public CommandHandler CommandHandler { get; private set; }
+
+        private ConcurrentDictionary<long, Cycle> createCycles(IEnumerable<User> players)
+        {
+            var spawns = _mode.GetGameSpawns();
+
+            IEnumerable<Cycle> cycles = players.Select((user, index) => new Cycle(user.ID, spawns[index].StartPosition, spawns[index].StartVelocity, spawns[index].StartRotation, spawns[index].TrailColor, _map, _gameConfiguration));
+
+            // Convert to Dictionary
             var cycleDictionary = new ConcurrentDictionary<long, Cycle>();
             foreach (Cycle cycle in cycles)
             {
                 cycleDictionary.TryAdd(cycle.ID, cycle);
             }
 
-            _onFinish = onFinish;
-            _cycleManager = new CycleManager(cycleDictionary);
-            CommandHandler = new CommandHandler(matchID, players, cycleDictionary);            
+            _mode.FillSpots(cycleDictionary, spawns, _map, _gameConfiguration);
 
-            _map.RegisterCycles(cycleDictionary);
-            _broadcastHandler.RegisterCycles(cycleDictionary);            
-        }
-
-        public CommandHandler CommandHandler { get; private set; }
-
-        private IEnumerable<Cycle> createCycles(IEnumerable<User> players)
-        {
-            var spawns = _mode.GetGameSpawns();
-
-            return players.Select((user, index) => new Cycle(user.ID, spawns[index].StartPosition, spawns[index].StartVelocity, spawns[index].StartRotation, spawns[index].TrailColor, _map, _gameConfiguration));
+            return cycleDictionary;
         }
 
         public List<Cycle> CyclesInPlay()
@@ -51,17 +59,18 @@ namespace Tron.GameServer
         }
 
         public void Update(GameTime gameTime)
-        {
-            _cycleManager.Update(gameTime);
+        {            
             _map.Update(gameTime);
+            _cycleManager.Update(gameTime);
         }
 
         public void Dispose()
         {
             _onFinish = null;
             _mode = null;
-            _cycleManager.Dispose();
             _map.Dispose();
+            CommandHandler.Dispose();
+            _cycleManager.Dispose();
         }
     }
 }

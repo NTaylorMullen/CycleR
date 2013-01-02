@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using Tron.Utilities;
+using System.Linq;
+using Tron.GameServer.AI;
 
 namespace Tron.GameServer
 {
@@ -11,6 +14,11 @@ namespace Tron.GameServer
         private static GameConfiguration _gameConfiguration = new GameConfiguration(new CycleConfiguration(), new MapConfiguration());
 
         private GameSpawn[] _spawns = new GameSpawn[_playerCount];
+
+        private long getMaxID(ConcurrentDictionary<long, Cycle> cycles)
+        {
+            return cycles.OrderByDescending(cycle => cycle.Value.ID).First().Value.ID;
+        }
 
         public FreeForAll()
         {
@@ -54,7 +62,7 @@ namespace Tron.GameServer
         public List<GameSpawn> GetGameSpawns()
         {
             GameSpawn[] spawnsCopy = new GameSpawn[_playerCount];
-            _spawns.CopyTo(spawnsCopy,0);
+            _spawns.CopyTo(spawnsCopy, 0);
 
             _gen.Shuffle<GameSpawn>(spawnsCopy);
 
@@ -65,6 +73,19 @@ namespace Tron.GameServer
         public GameConfiguration GetConfiguration()
         {
             return _gameConfiguration;
+        }
+
+        public void FillSpots(ConcurrentDictionary<long, Cycle> cycles, List<GameSpawn> spawns, Map map, GameConfiguration gameConfiguration)
+        {
+            //return;
+            long aiID = getMaxID(cycles) + 1;
+            int cycleCount = cycles.Count;
+
+            for (int i = cycleCount; i < _playerCount; i++)
+            {
+                cycles.TryAdd(aiID, new CycleAI(aiID, spawns[i].StartPosition, spawns[i].StartVelocity, spawns[i].StartRotation, spawns[i].TrailColor, map, gameConfiguration));
+                aiID++;
+            }
         }
     }
 }

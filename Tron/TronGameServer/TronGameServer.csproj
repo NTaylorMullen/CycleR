@@ -66,7 +66,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AI\Cycles\CycleAI.cs" />
-    <Compile Include="AI\UserAI.cs" />
     <Compile Include="App_Start\RegisterHubs.cs" />
     <Compile Include="Authentication\Credentials.cs" />
     <Compile Include="CommandBroadcasts\BroadcastHandler.cs" />

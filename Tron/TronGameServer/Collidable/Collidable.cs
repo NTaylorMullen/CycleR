@@ -19,9 +19,11 @@ namespace Tron.GameServer
 
         public long ID { get; private set; }
         public bool Alive { get; protected set; }
+        public bool Colliding { get; set; }
 
         public virtual void HandleCollisionWith(Collidable obj)
         {
+            Colliding = true;
         }
 
         public virtual void Update(GameTime gameTime)

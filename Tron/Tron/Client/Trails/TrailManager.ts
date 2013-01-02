@@ -1,4 +1,5 @@
 /// <reference path="Trail.ts" />
+/// <reference path="../Cycles/Cycle.ts" />
 
 class TrailManager {
     public CurrentTrail: Trail;

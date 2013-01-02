@@ -12,7 +12,6 @@
             .Add("Styles/game.css")
         .Render("Styles/MAIN.css")
     %>
-
 </head>
 <body>
     <div id="GameWrapper">
@@ -45,6 +44,7 @@
             .Add("Client/Cameras/Camera.js")
             .Add("Client/Trails/Trail.js")
             .Add("Client/Trails/TrailManager.js")
+            .Add("Client/Space/MapLocation.js")
             .Add("Client/Space/Map.js")            
             .Add("Client/Renderers/CoreRenderer.js")
             .Add("Client/Renderers/EnvironmentRenderer.js")

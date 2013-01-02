@@ -13,7 +13,7 @@ class CycleMovementController extends MovementController {
     constructor(private _context: IMesh, startVelocity: IVector3) {
         super(_context, startVelocity, CycleMovementController.MAX_SPEED);
 
-        this._context.position.y = CycleMovementController.Y_OFFSET;
+        this._context.position.y = 50;//CycleMovementController.Y_OFFSET;
 
         if (!CycleMovementController.Velocities) {
             this.calculateVelocities();
@@ -29,16 +29,33 @@ class CycleMovementController extends MovementController {
     }
 
     private positionOnLine(): void {
-        if (this.Velocity.z !== 0) {
-            this._context.position.z -= (this._context.position.z % Map.FLOOR_TILE_SIZE.Width) - Map.FLOOR_TILE_SIZE.Width * (this.Velocity.z / Math.abs(this.Velocity.z));
-        }
-        else if (this.Velocity.x !== 0) {
-            this._context.position.x -= (this._context.position.x % Map.FLOOR_TILE_SIZE.Width) - Map.FLOOR_TILE_SIZE.Width * (this.Velocity.x / Math.abs(this.Velocity.x));
-        }
-        else // We weren't moving
+        var currentVelocity,
+            wasZero = false;
+
+        // If our velocity was zero then deterine the velocity based on the current rotation (This happens when we've collided)
+        if (this.Velocity.isZero())
         {
+            wasZero = true;
+            currentVelocity = CycleMovementController.Velocities[Math.round(this._context.rotation.y)];
+        }
+        else
+        {
+            currentVelocity = this.Velocity;
+        }
+
+        if (currentVelocity.z !== 0) {
             this._context.position.z -= (this._context.position.z % Map.FLOOR_TILE_SIZE.Width);
+
+            if (wasZero) {
+                this._context.position.z -= Map.FLOOR_TILE_SIZE.Width * (currentVelocity.z / Math.abs(currentVelocity.z));
+            }
+        }
+        else if (currentVelocity.x !== 0) {
             this._context.position.x -= (this._context.position.x % Map.FLOOR_TILE_SIZE.Width);
+
+            if (wasZero) {
+                this._context.position.x -= Map.FLOOR_TILE_SIZE.Width * (currentVelocity.x / Math.abs(currentVelocity.x));
+            }
         }
     }
 

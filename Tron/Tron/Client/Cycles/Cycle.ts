@@ -13,19 +13,21 @@ class Cycle extends Collidable {
     public Context: IMesh;
     public MovementController: CycleMovementController;
     public TrailManager: TrailManager;
+    public HeadLocation: MapLocation;
 
-    constructor(startPosition: IVector3, startVelocity: IVector3, id: number, rawModel: IGeometry, trailColor: number) {
+    constructor(startPosition: IVector3, startVelocity: IVector3, id: number, rawModel: IGeometry, private _trailColor: number) {
         super(id);
         this.Context = this.createContext(rawModel);
         this.Context.position = startPosition;
 
         this.MovementController = new CycleMovementController(this.Context, startVelocity);
-        this.TrailManager = new TrailManager(trailColor, this);
+        this.TrailManager = new TrailManager(_trailColor, this);
     }
 
     private createContext(rawModel: IGeometry): IMesh {
-        var context = new THREE.Mesh(rawModel, new THREE.MeshFaceMaterial());
-        context.scale = Cycle.SCALE;
+        //var context = new THREE.Mesh(rawModel, new THREE.MeshFaceMaterial());
+        var context = new THREE.Mesh(new THREE.CubeGeometry(1, 1, 1), new THREE.MeshBasicMaterial({ color: 0xffffff }));
+        context.scale = new THREE.Vector3(100, 100, 100);//Cycle.SCALE;
 
         return context;
     }

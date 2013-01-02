@@ -114,7 +114,12 @@ namespace Tron.GameServer
                 OnMove(this, new MoveEventArgs(direction));
             }
 
-            MovementController.Move(direction);            
+            MovementController.Move(direction);
+
+            if (!MovementController.Velocity.IsZero())
+            {
+                Colliding = false;
+            }
         }
 
         public bool CanMove(MovementFlag direction)
@@ -163,7 +168,13 @@ namespace Tron.GameServer
         public override void Dispose()
         {
             base.Dispose();
+            _pendingMovementManager.Dispose();
+            _cycleDeathHandler.Dispose();
+            _map = null;
             HeadLocation = null;
+            OnCollision = null;
+            OnDeath = null;
+            OnMove = null;
         }
 
     }
