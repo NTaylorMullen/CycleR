@@ -77,7 +77,6 @@ namespace Tron.GameServer
 
         public void FillSpots(ConcurrentDictionary<long, Cycle> cycles, List<GameSpawn> spawns, Map map, GameConfiguration gameConfiguration)
         {
-            //return;
             long aiID = getMaxID(cycles) + 1;
             int cycleCount = cycles.Count;
 

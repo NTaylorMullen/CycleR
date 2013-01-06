@@ -1,5 +1,6 @@
 /// <reference path="../Collidables/MovementControllers/MovementController.ts" />
 /// <reference path="../Space/Map.ts" />
+/// <reference path="../../Extensions/Number.ts" />
 
 class CycleMovementController extends MovementController {
     static MAX_SPEED: number = 1000;
@@ -28,9 +29,36 @@ class CycleMovementController extends MovementController {
         CycleMovementController.Velocities[Math.round(Math.PI + CycleMovementController.HALF_PI)] = new THREE.Vector3(CycleMovementController.MAX_SPEED, 0, 0);
     }
 
+    private stabilizeValue(position: any, velocity: any, wasZero: bool): number {
+        if (velocity.normalized() * position.normalized() > 0)
+        {
+            position -= position % Map.FLOOR_TILE_SIZE.Width;
+
+            if (wasZero)
+            {
+                position -= Map.FLOOR_TILE_SIZE.Width * velocity.normalized();
+            }
+        }
+        else
+        {
+            if (position != 0)
+            {
+                position -= position % Map.FLOOR_TILE_SIZE.Width - Map.FLOOR_TILE_SIZE.Width * position.normalized();
+            }
+
+            if (wasZero)
+            {
+                position -= Map.FLOOR_TILE_SIZE.Width * velocity.normalized();
+            }
+        }
+
+        return position;
+    }
+
     private positionOnLine(): void {
-        var currentVelocity,
-            wasZero = false;
+        var currentVelocity: IVector3, 
+            currentPosition: IVector3 = this._context.position.clone(), 
+            wasZero: bool = false;
 
         // If our velocity was zero then deterine the velocity based on the current rotation (This happens when we've collided)
         if (this.Velocity.isZero())
@@ -43,20 +71,16 @@ class CycleMovementController extends MovementController {
             currentVelocity = this.Velocity;
         }
 
-        if (currentVelocity.z !== 0) {
-            this._context.position.z -= (this._context.position.z % Map.FLOOR_TILE_SIZE.Width);
-
-            if (wasZero) {
-                this._context.position.z -= Map.FLOOR_TILE_SIZE.Width * (currentVelocity.z / Math.abs(currentVelocity.z));
-            }
+        if (currentVelocity.z != 0)
+        {
+            currentPosition.z = this.stabilizeValue(currentPosition.z, currentVelocity.z, wasZero);
         }
-        else if (currentVelocity.x !== 0) {
-            this._context.position.x -= (this._context.position.x % Map.FLOOR_TILE_SIZE.Width);
-
-            if (wasZero) {
-                this._context.position.x -= Map.FLOOR_TILE_SIZE.Width * (currentVelocity.x / Math.abs(currentVelocity.x));
-            }
+        else if (currentVelocity.x != 0)
+        {
+            currentPosition.x = this.stabilizeValue(currentPosition.x, currentVelocity.x, wasZero);
         }
+
+        this._context.position = currentPosition;
     }
 
     public Move(direction: string): void {

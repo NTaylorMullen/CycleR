@@ -43,18 +43,7 @@ namespace Tron.GameServer
 
         private MapLocation getCycleMapLocation(Cycle cycle)
         {
-            var mapLocation = cycle.MovementController.Position.Clone();
-
-            // Get cycle position as if it were about to turn (aka positioned on line).  This will also ensure that a cycle will be
-            // viewed as dead as soon as the front of the cycle hits a line.
-            if (cycle.MovementController.Velocity.z != 0)
-            {
-                mapLocation.z -= (mapLocation.z % _mapConfiguration.FLOOR_TILE_SIZE.Width);
-            }
-            else if (cycle.MovementController.Velocity.x != 0)
-            {
-                mapLocation.x -= (mapLocation.x % _mapConfiguration.FLOOR_TILE_SIZE.Width);
-            }
+            var mapLocation = cycle.MovementController.getLinePosition();
 
             // Normalize to the quadrant in which the cycle lies
             MapLocation quadrant = new MapLocation(Math.Abs((mapLocation.z + _halfMapSize.Height) / _mapConfiguration.FLOOR_TILE_SIZE.Height), Math.Abs((mapLocation.x + _halfMapSize.Width) / _mapConfiguration.FLOOR_TILE_SIZE.Width));
@@ -78,7 +67,7 @@ namespace Tron.GameServer
                     _map[i, currentLocation.Column] = fillValue;
                 }
             }
-            
+
             if (Math.Abs(difference.Column) > 0)
             {
                 incrementor = difference.Column / Math.Abs(difference.Column) * -1;
@@ -123,7 +112,7 @@ namespace Tron.GameServer
 
                         if (currentLocation == 0) // Spot is empty on map, mark it as ours
                         {
-                            Debug.WriteLine(cycle.HeadLocation + " vs. " + quadrant + "   |   " + cycle.MovementController.Position);          
+                            Debug.Write(cycle.MovementController.Position + "  |   ");
                             // Fill in the map
                             fillMapSpace(cycle.HeadLocation, quadrant, cycle.ID);
 

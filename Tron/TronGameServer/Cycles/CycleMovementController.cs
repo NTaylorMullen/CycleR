@@ -26,11 +26,43 @@ namespace Tron.GameServer
             _velocities.Add(Math.Round(TMath.ONE_AND_ONE_HALF_PI), new Vector3(_gameConfiguration.CycleConfig.MAX_SPEED, 0, 0));
         }
 
+        private double stabilizeValue(double position, double velocity, bool wasZero)
+        {
+            if (velocity.Normalized() * position.Normalized() > 0)
+            {
+                position -= position % _gameConfiguration.MapConfig.FLOOR_TILE_SIZE.Width;
+
+                if (wasZero)
+                {
+                    position -= _gameConfiguration.MapConfig.FLOOR_TILE_SIZE.Width * velocity.Normalized();
+                }
+            }
+            else
+            {
+                if (position != 0)
+                {
+                    position -= position % _gameConfiguration.MapConfig.FLOOR_TILE_SIZE.Width - _gameConfiguration.MapConfig.FLOOR_TILE_SIZE.Width * position.Normalized();
+                }
+
+                if (wasZero)
+                {
+                    position -= _gameConfiguration.MapConfig.FLOOR_TILE_SIZE.Width * velocity.Normalized();
+                }
+            }
+
+            return position;
+        }
+
         private void positionOnLine()
         {
-            Vector3 currentVelocity;
+            Position = getLinePosition();
+        }
+
+        public Vector3 getLinePosition()
+        {
+            Vector3 currentVelocity, currentPosition = Position.Clone();
             bool wasZero = false;
-            
+
             // If our velocity was zero then deterine the velocity based on the current rotation (This happens when we've collided)
             if (Velocity.IsZero())
             {
@@ -44,22 +76,14 @@ namespace Tron.GameServer
 
             if (currentVelocity.z != 0)
             {
-                Position.z -= (Position.z % _gameConfiguration.MapConfig.FLOOR_TILE_SIZE.Width);
-
-                if (wasZero)
-                {
-                    Position.z -= _gameConfiguration.MapConfig.FLOOR_TILE_SIZE.Width * (currentVelocity.z / Math.Abs(currentVelocity.z));
-                }
+                currentPosition.z = stabilizeValue(currentPosition.z, currentVelocity.z, wasZero);
             }
             else if (currentVelocity.x != 0)
             {
-                Position.x -= (Position.x % _gameConfiguration.MapConfig.FLOOR_TILE_SIZE.Width);
-
-                if (wasZero)
-                {
-                    Position.x -= _gameConfiguration.MapConfig.FLOOR_TILE_SIZE.Width * (currentVelocity.x / Math.Abs(currentVelocity.x));
-                }
+                currentPosition.x = stabilizeValue(currentPosition.x, currentVelocity.x, wasZero);
             }
+
+            return currentPosition;
         }
 
         public void Move(MovementFlag direction)

@@ -80,6 +80,7 @@
     <Compile Include="EventHandlers\CollisionEventHandler.cs" />
     <Compile Include="EventHandlers\DeathEventHandler.cs" />
     <Compile Include="EventHandlers\MoveEventHandler.cs" />
+    <Compile Include="Extensions\DoubleExtensions.cs" />
     <Compile Include="Extensions\MathExtensions.cs" />
     <Compile Include="Extensions\RandomExtensions.cs" />
     <Compile Include="Game\GameModes\FreeForAll.cs" />

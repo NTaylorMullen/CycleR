@@ -25,27 +25,38 @@ var CycleMovementController = (function (_super) {
         CycleMovementController.Velocities[Math.round(Math.PI)] = new THREE.Vector3(0, 0, CycleMovementController.MAX_SPEED);
         CycleMovementController.Velocities[Math.round(Math.PI + CycleMovementController.HALF_PI)] = new THREE.Vector3(CycleMovementController.MAX_SPEED, 0, 0);
     };
+    CycleMovementController.prototype.stabilizeValue = function (position, velocity, wasZero) {
+        if(velocity.normalized() * position.normalized() > 0) {
+            position -= position % Map.FLOOR_TILE_SIZE.Width;
+            if(wasZero) {
+                position -= Map.FLOOR_TILE_SIZE.Width * velocity.normalized();
+            }
+        } else {
+            if(position != 0) {
+                position -= position % Map.FLOOR_TILE_SIZE.Width - Map.FLOOR_TILE_SIZE.Width * position.normalized();
+            }
+            if(wasZero) {
+                position -= Map.FLOOR_TILE_SIZE.Width * velocity.normalized();
+            }
+        }
+        return position;
+    };
     CycleMovementController.prototype.positionOnLine = function () {
-        var currentVelocity, wasZero = false;
+        var currentVelocity, currentPosition = this._context.position.clone(), wasZero = false;
         if(this.Velocity.isZero()) {
             wasZero = true;
             currentVelocity = CycleMovementController.Velocities[Math.round(this._context.rotation.y)];
         } else {
             currentVelocity = this.Velocity;
         }
-        if(currentVelocity.z !== 0) {
-            this._context.position.z -= (this._context.position.z % Map.FLOOR_TILE_SIZE.Width);
-            if(wasZero) {
-                this._context.position.z -= Map.FLOOR_TILE_SIZE.Width * (currentVelocity.z / Math.abs(currentVelocity.z));
-            }
+        if(currentVelocity.z != 0) {
+            currentPosition.z = this.stabilizeValue(currentPosition.z, currentVelocity.z, wasZero);
         } else {
-            if(currentVelocity.x !== 0) {
-                this._context.position.x -= (this._context.position.x % Map.FLOOR_TILE_SIZE.Width);
-                if(wasZero) {
-                    this._context.position.x -= Map.FLOOR_TILE_SIZE.Width * (currentVelocity.x / Math.abs(currentVelocity.x));
-                }
+            if(currentVelocity.x != 0) {
+                currentPosition.x = this.stabilizeValue(currentPosition.x, currentVelocity.x, wasZero);
             }
         }
+        this._context.position = currentPosition;
     };
     CycleMovementController.prototype.Move = function (direction) {
         this.positionOnLine();
