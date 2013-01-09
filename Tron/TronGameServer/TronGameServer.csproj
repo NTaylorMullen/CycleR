@@ -80,7 +80,7 @@
     <Compile Include="EventHandlers\CollisionEventHandler.cs" />
     <Compile Include="EventHandlers\DeathEventHandler.cs" />
     <Compile Include="EventHandlers\MoveEventHandler.cs" />
-    <Compile Include="Extensions\DoubleExtensions.cs" />
+    <Compile Include="Extensions\NumberExtensions.cs" />
     <Compile Include="Extensions\MathExtensions.cs" />
     <Compile Include="Extensions\RandomExtensions.cs" />
     <Compile Include="Game\GameModes\FreeForAll.cs" />
@@ -107,6 +107,7 @@
     <Compile Include="Components\Matches\Match.cs" />
     <Compile Include="Components\Matches\MatchManager.cs" />
     <Compile Include="Map\Map.cs" />
+    <Compile Include="Map\MapUtilities.cs" />
     <Compile Include="PayloadManagement\Compression\Contracts\CollidableCompressionContract.cs" />
     <Compile Include="PayloadManagement\Compression\Contracts\CollisionPayloadCompressionContract.cs" />
     <Compile Include="PayloadManagement\Compression\Contracts\CycleCompressionContract.cs" />

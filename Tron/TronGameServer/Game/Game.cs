@@ -59,9 +59,9 @@ namespace Tron.GameServer
         }
 
         public void Update(GameTime gameTime)
-        {            
-            _map.Update(gameTime);
+        {
             _cycleManager.Update(gameTime);
+            _map.Update(gameTime);            
         }
 
         public void Dispose()

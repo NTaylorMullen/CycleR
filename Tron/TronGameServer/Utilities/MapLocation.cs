@@ -8,7 +8,7 @@ namespace Tron.Utilities
 {
     public class MapLocation
     {
-        public MapLocation(short row, short column)
+        public MapLocation(int row, int column)
         {
             Row = row;
             Column = column;
@@ -20,8 +20,8 @@ namespace Tron.Utilities
             Column = Convert.ToInt16(column);
         }
 
-        public short Row { get; set; }
-        public short Column { get; set; }
+        public int Row { get; set; }
+        public int Column { get; set; }
 
         public bool SameAs(MapLocation mapLocation)
         {

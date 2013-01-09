@@ -17,6 +17,8 @@ namespace Tron.GameServer
             calculateVelocities();
         }
 
+        public Vector3 RequestedPosition { get; private set; }
+
         private void calculateVelocities()
         {
             _velocities = new Dictionary<double, Vector3>();
@@ -55,13 +57,20 @@ namespace Tron.GameServer
 
         private void positionOnLine()
         {
-            Position = getLinePosition();
+            Position = GetLinePosition(Position);
         }
 
-        public Vector3 getLinePosition()
+        public void ConfirmPositionRequest(Vector3 alteredPosition = null)
         {
-            Vector3 currentVelocity, currentPosition = Position.Clone();
+            Position = alteredPosition ?? RequestedPosition;
+            RequestedPosition = null;
+        }
+
+        public Vector3 GetLinePosition(Vector3 currentPosition)
+        {
+            Vector3 currentVelocity;
             bool wasZero = false;
+            currentPosition = currentPosition.Clone();
 
             // If our velocity was zero then deterine the velocity based on the current rotation (This happens when we've collided)
             if (Velocity.IsZero())
@@ -123,8 +132,8 @@ namespace Tron.GameServer
         {
             base.Update(gameTime);
 
-            var incrementor = Velocity.Clone() * gameTime.FractionOfSecond;
-            Position += incrementor;
+            var incrementor = Velocity * gameTime.FractionOfSecond;
+            RequestedPosition = Position + incrementor;
         }
 
         public override void Dispose()
