@@ -7,8 +7,8 @@
     <ProjectGuid>{530CBB1D-AC08-4C26-9931-46CBF5F5D2E4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TronGameServer</RootNamespace>
-    <AssemblyName>TronGameServer</AssemblyName>
+    <RootNamespace>Tron.GameServer</RootNamespace>
+    <AssemblyName>Tron.GameServer</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -73,6 +73,7 @@
     <Compile Include="Collidable\MovementControllers\MovementController.cs" />
     <Compile Include="Components\Matches\Matches.cs" />
     <Compile Include="Components\Matches\MatchLoadingHandler.cs" />
+    <Compile Include="Configurations\Interfaces\IMapConfiguration.cs" />
     <Compile Include="ConnectionHub.cs" />
     <Compile Include="Cycles\DeathHandlers\CycleDeathHandler.cs" />
     <Compile Include="Cycles\PendingMovements\PendingMovement.cs" />
@@ -106,8 +107,11 @@
     <Compile Include="Interfaces\Users\IConnectionHandler.cs" />
     <Compile Include="Components\Matches\Match.cs" />
     <Compile Include="Components\Matches\MatchManager.cs" />
+    <Compile Include="Map\CollisionChecker.cs" />
     <Compile Include="Map\Map.cs" />
+    <Compile Include="Map\Map2.cs" />
     <Compile Include="Map\MapUtilities.cs" />
+    <Compile Include="Map\RequestValidator.cs" />
     <Compile Include="PayloadManagement\Compression\Contracts\CollidableCompressionContract.cs" />
     <Compile Include="PayloadManagement\Compression\Contracts\CollisionPayloadCompressionContract.cs" />
     <Compile Include="PayloadManagement\Compression\Contracts\CycleCompressionContract.cs" />

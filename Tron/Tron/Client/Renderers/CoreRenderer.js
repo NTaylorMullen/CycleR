@@ -7,12 +7,10 @@ var CoreRenderer = (function () {
             return new THREE.WebGLRenderer({
                 preserveDrawingBuffer: true
             });
+        } else if(THREE.Detector.canvas) {
+            return new THREE.CanvasRenderer();
         } else {
-            if(THREE.Detector.canvas) {
-                return new THREE.CanvasRenderer();
-            } else {
-                alert("Your browser does not support 3D techniques.  Please try again in a newer browser.");
-            }
+            alert("Your browser does not support 3D techniques.  Please try again in a newer browser.");
         }
     };
     CoreRenderer.prototype.Initialize = function () {

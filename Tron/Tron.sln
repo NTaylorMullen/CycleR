@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tron", "Tron\Tron.csproj", 
 		{530CBB1D-AC08-4C26-9931-46CBF5F5D2E4} = {530CBB1D-AC08-4C26-9931-46CBF5F5D2E4}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TronGameServer", "TronGameServer\TronGameServer.csproj", "{530CBB1D-AC08-4C26-9931-46CBF5F5D2E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tron.GameServer", "TronGameServer\Tron.GameServer.csproj", "{530CBB1D-AC08-4C26-9931-46CBF5F5D2E4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{86FCE32C-ACF7-4521-8D4E-472859A47C24}"
 	ProjectSection(SolutionItems) = preProject
@@ -14,6 +14,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{86FCE3
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D55A1066-591B-436F-8C68-76E6DEF7AD4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tron.GameServer.Tests", "Tron.GameServer.Tests\Tron.GameServer.Tests.csproj", "{2E529850-4C85-4097-AA6C-3B8066F7E6C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,8 +33,15 @@ Global
 		{530CBB1D-AC08-4C26-9931-46CBF5F5D2E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{530CBB1D-AC08-4C26-9931-46CBF5F5D2E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{530CBB1D-AC08-4C26-9931-46CBF5F5D2E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E529850-4C85-4097-AA6C-3B8066F7E6C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E529850-4C85-4097-AA6C-3B8066F7E6C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E529850-4C85-4097-AA6C-3B8066F7E6C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E529850-4C85-4097-AA6C-3B8066F7E6C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2E529850-4C85-4097-AA6C-3B8066F7E6C3} = {D55A1066-591B-436F-8C68-76E6DEF7AD4E}
 	EndGlobalSection
 EndGlobal

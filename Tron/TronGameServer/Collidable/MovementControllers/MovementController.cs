@@ -14,7 +14,7 @@ namespace Tron.GameServer
 
         public Vector3 Velocity { get; set; }
         public Vector3 Position { get; set; }
-        public double Rotation { get; protected set; }
+        public double Rotation { get; set; }
 
         public virtual void Update(GameTime gameTime)
         {            

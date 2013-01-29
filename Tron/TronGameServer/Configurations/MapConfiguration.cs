@@ -3,7 +3,7 @@ using Tron.Utilities;
 
 namespace Tron.GameServer
 {
-    public class MapConfiguration
+    public class MapConfiguration : IMapConfiguration
     {
         public MapConfiguration()
         {
@@ -13,9 +13,9 @@ namespace Tron.GameServer
             MAP_START_PADDING = 500;
         }
 
-        public Size FLOOR_TILE_SIZE { get; protected set; }
-        public Size MAP_SIZE { get; protected set; }
-        public Size WALL_SIZE { get; protected set; }
-        public int MAP_START_PADDING { get; protected set; }
+        public Size FLOOR_TILE_SIZE { get; set; }
+        public Size MAP_SIZE { get; set; }
+        public Size WALL_SIZE { get; set; }
+        public int MAP_START_PADDING { get; set; }
     }
 }

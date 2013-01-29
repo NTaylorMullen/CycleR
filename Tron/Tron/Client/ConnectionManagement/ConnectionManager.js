@@ -10,7 +10,6 @@ var ConnectionManager = (function () {
             _this.loadCompressionContracts(contracts);
         };
     }
-    ConnectionManager.UserID = 0;
     ConnectionManager.prototype.successfulConnection = function (userID) {
         ConnectionManager.UserID = userID;
         this._userInitializationComplete();

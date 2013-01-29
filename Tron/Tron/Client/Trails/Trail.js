@@ -13,10 +13,8 @@ var Trail = (function () {
         }));
         if(this.Direction === "x") {
             this.Context.scale.z = Trail.SIZE.Width;
-        } else {
-            if(this.Direction === "z") {
-                this.Context.scale.x = Trail.SIZE.Width;
-            }
+        } else if(this.Direction === "z") {
+            this.Context.scale.x = Trail.SIZE.Width;
         }
         this.Context.position = this._startPosition.clone();
         this.Context.position.y = Trail.SIZE.Height / 2;

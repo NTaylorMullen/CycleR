@@ -11,7 +11,6 @@ namespace Tron.Utilities
             z = 0;
         }
 
-
         public Vector3(double x, double y, double z)
         {
             this.x = x;
@@ -128,6 +127,11 @@ namespace Tron.Utilities
         public override string ToString()
         {
             return "( " + x + " , " + y + " , " + z + " )";
+        }
+
+        public bool SameAs(Vector3 v3)
+        {
+            return x == v3.x && y == v3.y && z == v3.z;
         }
     }
 }

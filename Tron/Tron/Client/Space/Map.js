@@ -26,10 +26,8 @@ var Map = (function (_super) {
         var mapLocation = cycle.Context.position.clone();
         if(cycle.MovementController.Velocity.z != 0) {
             mapLocation.z -= (mapLocation.z % Map.FLOOR_TILE_SIZE.Width) - Map.FLOOR_TILE_SIZE.Width * (cycle.MovementController.Velocity.z / Math.abs(cycle.MovementController.Velocity.z));
-        } else {
-            if(cycle.MovementController.Velocity.x != 0) {
-                mapLocation.x -= (mapLocation.x % Map.FLOOR_TILE_SIZE.Width) - Map.FLOOR_TILE_SIZE.Width * (cycle.MovementController.Velocity.x / Math.abs(cycle.MovementController.Velocity.x));
-            }
+        } else if(cycle.MovementController.Velocity.x != 0) {
+            mapLocation.x -= (mapLocation.x % Map.FLOOR_TILE_SIZE.Width) - Map.FLOOR_TILE_SIZE.Width * (cycle.MovementController.Velocity.x / Math.abs(cycle.MovementController.Velocity.x));
         }
         var quadrant = new MapLocation(Math.abs((mapLocation.z + this._halfMapSize.Height) / Map.FLOOR_TILE_SIZE.Height), Math.abs((mapLocation.x + this._halfMapSize.Width) / Map.FLOOR_TILE_SIZE.Width));
         return quadrant;

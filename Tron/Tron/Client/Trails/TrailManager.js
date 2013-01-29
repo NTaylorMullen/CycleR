@@ -15,10 +15,8 @@ var TrailManager = (function () {
         var direction;
         if(currentVelocity.x !== 0) {
             direction = "x";
-        } else {
-            if(currentVelocity.z !== 0) {
-                direction = "z";
-            }
+        } else if(currentVelocity.z !== 0) {
+            direction = "z";
         }
         this.CurrentTrail = new Trail(direction, startPosition, this._trailColor, this._owner.ID);
         this._trailArchive.push(this.CurrentTrail);

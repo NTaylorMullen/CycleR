@@ -24,7 +24,7 @@ namespace Tron.GameServer
 
         public MapLocation ToMapLocation(Vector3 position)
         {
-            return new MapLocation(Math.Abs((position.z + _halfMapSize.Height) / _floorTileSize.Height), Math.Abs((position.x + _halfMapSize.Width) / _floorTileSize.Width));
+            return new MapLocation((position.z + _halfMapSize.Height) / _floorTileSize.Height, (position.x + _halfMapSize.Width) / _floorTileSize.Width);
         }
 
         public Vector3 ToPosition(MapLocation position, double y)

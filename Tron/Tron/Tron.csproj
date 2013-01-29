@@ -695,9 +695,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TronGameServer\TronGameServer.csproj">
+    <ProjectReference Include="..\TronGameServer\Tron.GameServer.csproj">
       <Project>{530cbb1d-ac08-4c26-9931-46cbf5f5d2e4}</Project>
-      <Name>TronGameServer</Name>
+      <Name>Tron.GameServer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
@@ -726,6 +726,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

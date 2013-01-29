@@ -32,7 +32,7 @@ var KeyboardAdapter = (function () {
                             that._keyMappings[k].active = true;
                             that._move.call(that._proxy, that._keyMappings[k].dir);
                         }
-                    }
+                    };
                 })(k), {
                     'type': 'keydown'
                 });
@@ -41,7 +41,7 @@ var KeyboardAdapter = (function () {
                         if(that._keyMappings[k].active) {
                             that._keyMappings[k].active = false;
                         }
-                    }
+                    };
                 })(k), {
                     'type': 'keyup'
                 });

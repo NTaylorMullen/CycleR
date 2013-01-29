@@ -17,7 +17,7 @@ namespace Tron.GameServer
             calculateVelocities();
         }
 
-        public Vector3 RequestedPosition { get; private set; }
+        public Vector3 RequestedPosition { get; set; }
 
         private void calculateVelocities()
         {
@@ -126,6 +126,15 @@ namespace Tron.GameServer
             }
 
             Velocity = _velocities[Math.Round(Rotation)];
+            
+            if (Velocity.x != 0)
+            {
+                Position.x += 1 * Velocity.x.Normalized();
+            }
+            else
+            {
+                Position.z += 1 * Velocity.z.Normalized();
+            }
         }
 
         public override void Update(GameTime gameTime)

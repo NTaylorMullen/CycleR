@@ -17,7 +17,6 @@ var CycleMovementController = (function (_super) {
     CycleMovementController.Y_OFFSET = 35;
     CycleMovementController.HALF_PI = Math.PI / 2;
     CycleMovementController.TWO_PI = Math.PI * 2;
-    CycleMovementController.Velocities = null;
     CycleMovementController.prototype.calculateVelocities = function () {
         CycleMovementController.Velocities = [];
         CycleMovementController.Velocities[0] = new THREE.Vector3(0, 0, -CycleMovementController.MAX_SPEED);
@@ -51,10 +50,8 @@ var CycleMovementController = (function (_super) {
         }
         if(currentVelocity.z != 0) {
             currentPosition.z = this.stabilizeValue(currentPosition.z, currentVelocity.z, wasZero);
-        } else {
-            if(currentVelocity.x != 0) {
-                currentPosition.x = this.stabilizeValue(currentPosition.x, currentVelocity.x, wasZero);
-            }
+        } else if(currentVelocity.x != 0) {
+            currentPosition.x = this.stabilizeValue(currentPosition.x, currentVelocity.x, wasZero);
         }
         this._context.position = currentPosition;
     };
@@ -65,15 +62,13 @@ var CycleMovementController = (function (_super) {
             if(Math.round(this._context.rotation.y) == 6) {
                 this._context.rotation.y = 0;
             }
-        } else {
-            if(direction === "Right") {
-                this._context.rotation.y -= CycleMovementController.HALF_PI;
-                if(this._context.rotation.y < 0) {
-                    if(Math.round(this._context.rotation.y) === 0) {
-                        this._context.rotation.y = 0;
-                    } else {
-                        this._context.rotation.y += CycleMovementController.TWO_PI;
-                    }
+        } else if(direction === "Right") {
+            this._context.rotation.y -= CycleMovementController.HALF_PI;
+            if(this._context.rotation.y < 0) {
+                if(Math.round(this._context.rotation.y) === 0) {
+                    this._context.rotation.y = 0;
+                } else {
+                    this._context.rotation.y += CycleMovementController.TWO_PI;
                 }
             }
         }
