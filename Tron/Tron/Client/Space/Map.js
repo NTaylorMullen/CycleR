@@ -42,8 +42,8 @@ var Map = (function (_super) {
                 } else {
                     var currentLocation = this._map[quadrant.Row][quadrant.Column];
                     if(currentLocation == 0) {
-                        this._map[cycle.HeadLocation.Row][cycle.HeadLocation.Column] = cycle.ID;
-                        cycle.HeadLocation = quadrant;
+                        this._map[cycle.MovementController.HeadLocation.Row][cycle.MovementController.HeadLocation.Column] = cycle.ID;
+                        cycle.MovementController.HeadLocation = quadrant;
                         this._map[quadrant.Row][quadrant.Column] = -cycle.ID;
                     } else {
                         if(currentLocation != -cycle.ID) {
@@ -63,7 +63,7 @@ var Map = (function (_super) {
         }
     };
     Map.prototype.Add = function (cycle) {
-        cycle.HeadLocation = this.getCycleMapLocation(cycle);
+        cycle.MovementController.HeadLocation = this.getCycleMapLocation(cycle);
         this._cycles[cycle.ID] = cycle;
     };
     Map.prototype.Remove = function (cycleID) {

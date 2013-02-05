@@ -13,7 +13,6 @@ class Cycle extends Collidable {
     public Context: IMesh;
     public MovementController: CycleMovementController;
     public TrailManager: TrailManager;
-    public HeadLocation: MapLocation;
 
     constructor(startPosition: IVector3, startVelocity: IVector3, id: number, rawModel: IGeometry, private _trailColor: number) {
         super(id);

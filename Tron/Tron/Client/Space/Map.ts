@@ -59,8 +59,8 @@ class Map extends SceneObjectCreator {
                     if (currentLocation == 0) // Spot is empty on map, mark it as ours
                     {
                         // Set the last head location to a positive cycle ID, indicating we can now run into it
-                        this._map[cycle.HeadLocation.Row][cycle.HeadLocation.Column] = cycle.ID;
-                        cycle.HeadLocation = quadrant;
+                        this._map[cycle.MovementController.HeadLocation.Row][cycle.MovementController.HeadLocation.Column] = cycle.ID;
+                        cycle.MovementController.HeadLocation = quadrant;
                         // We mark it with the negated cycle ID because it represents the head of our trail
                         this._map[quadrant.Row][quadrant.Column] = -cycle.ID;
                     }
@@ -88,7 +88,7 @@ class Map extends SceneObjectCreator {
     }
 
     public Add(cycle: Cycle): void {
-        cycle.HeadLocation = this.getCycleMapLocation(cycle);
+        cycle.MovementController.HeadLocation = this.getCycleMapLocation(cycle);
         this._cycles[cycle.ID] = cycle;
 
     }

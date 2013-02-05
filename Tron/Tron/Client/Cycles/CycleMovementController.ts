@@ -11,6 +11,8 @@ class CycleMovementController extends MovementController {
 
     static Velocities: IVector3[];
 
+    public HeadLocation: MapLocation;
+
     constructor(private _context: IMesh, startVelocity: IVector3) {
         super(_context, startVelocity, CycleMovementController.MAX_SPEED);
 
