@@ -109,7 +109,7 @@
     <Compile Include="Components\Matches\MatchManager.cs" />
     <Compile Include="Map\CollisionChecker.cs" />
     <Compile Include="Map\Map.cs" />
-    <Compile Include="Map\Map2.cs" />
+    <Compile Include="Map\MapMarker.cs" />
     <Compile Include="Map\MapUtilities.cs" />
     <Compile Include="Map\RequestValidator.cs" />
     <Compile Include="PayloadManagement\Compression\Contracts\CollidableCompressionContract.cs" />

@@ -18,7 +18,7 @@ namespace Tron.GameServer
 
         private void applyMovement(PendingMovement movement)
         {
-            if (_owner.CanMove(movement.Direction))
+            if (_owner.MovementController.CanMove(movement.Direction))
             {
                 // _owner.MovementController.Position = movement.StartLocation;
                 _owner.Move(movement.Direction);
@@ -46,7 +46,7 @@ namespace Tron.GameServer
                 {
                     PendingMovement nextMovement = _pendingMovements.Peek();
                     nextMovement.StartLocation = _owner.MovementController.Position;
-                    nextMovement.CurrentMapLocation = _owner.HeadLocation;
+                    nextMovement.CurrentMapLocation = _owner.MovementController.HeadLocation;
                 }
             }
         }

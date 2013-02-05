@@ -24,7 +24,7 @@ namespace Tron.GameServer.AI
 
         private void TurnRandomly(GameTime gameTime)
         {
-            List<MovementFlag> possibleMoves = getValidMovements();
+            List<MovementFlag> possibleMoves = MovementController.GetValidMovements();
 
             if (possibleMoves.Count != 0)
             {

@@ -7,27 +7,26 @@ namespace Tron.GameServer
         Map _map;
         MapUtilities _utilities;
 
-        public RequestValidator(Map map, MapUtilities utilities)
+        public RequestValidator(Map map)
         {
             _map = map;
-            _utilities = utilities;
+            _utilities = _map.Utilities;
         }
 
         private MapLocation validateOutOfBounds(MapLocation headLocation, MapLocation requestedLocation)
         {
             var difference = headLocation - requestedLocation;
             var newLocation = requestedLocation; // No need to clone because we do not change individual members
-            var incrementor = new MapLocation(1, 1);
 
             if (_utilities.OutOfBounds(newLocation))
             {
-                incrementor *= difference.Normalized().Abs();
+                var incrementor = difference.Normalized().Abs();
 
                 // If the requested location is going in the negative direction then we need our incrementor
                 // to also be pointing in the negative direction.
                 if (difference > 0)
                 {
-                    incrementor *= difference.Normalized() * -1;
+                    incrementor *= -1;
                 }
 
                 // Decrement movement position until it is no longer out of bounds
@@ -51,18 +50,17 @@ namespace Tron.GameServer
         {
             var difference = headLocation - requestedLocation;
             var newLocation = requestedLocation; // No need to clone because we do not change individual members
-            var incrementor = new MapLocation(1, 1);
 
             // If we have a gap greater than 1 then we need to fill it in
             if (difference.Abs() > 1)
             {
-                incrementor *= difference.Normalized().Abs();
+                var incrementor = difference.Normalized().Abs();
 
                 // If the requested location is going in the negative direction then we need our incrementor
                 // to also be pointing in the negative direction.
                 if (difference > 0)
                 {
-                    incrementor *= difference.Normalized() * -1;
+                    incrementor *= -1;
                 }
 
                 var incrementorSquared = incrementor * incrementor;
@@ -96,11 +94,11 @@ namespace Tron.GameServer
         {
             var requestedLocation = _utilities.ToMapLocation(cycle.MovementController.RequestedPosition);
 
-            // We only want to run logic against the cycle if it's potential new HeadLocation has changed.
-            if (!cycle.HeadLocation.SameAs(requestedLocation))
+            // We only want to run logic against the cycle if it's potential new MovementController.HeadLocation has changed.
+            if (!cycle.MovementController.HeadLocation.SameAs(requestedLocation))
             {
-                var newLocation = validateOutOfBounds(cycle.HeadLocation, _utilities.ToMapLocation(cycle.MovementController.RequestedPosition));
-                newLocation = validateCycleCollisions(cycle.HeadLocation, newLocation);
+                var newLocation = validateOutOfBounds(cycle.MovementController.HeadLocation, _utilities.ToMapLocation(cycle.MovementController.RequestedPosition));
+                newLocation = validateCycleCollisions(cycle.MovementController.HeadLocation, newLocation);
 
                 // If our new location is now different from our request location, we need to change the confirmation,
                 // otherwise we need to convert the newLocation to a position and confirm it that way.

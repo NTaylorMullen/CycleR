@@ -23,7 +23,7 @@ namespace Tron.GameServer
 
         public bool ReadyToMove(Cycle owner)
         {
-            return !CurrentMapLocation.SameAs(owner.HeadLocation) || owner.MovementController.Velocity.IsZero();
+            return !CurrentMapLocation.SameAs(owner.MovementController.HeadLocation) || owner.MovementController.Velocity.IsZero();
         }
 
         public void Dispose()

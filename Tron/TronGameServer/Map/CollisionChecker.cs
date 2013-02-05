@@ -11,23 +11,25 @@ namespace Tron.GameServer
         private Map _map;
         private MapUtilities _utilities;
 
-        public CollisionChecker(Map map, MapUtilities utilities)
+        public CollisionChecker(Map map)
         {
             _map = map;
-            _utilities = utilities;
+            _utilities = _map.Utilities;
         }
 
         public void ValidateCollision(Cycle cycle)
         {
             var cycleLocation = _utilities.ToMapLocation(cycle.MovementController.Position);
-            long occupiedById = _map[cycleLocation];
-
+            
             // Check if we're out of bounds
             if (_utilities.OutOfBounds(cycleLocation))
             {
                 cycle.HandleCollisionWith(null);
+                return;
             }
-            else if (occupiedById != 0 && occupiedById != -cycle.ID) // Check if we're colliding with something other than our head location
+
+            long occupiedById = _map[cycleLocation];
+            if (occupiedById != 0 && occupiedById != -cycle.ID) // Check if we're colliding with something other than our head location
             {
                 Cycle occupiedBy = _map.GetCycle(Math.Abs(occupiedById));
 

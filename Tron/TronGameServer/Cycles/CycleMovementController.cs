@@ -8,16 +8,19 @@ namespace Tron.GameServer
     {
         private GameConfiguration _gameConfiguration;
         private Dictionary<double, Vector3> _velocities;
+        private Map _map;
 
-        public CycleMovementController(Vector3 position, Vector3 velocity, double rotation, GameConfiguration gameConfiguration)
+        public CycleMovementController(Vector3 position, Vector3 velocity, double rotation, Map map, GameConfiguration gameConfiguration)
             : base(position, velocity, Math.Round(rotation, 4))
         {
             _gameConfiguration = gameConfiguration;
+            _map = map;
             // There aren't many velocities we can have so calculate them prior to cycle activation
             calculateVelocities();
         }
 
         public Vector3 RequestedPosition { get; set; }
+        public MapLocation HeadLocation { get; set; }
 
         private void calculateVelocities()
         {
@@ -28,28 +31,15 @@ namespace Tron.GameServer
             _velocities.Add(Math.Round(TMath.ONE_AND_ONE_HALF_PI), new Vector3(_gameConfiguration.CycleConfig.MAX_SPEED, 0, 0));
         }
 
-        private double stabilizeValue(double position, double velocity, bool wasZero)
+        private double stabilizeValue(double position, double velocity)
         {
             if (velocity.Normalized() * position.Normalized() > 0)
             {
                 position -= position % _gameConfiguration.MapConfig.FLOOR_TILE_SIZE.Width;
-
-                if (wasZero)
-                {
-                    position -= _gameConfiguration.MapConfig.FLOOR_TILE_SIZE.Width * velocity.Normalized();
-                }
             }
-            else
+            else if(position != 0)
             {
-                if (position != 0)
-                {
-                    position -= position % _gameConfiguration.MapConfig.FLOOR_TILE_SIZE.Width - _gameConfiguration.MapConfig.FLOOR_TILE_SIZE.Width * position.Normalized();
-                }
-
-                if (wasZero)
-                {
-                    position -= _gameConfiguration.MapConfig.FLOOR_TILE_SIZE.Width * velocity.Normalized();
-                }
+                position -= position % _gameConfiguration.MapConfig.FLOOR_TILE_SIZE.Width - _gameConfiguration.MapConfig.FLOOR_TILE_SIZE.Width * position.Normalized();
             }
 
             return position;
@@ -69,30 +59,99 @@ namespace Tron.GameServer
         public Vector3 GetLinePosition(Vector3 currentPosition)
         {
             Vector3 currentVelocity;
-            bool wasZero = false;
             currentPosition = currentPosition.Clone();
 
-            // If our velocity was zero then deterine the velocity based on the current rotation (This happens when we've collided)
+            // If our velocity was zero then reset position to where our head location is
             if (Velocity.IsZero())
             {
-                wasZero = true;
-                currentVelocity = _velocities[Math.Round(Rotation)];
+                return _map.Utilities.ToPosition(HeadLocation, currentPosition.y);
             }
             else
             {
                 currentVelocity = Velocity;
             }
-
+            
             if (currentVelocity.z != 0)
             {
-                currentPosition.z = stabilizeValue(currentPosition.z, currentVelocity.z, wasZero);
+                currentPosition.z = stabilizeValue(currentPosition.z, currentVelocity.z);
             }
             else if (currentVelocity.x != 0)
             {
-                currentPosition.x = stabilizeValue(currentPosition.x, currentVelocity.x, wasZero);
+                currentPosition.x = stabilizeValue(currentPosition.x, currentVelocity.x);
             }
 
             return currentPosition;
+        }
+
+        public bool CanMove(MovementFlag direction)
+        {
+            return GetValidMovements().Contains(direction);
+        }
+
+        public List<MovementFlag> GetValidMovements()
+        {
+            var validMovements = new List<MovementFlag>();
+            var rotation = Math.Round(Rotation);
+            var locationCheck = HeadLocation.Clone();
+
+            if (rotation == 0) // Going up
+            {
+                locationCheck.Column--;
+                if (_map.Empty(locationCheck))
+                {
+                    validMovements.Add(MovementFlag.Left);
+                }
+
+                locationCheck.Column += 2;
+                if (_map.Empty(locationCheck))
+                {
+                    validMovements.Add(MovementFlag.Right);
+                }
+            }
+            else if (rotation == 2) // Going Left
+            {
+                locationCheck.Row++;
+                if (_map.Empty(locationCheck))
+                {
+                    validMovements.Add(MovementFlag.Left);
+                }
+
+                locationCheck.Row -= 2;
+                if (_map.Empty(locationCheck))
+                {
+                    validMovements.Add(MovementFlag.Right);
+                }
+            }
+            else if (rotation == 3) // Going Down
+            {
+                locationCheck.Column++;
+                if (_map.Empty(locationCheck))
+                {
+                    validMovements.Add(MovementFlag.Left);
+                }
+
+                locationCheck.Column -= 2;
+                if (_map.Empty(locationCheck))
+                {
+                    validMovements.Add(MovementFlag.Right);
+                }
+            }
+            else if (rotation == 5) // Going Right
+            {
+                locationCheck.Row--;
+                if (_map.Empty(locationCheck))
+                {
+                    validMovements.Add(MovementFlag.Left);
+                }
+
+                locationCheck.Row += 2;
+                if (_map.Empty(locationCheck))
+                {
+                    validMovements.Add(MovementFlag.Right);
+                }
+            }
+
+            return validMovements;
         }
 
         public void Move(MovementFlag direction)
@@ -125,16 +184,7 @@ namespace Tron.GameServer
                 }
             }
 
-            Velocity = _velocities[Math.Round(Rotation)];
-            
-            if (Velocity.x != 0)
-            {
-                Position.x += 1 * Velocity.x.Normalized();
-            }
-            else
-            {
-                Position.z += 1 * Velocity.z.Normalized();
-            }
+            Velocity = _velocities[Math.Round(Rotation)];           
         }
 
         public override void Update(GameTime gameTime)
@@ -147,6 +197,10 @@ namespace Tron.GameServer
 
         public override void Dispose()
         {
+            _map = null;
+            _gameConfiguration = null;
+            _velocities.Clear();
+            _velocities = null;
             base.Dispose();
         }
     }

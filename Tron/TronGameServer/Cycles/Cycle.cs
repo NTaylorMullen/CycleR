@@ -9,20 +9,20 @@ namespace Tron.GameServer
     {
         private PendingMovementManager _pendingMovementManager;
         private CycleDeathHandler _cycleDeathHandler;
-        private Map _map;
 
         public event CollisionEventHandler OnCollision;
         public event DeathEventHandler OnDeath;
         public event MoveEventHandler OnMove;
+        // Used via Move
+        public event EventHandler OnForcedPositionChange;
 
         public Cycle(long id, Vector3 startPosition, Vector3 startVelocity, double startRotation, int trailColor, Map map, GameConfiguration gameConfiguration)
             : base(id)
         {
-            MovementController = new CycleMovementController(startPosition, startVelocity, startRotation, gameConfiguration);
+            MovementController = new CycleMovementController(startPosition, startVelocity, startRotation, map, gameConfiguration);
             TrailColor = trailColor;
             _pendingMovementManager = new PendingMovementManager(this);
             _cycleDeathHandler = new CycleDeathHandler(this);
-            _map = map;
         }
 
         public CycleMovementController MovementController
@@ -37,74 +37,7 @@ namespace Tron.GameServer
             }
         }
 
-        public MapLocation HeadLocation { get; set; }
-        public int TrailColor { get; private set; }
-
-        protected List<MovementFlag> getValidMovements()
-        {
-            var validMovements = new List<MovementFlag>();
-            var rotation = Math.Round(MovementController.Rotation);
-            var locationCheck = HeadLocation.Clone();
-
-            if (rotation == 0) // Going up
-            {
-                locationCheck.Column--;
-                if (_map.Empty(locationCheck))
-                {
-                    validMovements.Add(MovementFlag.Left);
-                }
-
-                locationCheck.Column += 2;
-                if (_map.Empty(locationCheck))
-                {
-                    validMovements.Add(MovementFlag.Right);
-                }
-            }
-            else if (rotation == 2) // Going Left
-            {
-                locationCheck.Row++;
-                if (_map.Empty(locationCheck))
-                {
-                    validMovements.Add(MovementFlag.Left);
-                }
-
-                locationCheck.Row -= 2;
-                if (_map.Empty(locationCheck))
-                {
-                    validMovements.Add(MovementFlag.Right);
-                }
-            }
-            else if (rotation == 3) // Going Down
-            {
-                locationCheck.Column++;
-                if (_map.Empty(locationCheck))
-                {
-                    validMovements.Add(MovementFlag.Left);
-                }
-
-                locationCheck.Column -= 2;
-                if (_map.Empty(locationCheck))
-                {
-                    validMovements.Add(MovementFlag.Right);
-                }
-            }
-            else if (rotation == 5) // Going Right
-            {
-                locationCheck.Row--;
-                if (_map.Empty(locationCheck))
-                {
-                    validMovements.Add(MovementFlag.Left);
-                }
-
-                locationCheck.Row += 2;
-                if (_map.Empty(locationCheck))
-                {
-                    validMovements.Add(MovementFlag.Right);
-                }
-            }
-
-            return validMovements;
-        }
+        public int TrailColor { get; private set; }        
 
         public void Move(MovementFlag direction)
         {
@@ -120,12 +53,12 @@ namespace Tron.GameServer
             {
                 Colliding = false;
             }
-        }
 
-        public bool CanMove(MovementFlag direction)
-        {
-            return getValidMovements().Contains(direction);
-        }
+            if (OnForcedPositionChange != null)
+            {
+                OnForcedPositionChange(this, null);
+            }
+        }        
 
         public void Die(Collidable killedBy)
         {
@@ -154,7 +87,7 @@ namespace Tron.GameServer
 
         public void RegisterMove(MovementFlag direction)
         {
-            _pendingMovementManager.Add(new PendingMovement(HeadLocation, MovementController.Position, direction));
+            _pendingMovementManager.Add(new PendingMovement(MovementController.HeadLocation, MovementController.Position, direction));
         }
 
         public override void Update(GameTime gameTime)
@@ -170,8 +103,7 @@ namespace Tron.GameServer
             base.Dispose();
             _pendingMovementManager.Dispose();
             _cycleDeathHandler.Dispose();
-            _map = null;
-            HeadLocation = null;
+            MovementController.HeadLocation = null;
             OnCollision = null;
             OnDeath = null;
             OnMove = null;
