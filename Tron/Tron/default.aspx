@@ -46,6 +46,7 @@
             .Add("Client/Trails/Trail.js")
             .Add("Client/Trails/TrailManager.js")
             .Add("Client/Space/MapLocation.js")
+            .Add("Client/Space/MapUtilities.js")
             .Add("Client/Space/Map.js")            
             .Add("Client/Renderers/CoreRenderer.js")
             .Add("Client/Renderers/EnvironmentRenderer.js")
