@@ -24,36 +24,33 @@ var CycleMovementController = (function (_super) {
         CycleMovementController.Velocities[Math.round(Math.PI)] = new THREE.Vector3(0, 0, CycleMovementController.MAX_SPEED);
         CycleMovementController.Velocities[Math.round(Math.PI + CycleMovementController.HALF_PI)] = new THREE.Vector3(CycleMovementController.MAX_SPEED, 0, 0);
     };
-    CycleMovementController.prototype.stabilizeValue = function (position, velocity, wasZero) {
+    CycleMovementController.prototype.stabilizeValue = function (position, velocity) {
         if(velocity.normalized() * position.normalized() > 0) {
             position -= position % Map.FLOOR_TILE_SIZE.Width;
-            if(wasZero) {
-                position -= Map.FLOOR_TILE_SIZE.Width * velocity.normalized();
-            }
         } else {
             if(position != 0) {
                 position -= position % Map.FLOOR_TILE_SIZE.Width - Map.FLOOR_TILE_SIZE.Width * position.normalized();
-            }
-            if(wasZero) {
-                position -= Map.FLOOR_TILE_SIZE.Width * velocity.normalized();
             }
         }
         return position;
     };
     CycleMovementController.prototype.positionOnLine = function () {
-        var currentVelocity, currentPosition = this._context.position.clone(), wasZero = false;
+        this._context.position = this.getLinePosition(this._context.position);
+    };
+    CycleMovementController.prototype.getLinePosition = function (currentPosition) {
+        var currentVelocity;
+        currentPosition = currentPosition.clone();
         if(this.Velocity.isZero()) {
-            wasZero = true;
-            currentVelocity = CycleMovementController.Velocities[Math.round(this._context.rotation.y)];
+            return Map.Utilities.ToPosition(this.HeadLocation, currentPosition.y);
         } else {
             currentVelocity = this.Velocity;
         }
         if(currentVelocity.z != 0) {
-            currentPosition.z = this.stabilizeValue(currentPosition.z, currentVelocity.z, wasZero);
+            currentPosition.z = this.stabilizeValue(currentPosition.z, currentVelocity.z);
         } else if(currentVelocity.x != 0) {
-            currentPosition.x = this.stabilizeValue(currentPosition.x, currentVelocity.x, wasZero);
+            currentPosition.x = this.stabilizeValue(currentPosition.x, currentVelocity.x);
         }
-        this._context.position = currentPosition;
+        return currentPosition;
     };
     CycleMovementController.prototype.Move = function (direction) {
         this.positionOnLine();

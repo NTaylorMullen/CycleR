@@ -3,8 +3,10 @@ var Collidable = (function () {
         this.Disposed = false;
         this.ID = id;
         this.Alive = true;
+        this.Colliding = false;
     }
-    Collidable.prototype.HandleCollisionWith = function (obj) {
+    Collidable.prototype.HandleCollision = function (payload) {
+        this.Colliding = true;
     };
     return Collidable;
 })();

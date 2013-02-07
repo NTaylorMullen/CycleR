@@ -18,60 +18,47 @@ var Map = (function (_super) {
                 this._map[i][j] = 0;
             }
         }
+        Map.Utilities = new MapUtilities(Map.MAP_SIZE, Map.FLOOR_TILE_SIZE);
     }
     Map.FLOOR_TILE_SIZE = new Size(100);
     Map.MAP_SIZE = new Size(10000);
     Map.WALL_SIZE = new Size(Map.MAP_SIZE.Width, 2000);
-    Map.prototype.getCycleMapLocation = function (cycle) {
-        var mapLocation = cycle.Context.position.clone();
-        if(cycle.MovementController.Velocity.z != 0) {
-            mapLocation.z -= (mapLocation.z % Map.FLOOR_TILE_SIZE.Width) - Map.FLOOR_TILE_SIZE.Width * (cycle.MovementController.Velocity.z / Math.abs(cycle.MovementController.Velocity.z));
-        } else if(cycle.MovementController.Velocity.x != 0) {
-            mapLocation.x -= (mapLocation.x % Map.FLOOR_TILE_SIZE.Width) - Map.FLOOR_TILE_SIZE.Width * (cycle.MovementController.Velocity.x / Math.abs(cycle.MovementController.Velocity.x));
+    Map.prototype.cycleCollision = function (cycle) {
+        var collisionLocation = Map.Utilities.ToMapLocation(cycle.Context.position), rotation = Math.round(cycle.Context.rotation.y);
+        if(rotation === 0) {
+            collisionLocation.Row++;
+        } else if(rotation === 2) {
+            collisionLocation.Column++;
+        } else if(rotation === 3) {
+            collisionLocation.Row--;
+        } else if(rotation === 5) {
+            collisionLocation.Column++;
         }
-        var quadrant = new MapLocation(Math.abs((mapLocation.z + this._halfMapSize.Height) / Map.FLOOR_TILE_SIZE.Height), Math.abs((mapLocation.x + this._halfMapSize.Width) / Map.FLOOR_TILE_SIZE.Width));
-        return quadrant;
+        console.log("Collision occured! R: " + rotation + " Collision Location: ( " + collisionLocation.Row + ", " + collisionLocation.Column + " )");
+        cycle.MovementController.HeadLocation = collisionLocation;
     };
-    Map.prototype.updateMap = function () {
-        for(var id in this._cycles) {
-            var cycle = this._cycles[id];
-            if(cycle.Alive) {
-                var quadrant = this.getCycleMapLocation(cycle);
-                if(quadrant.Row < 0 || quadrant.Row >= this._dimensions.Height || quadrant.Column < 0 || quadrant.Column >= this._dimensions.Width) {
-                    cycle.HandleCollisionWith(null);
-                } else {
-                    var currentLocation = this._map[quadrant.Row][quadrant.Column];
-                    if(currentLocation == 0) {
-                        this._map[cycle.MovementController.HeadLocation.Row][cycle.MovementController.HeadLocation.Column] = cycle.ID;
-                        cycle.MovementController.HeadLocation = quadrant;
-                        this._map[quadrant.Row][quadrant.Column] = -cycle.ID;
-                    } else {
-                        if(currentLocation != -cycle.ID) {
-                            if(currentLocation < 0) {
-                                this._cycles[Math.abs(currentLocation)].HandleCollisionWith(cycle);
-                            }
-                            cycle.HandleCollisionWith(this._cycles[Math.abs(currentLocation)]);
-                        }
-                    }
-                }
-            }
-        }
-    };
-    Map.prototype.AddAll = function (cycles) {
+    Map.prototype.RegisterCycles = function (cycles) {
         for(var i = cycles.length - 1; i >= 0; i--) {
             this.Add(cycles[i]);
         }
     };
     Map.prototype.Add = function (cycle) {
-        cycle.MovementController.HeadLocation = this.getCycleMapLocation(cycle);
+        var _this = this;
+        cycle.MovementController.HeadLocation = Map.Utilities.ToMapLocation(cycle.Context.position);
         this._cycles[cycle.ID] = cycle;
+        $(cycle).on(Cycle.Events.OnCollision, function () {
+            _this.cycleCollision(cycle);
+        });
     };
     Map.prototype.Remove = function (cycleID) {
         delete this._cycles[cycleID];
     };
     Map.prototype.Update = function (gameTime) {
         for(var id in this._cycles) {
-            var cycle = this._cycles[id];
+            var cycle = this._cycles[id], expectedHeadLocation = Map.Utilities.ToMapLocation(cycle.Context.position);
+            if(!cycle.Colliding) {
+                cycle.MovementController.HeadLocation = expectedHeadLocation;
+            }
             this.AddAllToScene(cycle.TrailManager.PullPendingContexts());
         }
     };

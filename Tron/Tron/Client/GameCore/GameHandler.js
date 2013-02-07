@@ -14,7 +14,7 @@ var GameHandler = (function (_super) {
     }
     GameHandler.prototype.Initialize = function (cycles) {
         this._cycleManager.AddAll(cycles);
-        this._map.AddAll(cycles);
+        this._map.RegisterCycles(cycles);
         this._cycleController.AttachTo(this._cycleManager.Cycles[ConnectionManager.UserID]);
         var controller = this._camera.GetController();
         if(controller.AttachTo) {
@@ -23,8 +23,7 @@ var GameHandler = (function (_super) {
     };
     GameHandler.prototype.ServerCollisionPayload = function (payload) {
         var cycle = this._cycleManager.Cycles[payload.ID];
-        cycle.Context.position = payload.CollidedAt;
-        cycle.HandleCollisionWith(null);
+        cycle.HandleCollision(payload);
     };
     GameHandler.prototype.ServerMovementPayload = function (payload) {
         this._cycleManager.ServerMovementPayload(payload);
