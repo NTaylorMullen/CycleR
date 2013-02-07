@@ -260,6 +260,7 @@
     <Content Include="Client\Interfaces\Game\Controllers\Adapters\Adapter.d.js">
       <DependentUpon>Adapter.d.ts</DependentUpon>
     </Content>
+    <TypeScriptCompile Include="Client\Interfaces\Game\Cycles\CycleEvents.d.ts" />
     <Content Include="Client\Interfaces\Game\Game.d.ts" />
     <TypeScriptCompile Include="Client\Interfaces\Game\Loaders\ModelLoadRequest.d.ts" />
     <Content Include="Client\Interfaces\Game\Loaders\ModelLoadRequest.d.js">
@@ -469,6 +470,13 @@
     <Content Include="Client\Space\MapLocation.min.js">
       <DependentUpon>MapLocation.ts</DependentUpon>
     </Content>
+    <TypeScriptCompile Include="Client\Space\MapUtilities.ts" />
+    <Content Include="Client\Space\MapUtilities.js">
+      <DependentUpon>MapUtilities.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Space\MapUtilities.min.js">
+      <DependentUpon>MapUtilities.ts</DependentUpon>
+    </Content>
     <Content Include="Client\Trails\Trail.js">
       <DependentUpon>Trail.ts</DependentUpon>
     </Content>
@@ -556,6 +564,9 @@
     </Content>
     <Content Include="Extensions\Number.js.map">
       <DependentUpon>Number.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\Space\MapUtilities.js.map">
+      <DependentUpon>MapUtilities.ts</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />

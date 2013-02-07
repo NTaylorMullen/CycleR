@@ -9,5 +9,6 @@
 /// <reference path="PayloadManagement/Decompressed/DeathPayloadDecompressed.d.ts" />
 /// <reference path="PayloadManagement/Decompressed/CollisionPayloadDecompressed.d.ts" />
 /// <reference path="PayloadManagement/CompressionContracts.d.ts" />
+/// <reference path="Cycles/CycleEvents.d.ts" />
 
 declare var shortcut;

@@ -31,15 +31,10 @@ class CycleMovementController extends MovementController {
         CycleMovementController.Velocities[Math.round(Math.PI + CycleMovementController.HALF_PI)] = new THREE.Vector3(CycleMovementController.MAX_SPEED, 0, 0);
     }
 
-    private stabilizeValue(position: any, velocity: any, wasZero: bool): number {
+    private stabilizeValue(position: any, velocity: any): number {
         if (velocity.normalized() * position.normalized() > 0)
         {
             position -= position % Map.FLOOR_TILE_SIZE.Width;
-
-            if (wasZero)
-            {
-                position -= Map.FLOOR_TILE_SIZE.Width * velocity.normalized();
-            }
         }
         else
         {
@@ -47,26 +42,24 @@ class CycleMovementController extends MovementController {
             {
                 position -= position % Map.FLOOR_TILE_SIZE.Width - Map.FLOOR_TILE_SIZE.Width * position.normalized();
             }
-
-            if (wasZero)
-            {
-                position -= Map.FLOOR_TILE_SIZE.Width * velocity.normalized();
-            }
         }
 
         return position;
     }
 
     private positionOnLine(): void {
-        var currentVelocity: IVector3, 
-            currentPosition: IVector3 = this._context.position.clone(), 
-            wasZero: bool = false;
+        this._context.position = this.getLinePosition(this._context.position);
+    }
+
+    private getLinePosition(currentPosition: IVector3): IVector3 {
+        var currentVelocity: IVector3;
+
+        currentPosition = currentPosition.clone();
 
         // If our velocity was zero then deterine the velocity based on the current rotation (This happens when we've collided)
         if (this.Velocity.isZero())
         {
-            wasZero = true;
-            currentVelocity = CycleMovementController.Velocities[Math.round(this._context.rotation.y)];
+            return Map.Utilities.ToPosition(this.HeadLocation, currentPosition.y);
         }
         else
         {
@@ -75,14 +68,14 @@ class CycleMovementController extends MovementController {
 
         if (currentVelocity.z != 0)
         {
-            currentPosition.z = this.stabilizeValue(currentPosition.z, currentVelocity.z, wasZero);
+            currentPosition.z = this.stabilizeValue(currentPosition.z, currentVelocity.z);
         }
         else if (currentVelocity.x != 0)
         {
-            currentPosition.x = this.stabilizeValue(currentPosition.x, currentVelocity.x, wasZero);
+            currentPosition.x = this.stabilizeValue(currentPosition.x, currentVelocity.x);
         }
 
-        this._context.position = currentPosition;
+        return currentPosition;
     }
 
     public Move(direction: string): void {

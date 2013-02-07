@@ -1,0 +1,3 @@
+interface ICycleEvents {
+    OnCollision: string;
+}

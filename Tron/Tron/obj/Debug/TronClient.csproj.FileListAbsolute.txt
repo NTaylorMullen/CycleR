@@ -1,3 +1,0 @@
-C:\Users\N.Taylor\Documents\GitHub\Tron\Tron\Tron\obj\Debug\TronClient.csprojResolveAssemblyReference.cache
-C:\Users\N.Taylor\Documents\GitHub\Tron\Tron\Tron\obj\Debug\Tron.dll
-C:\Users\N.Taylor\Documents\GitHub\Tron\Tron\Tron\obj\Debug\Tron.pdb
