@@ -20,7 +20,7 @@ var Map = (function (_super) {
         }
         Map.Utilities = new MapUtilities(Map.MAP_SIZE, Map.FLOOR_TILE_SIZE);
     }
-    Map.FLOOR_TILE_SIZE = new Size(100);
+    Map.FLOOR_TILE_SIZE = new Size(50);
     Map.MAP_SIZE = new Size(10000);
     Map.WALL_SIZE = new Size(Map.MAP_SIZE.Width, 2000);
     Map.prototype.cycleCollision = function (cycle) {

@@ -4,7 +4,7 @@
 /// <reference path="MapUtilities.ts" />
 
 class Map extends SceneObjectCreator {
-    static FLOOR_TILE_SIZE: Size = new Size(100);
+    static FLOOR_TILE_SIZE: Size = new Size(50);
     static MAP_SIZE: Size = new Size(10000);
     static WALL_SIZE: Size = new Size(Map.MAP_SIZE.Width, 2000);
 
