@@ -66,7 +66,51 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="build.ps1" />
     <Content Include="index.html" />
+    <Content Include="Resources\AttachedCameraController.js" />
+    <Content Include="Resources\Camera.js" />
+    <Content Include="Resources\CameraController.js" />
+    <Content Include="Resources\Collidable.js" />
+    <Content Include="Resources\ConnectionManager.js" />
+    <Content Include="Resources\CoreRenderer.js" />
+    <Content Include="Resources\CreateGame.js" />
+    <Content Include="Resources\Cycle.js" />
+    <Content Include="Resources\CycleController.js" />
+    <Content Include="Resources\CycleManager.js" />
+    <Content Include="Resources\CycleMovementController.js" />
+    <Content Include="Resources\EnvironmentRenderer.js" />
+    <Content Include="Resources\FindGame.js" />
+    <Content Include="Resources\FreeCameraController.js" />
+    <Content Include="Resources\Game.js" />
+    <Content Include="Resources\GameHandler.js" />
+    <Content Include="Resources\GameLoop.js" />
+    <Content Include="Resources\GameRenderer.js" />
+    <Content Include="Resources\GameScreen.js" />
+    <Content Include="Resources\GameScreenHandler.js" />
+    <Content Include="Resources\GameTime.js" />
+    <Content Include="Resources\KeyboardAdapter.js" />
+    <Content Include="Resources\Loading.js" />
+    <Content Include="Resources\Main.js" />
+    <Content Include="Resources\MainGame.js" />
+    <Content Include="Resources\MainMenu.js" />
+    <Content Include="Resources\Map.js" />
+    <Content Include="Resources\MapLocation.js" />
+    <Content Include="Resources\MapRenderer.js" />
+    <Content Include="Resources\MapUtilities.js" />
+    <Content Include="Resources\ModelLibrary.js" />
+    <Content Include="Resources\ModelLoader.js" />
+    <Content Include="Resources\MovementController.js" />
+    <Content Include="Resources\Number.js" />
+    <Content Include="Resources\Options.js" />
+    <Content Include="Resources\PayloadConverter.js" />
+    <Content Include="Resources\PayloadDecompressor.js" />
+    <Content Include="Resources\Preloader.js" />
+    <Content Include="Resources\QuickMatch.js" />
+    <Content Include="Resources\SceneObjectCreator.js" />
+    <Content Include="Resources\Size.js" />
+    <Content Include="Resources\Trail.js" />
+    <Content Include="Resources\TrailManager.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\qunit.js" />
     <Content Include="Scripts\shortcut.js" />
@@ -154,6 +198,11 @@
       <Output PropertyName="JSTests" TaskParameter="ScriptTagsOutput" />
     </BuildScriptTags>
     <FileUpdate Files="index.html" Regex="&lt;!-- ##JS## --&gt;((.|\r|\n)*?)&lt;!-- ##JS## --&gt;" ReplacementText="&lt;!-- ##JS## --&gt;$(JSTests)&lt;!-- ##JS## --&gt;" Condition=" '$(OS)' == 'Windows_NT'" />
+    <Exec Command="powershell -NoProfile -ExecutionPolicy Bypass .\build.ps1" WorkingDirectory="$(ProjectDir)" Condition=" '$(OS)' == 'Windows_NT'" />
   </Target>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>
