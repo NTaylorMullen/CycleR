@@ -14,21 +14,22 @@ namespace Tron.GameServer.Tests
         private static GameConfiguration gameConfig = new GameConfiguration(new CycleConfiguration(), new MapConfiguration());
 
         [Theory]
-        [InlineData(1, 20, 0, 1, 1, 0, Math.PI)]
-        [InlineData(1, 20, 0, 0, 1, -50, Math.PI)]
-        [InlineData(1, -20, 0, -1, 1, 0, 0)]
-        [InlineData(1, -20, 0, 0, 1, 50, 0)]
-        [InlineData(20, 1, 1, 0, 0, 1, Math.PI * 1.5)]
-        [InlineData(20, 1, 0, 0, -50, 1, Math.PI * 1.5)]
-        [InlineData(20, 1, -1, 0, 50, 1, Math.PI * .5)]
-        [InlineData(20, 1, 0, 0, 100, 1, Math.PI * .5)]
-        public void GetLinePositionRepositionsCorrectly(double positionX, double positionZ, double velocityX, double velocityZ, double expectedX, double expectedZ, double rotation)
+        [InlineData(1, 20, 0, 1, 0, 0, 1, 0, Math.PI)]
+        [InlineData(1, 20, 0, 0, 100, 100, 0, 0, Math.PI)]
+        [InlineData(1, -20, 0, -1, 0, 0, 1, 0, 0)]
+        [InlineData(1, -20, 0, 0, 100, 100, 0, 0, 0)]
+        [InlineData(20, 1, 1, 0, 0, 0, 0, 1, Math.PI * 1.5)]
+        [InlineData(20, 1, 0, 0, 100, 100, 0, 0, Math.PI * 1.5)]
+        [InlineData(20, 1, -1, 0, 0, 0, 50, 1, Math.PI * .5)]
+        [InlineData(20, 1, 0, 0, 100, 100, 0, 0, Math.PI * .5)]
+        public void GetLinePositionRepositionsCorrectly(double positionX, double positionZ, double velocityX, double velocityZ, int headRow, int headColumn, double expectedX, double expectedZ, double rotation)
         {
             var position = new Vector3(positionX, gameConfig.CycleConfig.Y_OFFSET, positionZ);
             var map = new Map(gameConfig.MapConfig);
             var velocity = new Vector3(velocityX, 0, velocityZ);
             var expectedPosition = new Vector3(expectedX, gameConfig.CycleConfig.Y_OFFSET, expectedZ);
             var movementController = new CycleMovementController(position, velocity, rotation, map, gameConfig);
+            movementController.HeadLocation = new MapLocation(headRow, headColumn);
 
             Assert.True(movementController.GetLinePosition(movementController.Position).SameAs(expectedPosition));
         }
