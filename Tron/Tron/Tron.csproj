@@ -574,6 +574,7 @@
     <Content Include="Scripts\jquery.signalR-1.0.0.js" />
     <Content Include="Scripts\shortcut.js" />
     <Content Include="Scripts\three.detector.js" />
+    <Content Include="Scripts\three.extensions.js" />
     <Content Include="Scripts\three.min.js" />
     <Content Include="Scripts\three.trackballcontrols.js" />
     <Content Include="Scripts\tween.js" />

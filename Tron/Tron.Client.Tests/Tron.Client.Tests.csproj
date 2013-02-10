@@ -115,6 +115,7 @@
     <Content Include="Scripts\qunit.js" />
     <Content Include="Scripts\shortcut.js" />
     <Content Include="Scripts\three.detector.js" />
+    <Content Include="Scripts\three.extensions.js" />
     <Content Include="Scripts\three.fpscontrols.js" />
     <Content Include="Scripts\three.min.js" />
     <Content Include="Scripts\three.trackballcontrols.js" />

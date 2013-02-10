@@ -26,6 +26,7 @@
             .Add("Scripts/three.trackballcontrols.js")
             .Add("Scripts/three.fpscontrols.js")
             .Add("Scripts/three.windowresize.js")
+            .Add("Scripts/three.extensions.js")
             .Add("Scripts/tween.js")
             .Add("Scripts/jquery.signalR-1.0.0.js")
             .Add("Scripts/shortcut.js")
