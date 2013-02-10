@@ -12,10 +12,12 @@ class CycleMovementController extends MovementController {
     static Velocities: IVector3[];
 
     public HeadLocation: MapLocation;
+    public Context: IMesh;
 
     constructor(private _context: IMesh, startVelocity: IVector3) {
         super(_context, startVelocity, CycleMovementController.MAX_SPEED);
 
+        this.Context = this._context;
         this._context.position.y = 50;//CycleMovementController.Y_OFFSET;
 
         if (!CycleMovementController.Velocities) {
@@ -48,10 +50,10 @@ class CycleMovementController extends MovementController {
     }
 
     private positionOnLine(): void {
-        this._context.position = this.getLinePosition(this._context.position);
+        this._context.position = this.GetLinePosition(this._context.position);
     }
 
-    private getLinePosition(currentPosition: IVector3): IVector3 {
+    public GetLinePosition(currentPosition: IVector3): IVector3 {
         var currentVelocity: IVector3;
 
         currentPosition = currentPosition.clone();

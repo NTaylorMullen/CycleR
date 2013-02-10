@@ -8,6 +8,7 @@ var CycleMovementController = (function (_super) {
     function CycleMovementController(_context, startVelocity) {
         _super.call(this, _context, startVelocity, CycleMovementController.MAX_SPEED);
         this._context = _context;
+        this.Context = this._context;
         this._context.position.y = 50;
         if(!CycleMovementController.Velocities) {
             this.calculateVelocities();
@@ -35,9 +36,9 @@ var CycleMovementController = (function (_super) {
         return position;
     };
     CycleMovementController.prototype.positionOnLine = function () {
-        this._context.position = this.getLinePosition(this._context.position);
+        this._context.position = this.GetLinePosition(this._context.position);
     };
-    CycleMovementController.prototype.getLinePosition = function (currentPosition) {
+    CycleMovementController.prototype.GetLinePosition = function (currentPosition) {
         var currentVelocity;
         currentPosition = currentPosition.clone();
         if(this.Velocity.isZero()) {
