@@ -35,7 +35,7 @@
     <script src='<%= ResolveClientUrl("~/signalr/hubs") %>' type="text/javascript"></script>
 
     <%= Bundle.JavaScript()
-            .Add("Extensions/Number.js")
+            .Add("Client/Extensions/Number.js")
             .Add("Client/Utilities/Size.js")
             .Add("Client/Utilities/SceneObjectCreator.js")            
             .Add("Client/PayloadManagement/PayloadDecompressor.js")

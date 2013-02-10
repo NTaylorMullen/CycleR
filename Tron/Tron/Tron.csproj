@@ -527,12 +527,12 @@
     </Content>
     <Content Include="Client\Cameras\FreeCameraController.ts" />
     <Content Include="default.aspx" />
-    <TypeScriptCompile Include="Extensions\Number.ts" />
-    <TypeScriptCompile Include="Extensions\Number.d.ts" />
-    <Content Include="Extensions\Number.js">
+    <TypeScriptCompile Include="Client\Extensions\Number.ts" />
+    <TypeScriptCompile Include="Client\Extensions\Number.d.ts" />
+    <Content Include="Client\Extensions\Number.js">
       <DependentUpon>Number.ts</DependentUpon>
     </Content>
-    <Content Include="Extensions\Number.min.js">
+    <Content Include="Client\Extensions\Number.min.js">
       <DependentUpon>Number.ts</DependentUpon>
     </Content>
     <Content Include="Models\Cycles\cycle.js" />
@@ -562,7 +562,7 @@
     <Content Include="Client\Utilities\MapLocation.js.map">
       <DependentUpon>MapLocation.ts</DependentUpon>
     </Content>
-    <Content Include="Extensions\Number.js.map">
+    <Content Include="Client\Extensions\Number.js.map">
       <DependentUpon>Number.ts</DependentUpon>
     </Content>
     <Content Include="Client\Space\MapUtilities.js.map">
