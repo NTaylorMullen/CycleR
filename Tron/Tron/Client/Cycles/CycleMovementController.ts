@@ -1,6 +1,6 @@
 /// <reference path="../Collidables/MovementControllers/MovementController.ts" />
 /// <reference path="../Space/Map.ts" />
-/// <reference path="../../Extensions/Number.ts" />
+/// <reference path="../Extensions/Number.ts" />
 
 class CycleMovementController extends MovementController {
     static MAX_SPEED: number = 1000;
