@@ -27,6 +27,7 @@ var CycleManager = (function (_super) {
     CycleManager.prototype.ServerMovementPayload = function (payload) {
         var cycle = this.Cycles[payload.ID];
         cycle.Context.position = payload.Position;
+        cycle.MovementController.HeadLocation = Map.Utilities.ToMapLocation(cycle.Context.position);
         cycle.Move(payload.Direction);
     };
     CycleManager.prototype.Update = function (gameTime) {

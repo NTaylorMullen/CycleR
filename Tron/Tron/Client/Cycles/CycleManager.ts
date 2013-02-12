@@ -33,6 +33,7 @@ class CycleManager extends SceneObjectCreator {
     public ServerMovementPayload(payload: IMovementPayloadDecompressed): void {
         var cycle = this.Cycles[payload.ID];
         cycle.Context.position = payload.Position;
+        cycle.MovementController.HeadLocation = Map.Utilities.ToMapLocation(cycle.Context.position);
         cycle.Move(payload.Direction);
     }
 
