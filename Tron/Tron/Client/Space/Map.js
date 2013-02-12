@@ -24,7 +24,7 @@ var Map = (function (_super) {
     Map.MAP_SIZE = new Size(10000);
     Map.WALL_SIZE = new Size(Map.MAP_SIZE.Width, 2000);
     Map.prototype.cycleCollision = function (cycle) {
-        var collisionLocation = Map.Utilities.ToMapLocation(cycle.Context.position), rotation = Math.round(cycle.Context.rotation.y);
+        var collisionLocation = Map.Utilities.ToMapLocationFromController(cycle.MovementController), rotation = Math.round(cycle.Context.rotation.y);
         if(rotation === 0) {
             collisionLocation.Row++;
         } else if(rotation === 2) {
@@ -44,7 +44,7 @@ var Map = (function (_super) {
     };
     Map.prototype.Add = function (cycle) {
         var _this = this;
-        cycle.MovementController.HeadLocation = Map.Utilities.ToMapLocation(cycle.Context.position);
+        cycle.MovementController.HeadLocation = Map.Utilities.ToMapLocationFromController(cycle.MovementController);
         this._cycles[cycle.ID] = cycle;
         $(cycle).on(Cycle.Events.OnCollision, function () {
             _this.cycleCollision(cycle);
@@ -55,7 +55,7 @@ var Map = (function (_super) {
     };
     Map.prototype.Update = function (gameTime) {
         for(var id in this._cycles) {
-            var cycle = this._cycles[id], expectedHeadLocation = Map.Utilities.ToMapLocation(cycle.Context.position);
+            var cycle = this._cycles[id], expectedHeadLocation = Map.Utilities.ToMapLocationFromController(cycle.MovementController);
             if(!cycle.Colliding) {
                 cycle.MovementController.HeadLocation = expectedHeadLocation;
             }

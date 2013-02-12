@@ -32,7 +32,7 @@ class Map extends SceneObjectCreator {
     }
 
     private cycleCollision(cycle: Cycle): void {
-        var collisionLocation = Map.Utilities.ToMapLocation(cycle.Context.position),
+        var collisionLocation = Map.Utilities.ToMapLocationFromController(cycle.MovementController),
             rotation = Math.round(cycle.Context.rotation.y);
 
         // Update head location to be 1 behind the collisionLocation;
@@ -64,7 +64,7 @@ class Map extends SceneObjectCreator {
     }
 
     public Add(cycle: Cycle): void {
-        cycle.MovementController.HeadLocation = Map.Utilities.ToMapLocation(cycle.Context.position);
+        cycle.MovementController.HeadLocation = Map.Utilities.ToMapLocationFromController(cycle.MovementController);
         this._cycles[cycle.ID] = cycle;
         $(cycle).on(Cycle.Events.OnCollision, () => {
             this.cycleCollision(cycle);
@@ -78,7 +78,7 @@ class Map extends SceneObjectCreator {
     public Update(gameTime: GameTime): void {
         for (var id in this._cycles) {
             var cycle: Cycle = this._cycles[id],
-                expectedHeadLocation = Map.Utilities.ToMapLocation(cycle.Context.position);
+                expectedHeadLocation = Map.Utilities.ToMapLocationFromController(cycle.MovementController);
 
             if (!cycle.Colliding) {
                 cycle.MovementController.HeadLocation = expectedHeadLocation;

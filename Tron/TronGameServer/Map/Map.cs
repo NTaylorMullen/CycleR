@@ -31,7 +31,7 @@ namespace Tron.GameServer
         private void updateHeadLocation(object sender, EventArgs e)
         {
             var cycle = sender as Cycle;
-            cycle.MovementController.HeadLocation = Utilities.ToMapLocation(cycle.MovementController.Position);
+            cycle.MovementController.HeadLocation = Utilities.ToMapLocation(cycle.MovementController);
         }
 
         public void Clear()
@@ -54,12 +54,12 @@ namespace Tron.GameServer
 
         private void onCollision(object sender, CollisionEventArgs e)
         {
-            Debug.WriteLine("Collision at " + Utilities.ToMapLocation((sender as Cycle).MovementController.Position));
+            Debug.WriteLine("Collision at " + Utilities.ToMapLocation((sender as Cycle).MovementController));
         }
 
         private void updateMoveLocation(object sender, MoveEventArgs e)
         {
-            Debug.WriteLine("MOVE RECORDED!");
+            Debug.WriteLine("MOVE RECORDED AT " + (sender as Cycle).MovementController.Position);
         }
 
         public bool Empty(MapLocation location)
@@ -74,20 +74,20 @@ namespace Tron.GameServer
                 // If the cycle is Colliding then the position hasn't changed and we've already dealt with it
                 if (!cycle.Colliding)
                 {
-                    Debug.WriteLine("Cycle at: " + cycle.MovementController.HeadLocation + " is requesting to be at " + Utilities.ToMapLocation(cycle.MovementController.RequestedPosition));
+                    Debug.WriteLine("Cycle at: " + cycle.MovementController.HeadLocation + " is requesting to be at " + Utilities.ToMapLocation(cycle.MovementController.RequestedPosition, cycle.MovementController.Velocity) + " | " + cycle.MovementController.Position + " => " + cycle.MovementController.RequestedPosition);
                     // Validate the requested position on the cycle, updates the cycles position
                     _requestValidator.ValidateRequestedPosition(cycle);
                     _collisionChecker.ValidateCollision(cycle);
 
-                    Debug.WriteLine("Cycle now at: " + Utilities.ToMapLocation(cycle.MovementController.Position));
+                    Debug.WriteLine("Cycle now at: " + Utilities.ToMapLocation(cycle.MovementController) + " | " + cycle.MovementController.Position);
 
-                    var newLocation = Utilities.ToMapLocation(cycle.MovementController.Position);
+                    var newLocation = Utilities.ToMapLocation(cycle.MovementController);
 
                     // If our current location is colliding then we need our MovementController.HeadLocation to be just before the
                     // collision location mark.
                     if (cycle.Colliding)
                     {
-                        Debug.Write("Cycle was colliding at: " + Utilities.ToMapLocation(cycle.MovementController.Position) + " and new location is " + newLocation);
+                        Debug.Write("Cycle was colliding at: " + Utilities.ToMapLocation(cycle.MovementController) + " and new location is " + newLocation);
                         var difference = cycle.MovementController.HeadLocation - newLocation;
                         var incrementor = difference.Normalized().Abs();
 
@@ -103,9 +103,11 @@ namespace Tron.GameServer
                         newLocation -= incrementor;
                     }
 
+                    Debug.Write("Checking if cycles head location " + cycle.MovementController.HeadLocation + " differs from " + newLocation + " = ");
                     // We only need to perform markings if we've moved from our location
                     if (!cycle.MovementController.HeadLocation.SameAs(newLocation))
                     {
+                        Debug.WriteLine("TRUE");
                         var distance = cycle.MovementController.HeadLocation - newLocation;
 
                         // used by mark location to 
@@ -114,7 +116,7 @@ namespace Tron.GameServer
                         if (cycle.Colliding)
                         {
                             // If we're 1 away from the head location while colliding, no need to mark anything, just noop
-                            if (distance.NonZeroValue() ==  1)
+                            if (distance.NonZeroValue() == 1)
                             {
                                 continue;
                             }
@@ -130,6 +132,10 @@ namespace Tron.GameServer
                         this[cycle.MovementController.HeadLocation] = cycle.ID;
                         this[newLocation] = -cycle.ID;
                         cycle.MovementController.HeadLocation = newLocation;
+                    }
+                    else
+                    {
+                        Debug.WriteLine("FALSE");
                     }
                 }
             }

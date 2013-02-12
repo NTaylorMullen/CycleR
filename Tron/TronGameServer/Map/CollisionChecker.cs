@@ -19,7 +19,7 @@ namespace Tron.GameServer
 
         public void ValidateCollision(Cycle cycle)
         {
-            var cycleLocation = _utilities.ToMapLocation(cycle.MovementController.Position);
+            var cycleLocation = _utilities.ToMapLocation(cycle.MovementController);
             
             // Check if we're out of bounds
             if (_utilities.OutOfBounds(cycleLocation))
