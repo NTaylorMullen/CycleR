@@ -81,7 +81,7 @@ class CycleMovementController extends MovementController {
     }
 
     public Move(direction: string): void {
-        this.positionOnLine();
+        //this.positionOnLine();
 
         if (direction === "Left") {
             this._context.rotation.y = (this._context.rotation.y + CycleMovementController.HALF_PI) % CycleMovementController.TWO_PI;

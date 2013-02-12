@@ -54,7 +54,6 @@ var CycleMovementController = (function (_super) {
         return currentPosition;
     };
     CycleMovementController.prototype.Move = function (direction) {
-        this.positionOnLine();
         if(direction === "Left") {
             this._context.rotation.y = (this._context.rotation.y + CycleMovementController.HALF_PI) % CycleMovementController.TWO_PI;
             if(Math.round(this._context.rotation.y) == 6) {

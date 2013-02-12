@@ -40,14 +40,14 @@ namespace Tron.GameServer
         public int TrailColor { get; private set; }        
 
         public void Move(MovementFlag direction)
-        {
+        {           
+            MovementController.Move(direction);
+
             // This must be before the Move takes place so that the same logic can occur on the client
             if (OnMove != null)
             {
                 OnMove(this, new MoveEventArgs(direction));
             }
-
-            MovementController.Move(direction);
 
             if (!MovementController.Velocity.IsZero())
             {
