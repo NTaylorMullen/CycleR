@@ -28,5 +28,6 @@ interface IVector3 {
     getScaleFromMatrix(m: any): IVector3;
     equals(v: IVector3): IVector3;
     isZero(): bool;
+    singleValue(): number;
     clone(): IVector3;
 }
