@@ -5,8 +5,20 @@ var MapUtilities = (function () {
         this._halfMapSize = _mapSize.Half();
         this._dimensions = new Size(this._mapSize.Width / this._floorTileSize.Width, this._mapSize.Height / this._floorTileSize.Height);
     }
-    MapUtilities.prototype.ToMapLocation = function (position) {
-        return new MapLocation(~~((position.z + this._halfMapSize.Height) / this._floorTileSize.Height), ~~((position.x + this._halfMapSize.Width) / this._floorTileSize.Width));
+    MapUtilities.prototype.ToMapLocationFromController = function (cycleMovementController) {
+        var value = cycleMovementController.Velocity.singleValue();
+        var positiveVelocity = true;
+        if(value < 0) {
+            positiveVelocity = false;
+        }
+        return this.ToMapLocation(cycleMovementController.Context.position, positiveVelocity);
+    };
+    MapUtilities.prototype.ToMapLocation = function (position, positiveVelocity) {
+        if(positiveVelocity) {
+            return new MapLocation(Math.floor((position.z + this._halfMapSize.Height) / this._floorTileSize.Height), Math.floor((position.x + this._halfMapSize.Width) / this._floorTileSize.Width));
+        } else {
+            return new MapLocation(Math.ceil((position.z + this._halfMapSize.Height) / this._floorTileSize.Height), Math.ceil((position.x + this._halfMapSize.Width) / this._floorTileSize.Width));
+        }
     };
     MapUtilities.prototype.ToPosition = function (location, y) {
         return new THREE.Vector3(location.Column * this._floorTileSize.Width - this._halfMapSize.Width, y, location.Row * this._floorTileSize.Height - this._halfMapSize.Height);

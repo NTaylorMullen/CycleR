@@ -22,9 +22,35 @@ namespace Tron.GameServer
             _dimensions = new Size(_mapSize.Width / _floorTileSize.Width, _mapSize.Height / _floorTileSize.Height);
         }
 
-        public MapLocation ToMapLocation(Vector3 position)
+        public MapLocation ToMapLocation(CycleMovementController cycleController)
         {
-            return new MapLocation((position.z + _halfMapSize.Height) / _floorTileSize.Height, (position.x + _halfMapSize.Width) / _floorTileSize.Width);
+            return ToMapLocation(cycleController.Position, cycleController.Velocity);
+        }
+
+        public MapLocation ToMapLocation(Vector3 position, Vector3 velocity)
+        {
+            var value = velocity.SingleValue();
+            var positiveVelocity = true;
+
+            if(value < 0)
+            {
+                positiveVelocity = false;
+            }
+            // if value is 0 we just assume positvie velocity because there is no movement going on
+
+            return ToMapLocation(position, positiveVelocity);
+        }
+
+        public MapLocation ToMapLocation(Vector3 position, bool positiveVelocity = true)
+        {
+            if (positiveVelocity)
+            {
+                return new MapLocation(Math.Floor((position.z + _halfMapSize.Height) / _floorTileSize.Height), Math.Floor((position.x + _halfMapSize.Width) / _floorTileSize.Width));
+            }
+            else
+            {
+                return new MapLocation(Math.Ceiling((position.z + _halfMapSize.Height) / _floorTileSize.Height), Math.Ceiling((position.x + _halfMapSize.Width) / _floorTileSize.Width));
+            }
         }
 
         public Vector3 ToPosition(MapLocation position, double y)

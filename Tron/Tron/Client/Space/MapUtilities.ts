@@ -1,5 +1,6 @@
 /// <reference path="../Interfaces/ThreeJS/Three.d.ts" />
 /// <reference path="../Utilities/Size.ts" />
+/// <reference path="../Cycles/CycleMovementController.ts" />
 /// <reference path="MapLocation.ts" />
 
 class MapUtilities {
@@ -11,8 +12,25 @@ class MapUtilities {
         this._dimensions = new Size(this._mapSize.Width / this._floorTileSize.Width, this._mapSize.Height / this._floorTileSize.Height);
     }
 
-    public ToMapLocation(position: IVector3): MapLocation {
-        return new MapLocation(~~((position.z + this._halfMapSize.Height) / this._floorTileSize.Height), ~~((position.x + this._halfMapSize.Width) / this._floorTileSize.Width));
+    public ToMapLocationFromController(cycleMovementController: CycleMovementController): MapLocation {
+        var value = cycleMovementController.Velocity.singleValue();
+        var positiveVelocity = true;
+
+        if (value < 0) {
+            positiveVelocity = false;
+        }
+        // if value is 0 we just assume positvie velocity because there is no movement going on
+
+        return this.ToMapLocation(cycleMovementController.Context.position, positiveVelocity);
+    }
+
+    public ToMapLocation(position: IVector3, positiveVelocity: bool): MapLocation {
+        if (positiveVelocity) {
+            return new MapLocation(Math.floor((position.z + this._halfMapSize.Height) / this._floorTileSize.Height), Math.floor((position.x + this._halfMapSize.Width) / this._floorTileSize.Width));
+        }
+        else {
+            return new MapLocation(Math.ceil((position.z + this._halfMapSize.Height) / this._floorTileSize.Height), Math.ceil((position.x + this._halfMapSize.Width) / this._floorTileSize.Width));
+        }
     }
 
     public ToPosition(location: MapLocation, y: number): IVector3 {
