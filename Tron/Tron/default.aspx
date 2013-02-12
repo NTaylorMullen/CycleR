@@ -37,6 +37,7 @@
 
     <%= Bundle.JavaScript()
             .Add("Client/Extensions/Number.js")
+            .Add("Client/Extensions/Vector3.js")
             .Add("Client/Utilities/Size.js")
             .Add("Client/Utilities/SceneObjectCreator.js")            
             .Add("Client/PayloadManagement/PayloadDecompressor.js")
