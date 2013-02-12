@@ -14,7 +14,7 @@ namespace Tron.GameServer
         {
             _gameTime = new GameTime();
             _matchManager = new MatchManager();
-            _updateLoop = new HighFrequencyTimer(1000 / GlobalConfiguration.UPDATE_INTERVAL, id => Update(id));
+            _updateLoop = new HighFrequencyTimer(GlobalConfiguration.UPDATE_INTERVAL, id => Update(id));
             _updateLoop.Start();
         }
 

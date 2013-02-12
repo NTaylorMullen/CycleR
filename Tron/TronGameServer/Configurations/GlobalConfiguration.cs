@@ -8,6 +8,7 @@ namespace Tron.GameServer
 {
     public class GlobalConfiguration
     {
-        public static int UPDATE_INTERVAL = 100;
+        // 40 updates per second
+        public static int UPDATE_INTERVAL = 40;
     }
 }
