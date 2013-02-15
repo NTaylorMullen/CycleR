@@ -84,7 +84,7 @@ namespace Tron.GameServer.Tests
 
             cycle.MovementController.RequestedPosition = newPosition;
             cycle.MovementController.HeadLocation = map.Utilities.ToMapLocation(cycle.MovementController.Position);
-            map[map.Utilities.ToMapLocation(startPosition)] = -cycle.ID;
+            map[map.Utilities.ToMapLocation(cycle.MovementController)] = -cycle.ID;
             map[map.Utilities.ToMapLocation(collision)] = 5;
             requestValidator.ValidateRequestedPosition(cycle);
 
