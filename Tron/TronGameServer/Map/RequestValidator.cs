@@ -63,15 +63,15 @@ namespace Tron.GameServer
                     incrementor *= -1;
                 }
 
-                var incrementorSquared = incrementor * incrementor;
+                var incrementorAbs = incrementor.Abs();
                 // We set i = the headlocation + incrementor, the headLocation * incrementor^2 is to ensure that either the row or column is 0'd out
-                int start = (headLocation * incrementorSquared + incrementor).NonZeroValue(); // Start one ahead of head location                
-                int end = (newLocation * incrementorSquared).NonZeroValue(); // End at new location
+                int start = (headLocation * incrementorAbs + incrementor).NonZeroValue(); // Start one ahead of head location                
+                int end = (newLocation * incrementorAbs).NonZeroValue(); // End at new location
                 int singleIncrementor = incrementor.NonZeroValue(); // Convert incrementer to single value
                 var startLocation = headLocation + incrementor;
                 int totalIncrements = 0;
 
-                for (int i = start; i <= end; i += singleIncrementor)
+                for (int i = start; i != end; i += singleIncrementor)
                 {
                     // Add how far we are along to the headlocation and use that as the checking point
                     var checkLocation = startLocation + incrementor * totalIncrements;
