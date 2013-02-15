@@ -53,6 +53,7 @@
     <Compile Include="Map\CollisionCheckerFacts.cs" />
     <Compile Include="Cycles\CycleMovementFacts.cs" />
     <Compile Include="Map\MapMarkerFacts.cs" />
+    <Compile Include="Map\MapUtilityFacts.cs" />
     <Compile Include="Map\RequestValidatorFacts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
