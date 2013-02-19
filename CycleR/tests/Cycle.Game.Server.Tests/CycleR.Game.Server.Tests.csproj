@@ -61,7 +61,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CycleR.Game.Server\CycleR.Game.Server.csproj">
+    <ProjectReference Include="..\..\CycleR.Game.Server\CycleR.Game.Server.csproj">
       <Project>{530cbb1d-ac08-4c26-9931-46cbf5f5d2e4}</Project>
       <Name>CycleR.Game.Server</Name>
     </ProjectReference>

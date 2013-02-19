@@ -11,4 +11,4 @@
 }
 $excludes = "*.min.js", "*.ts","*.d.js", "*.js.map"
 
-CopyFolder "..\CycleR.Game.Client\Client\" ".\Resources" $excludes
+CopyFolder "..\..\CycleR.Game.Client\Client\" ".\Resources" $excludes
