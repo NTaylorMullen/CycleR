@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MSBuildCommunityTasksPath>..\.build</MSBuildCommunityTasksPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.targets" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2304E9A5-EC96-4225-BA71-A2B86D457DE0}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CycleR.Game.Client.Tests</RootNamespace>
+    <AssemblyName>CycleR.Game.Client.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <QUnitTestsFolder>Tests</QUnitTestsFolder>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="build.ps1" />
+    <Content Include="index.html" />
+    <Content Include="Resources\AttachedCameraController.js" />
+    <Content Include="Resources\Camera.js" />
+    <Content Include="Resources\CameraController.js" />
+    <Content Include="Resources\Collidable.js" />
+    <Content Include="Resources\ConnectionManager.js" />
+    <Content Include="Resources\CoreRenderer.js" />
+    <Content Include="Resources\CreateGame.js" />
+    <Content Include="Resources\Cycle.js" />
+    <Content Include="Resources\CycleController.js" />
+    <Content Include="Resources\CycleManager.js" />
+    <Content Include="Resources\CycleMovementController.js" />
+    <Content Include="Resources\EnvironmentRenderer.js" />
+    <Content Include="Resources\FindGame.js" />
+    <Content Include="Resources\FreeCameraController.js" />
+    <Content Include="Resources\Game.js" />
+    <Content Include="Resources\GameHandler.js" />
+    <Content Include="Resources\GameLoop.js" />
+    <Content Include="Resources\GameRenderer.js" />
+    <Content Include="Resources\GameScreen.js" />
+    <Content Include="Resources\GameScreenHandler.js" />
+    <Content Include="Resources\GameTime.js" />
+    <Content Include="Resources\KeyboardAdapter.js" />
+    <Content Include="Resources\Loading.js" />
+    <Content Include="Resources\Main.js" />
+    <Content Include="Resources\MainGame.js" />
+    <Content Include="Resources\MainMenu.js" />
+    <Content Include="Resources\Map.js" />
+    <Content Include="Resources\MapLocation.js" />
+    <Content Include="Resources\MapRenderer.js" />
+    <Content Include="Resources\MapUtilities.js" />
+    <Content Include="Resources\ModelLibrary.js" />
+    <Content Include="Resources\ModelLoader.js" />
+    <Content Include="Resources\MovementController.js" />
+    <Content Include="Resources\Number.js" />
+    <Content Include="Resources\Options.js" />
+    <Content Include="Resources\PayloadConverter.js" />
+    <Content Include="Resources\PayloadDecompressor.js" />
+    <Content Include="Resources\Preloader.js" />
+    <Content Include="Resources\QuickMatch.js" />
+    <Content Include="Resources\SceneObjectCreator.js" />
+    <Content Include="Resources\Size.js" />
+    <Content Include="Resources\Trail.js" />
+    <Content Include="Resources\TrailManager.js" />
+    <Content Include="Scripts\jquery-1.8.2.js" />
+    <Content Include="Scripts\qunit.js" />
+    <Content Include="Scripts\shortcut.js" />
+    <Content Include="Scripts\three.detector.js" />
+    <Content Include="Scripts\three.extensions.js" />
+    <Content Include="Scripts\three.fpscontrols.js" />
+    <Content Include="Scripts\three.min.js" />
+    <Content Include="Scripts\three.trackballcontrols.js" />
+    <Content Include="Scripts\three.windowresize.js" />
+    <Content Include="Scripts\tween.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Styles\qunit.css" />
+    <Content Include="Tests\CycleMovementFacts.js" />
+    <Content Include="Utilities\testUtilities.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:64143/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <UsingTask TaskName="BuildScriptTags" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+    <ParameterGroup>
+      <ProjectDirectory Required="true" />
+      <RelativePath Required="true" />
+      <ScriptTagsOutput Output="true" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System.IO" />
+      <Using Namespace="System.Web" />
+      <Using Namespace="Microsoft.Build.Framework" />
+      <Code Type="Fragment" Language="cs"><![CDATA[
+            ScriptTagsOutput = "";
+            DirectoryInfo dirInfo = new DirectoryInfo(ProjectDirectory + "\\" + RelativePath.Replace("/", "\\"));
+            FileInfo[] fileInfos = dirInfo.GetFiles("*.js", SearchOption.AllDirectories);
+
+            foreach (FileInfo f in fileInfos)
+            {
+                var scriptTag = "<script type=\"text/javascript\" src=\"";
+                scriptTag += Uri.UnescapeDataString(f.FullName.Replace(ProjectDirectory + "\\", "").Replace("\\","/")) + "\"></script>";
+                
+                ScriptTagsOutput += scriptTag+"\n";
+            }
+    ]]></Code>
+    </Task>
+  </UsingTask>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>-->
+  <Target Name="AfterBuild">
+    <BuildScriptTags ProjectDirectory="$(MSBuildProjectDirectory)" RelativePath="$(QUnitTestsFolder)">
+      <Output PropertyName="JSTests" TaskParameter="ScriptTagsOutput" />
+    </BuildScriptTags>
+    <FileUpdate Files="index.html" Regex="&lt;!-- ##JS## --&gt;((.|\r|\n)*?)&lt;!-- ##JS## --&gt;" ReplacementText="&lt;!-- ##JS## --&gt;$(JSTests)&lt;!-- ##JS## --&gt;" Condition=" '$(OS)' == 'Windows_NT'" />
+    <Exec Command="powershell -NoProfile -ExecutionPolicy Bypass .\build.ps1" WorkingDirectory="$(ProjectDir)" Condition=" '$(OS)' == 'Windows_NT'" />
+  </Target>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{86FCE32C-ACF7-4521-8D4E-472859A47C24}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D55A1066-591B-436F-8C68-76E6DEF7AD4E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{11A07F07-6A1D-454D-866D-25F13A370183}"
+	ProjectSection(SolutionItems) = preProject
+		Build.proj = Build.proj
+		.build\MSBuild.Community.Tasks.dll = .build\MSBuild.Community.Tasks.dll
+		.build\MSBuild.Community.Tasks.targets = .build\MSBuild.Community.Tasks.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CycleR.Game.Server.Tests", "Cycle.Game.Server.Tests\CycleR.Game.Server.Tests.csproj", "{2E529850-4C85-4097-AA6C-3B8066F7E6C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CycleR.Game.Client.Tests", "CycleR.Game.Client.Tests\CycleR.Game.Client.Tests.csproj", "{2304E9A5-EC96-4225-BA71-A2B86D457DE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CycleR.Game.Client", "CycleR.Game.Client\CycleR.Game.Client.csproj", "{797E22C6-2768-4FBF-80DF-9DB7DE96F535}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CycleR.Game.Server", "CycleR.Game.Server\CycleR.Game.Server.csproj", "{530CBB1D-AC08-4C26-9931-46CBF5F5D2E4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2E529850-4C85-4097-AA6C-3B8066F7E6C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E529850-4C85-4097-AA6C-3B8066F7E6C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E529850-4C85-4097-AA6C-3B8066F7E6C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E529850-4C85-4097-AA6C-3B8066F7E6C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2304E9A5-EC96-4225-BA71-A2B86D457DE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2304E9A5-EC96-4225-BA71-A2B86D457DE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2304E9A5-EC96-4225-BA71-A2B86D457DE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2304E9A5-EC96-4225-BA71-A2B86D457DE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{797E22C6-2768-4FBF-80DF-9DB7DE96F535}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{797E22C6-2768-4FBF-80DF-9DB7DE96F535}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{797E22C6-2768-4FBF-80DF-9DB7DE96F535}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{797E22C6-2768-4FBF-80DF-9DB7DE96F535}.Release|Any CPU.Build.0 = Release|Any CPU
+		{530CBB1D-AC08-4C26-9931-46CBF5F5D2E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{530CBB1D-AC08-4C26-9931-46CBF5F5D2E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{530CBB1D-AC08-4C26-9931-46CBF5F5D2E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{530CBB1D-AC08-4C26-9931-46CBF5F5D2E4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2E529850-4C85-4097-AA6C-3B8066F7E6C3} = {D55A1066-591B-436F-8C68-76E6DEF7AD4E}
+		{2304E9A5-EC96-4225-BA71-A2B86D457DE0} = {D55A1066-591B-436F-8C68-76E6DEF7AD4E}
+	EndGlobalSection
+EndGlobal
