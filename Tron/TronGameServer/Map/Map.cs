@@ -97,7 +97,7 @@ namespace Tron.GameServer
                         // to also be pointing in the negative direction.
                         if (difference > 0)
                         {
-                            incrementor *= difference.Normalized() * -1;
+                            incrementor *= -1;
                         }
 
                         newLocation -= incrementor;
@@ -118,6 +118,9 @@ namespace Tron.GameServer
                             // If we're 1 away from the head location while colliding, no need to mark anything, just noop
                             if (distance.NonZeroValue() == 1)
                             {
+                                this[cycle.MovementController.HeadLocation] = cycle.ID;
+                                this[newLocation] = -cycle.ID;
+                                cycle.MovementController.HeadLocation = newLocation;
                                 continue;
                             }
 
