@@ -35,20 +35,27 @@ namespace Tron.GameServer.Tests
         }
 
         [Theory]
-        [InlineData()]
-        public void CycleMoveRepositionsOnHeadLocation(double positionX, double positionZ, double velocityX, double velocityZ, double rotation, string direction, double expectedX, double expectedZ)
+        [InlineData(22,0, 0,0,10,10, Math.PI + Math.PI * .5,"Left")]
+        [InlineData(22, 0, 0, 0, 10, 10, 0, "Left")]
+        [InlineData(22, 0, 0, 0, 10, 10, Math.PI * .5, "Left")]
+        [InlineData(22, 0, 0, 0, 10, 10, Math.PI, "Left")]
+        [InlineData(22, 0, 0, 0, 10, 10, Math.PI + Math.PI * .5, "Right")]
+        [InlineData(22, 0, 0, 0, 10, 10, 0, "Right")]
+        [InlineData(22, 0, 0, 0, 10, 10, Math.PI * .5, "Right")]
+        [InlineData(22, 0, 0, 0, 10, 10, Math.PI, "Right")]
+        public void CycleMoveRepositionsOnHeadLocation(double positionX, double positionZ, double velocityX, double velocityZ, double headRow, double headColumn, double rotation, string direction)
         {
             var position = new Vector3(positionX, gameConfig.CycleConfig.Y_OFFSET, positionZ);
             var map = new Map(gameConfig.MapConfig);
             var velocity = new Vector3(velocityX, 0, velocityZ);
-            var expectedPosition = new Vector3(expectedX, gameConfig.CycleConfig.Y_OFFSET, expectedZ);
             var movementController = new CycleMovementController(position, velocity, rotation, map, gameConfig);
+            movementController.HeadLocation = new MapLocation(headRow, headColumn);
             var movementFlag = (MovementFlag)Enum.Parse(typeof(MovementFlag), direction);
             var mapUtilities = new MapUtilities(gameConfig.MapConfig.MAP_SIZE, gameConfig.MapConfig.FLOOR_TILE_SIZE);
 
             movementController.Move(movementFlag);
 
-            Assert.True(movementController.Position.SameAs(expectedPosition));
+            Assert.True(movementController.Position.SameAs(mapUtilities.ToPosition(new MapLocation(headRow, headColumn),gameConfig.CycleConfig.Y_OFFSET)));
         }
     }
 }
