@@ -32,5 +32,10 @@ namespace CycleR.Game.Server
             StartLocation = null;
             CurrentMapLocation = null;
         }
+
+        public override string ToString()
+        {
+            return StartLocation + " | " + CurrentMapLocation;
+        }
     }
 }

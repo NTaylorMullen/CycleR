@@ -72,6 +72,11 @@ namespace CycleR.Utilities
             return 0;
         }
 
+        public Vector3 Normalized()
+        {
+            return new Vector3((x != 0) ? x / Math.Abs(x) : 0, (y != 0) ? y / Math.Abs(y) : 0, (z != 0) ? z / Math.Abs(z) : 0);
+        }
+
         public static Vector3 operator *(Vector3 v1, Vector3 v2)
         {
             return new Vector3(v1.x * v2.x, v1.y * v2.y, v1.z * v2.z);
