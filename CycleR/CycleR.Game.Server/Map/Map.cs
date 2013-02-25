@@ -59,7 +59,7 @@ namespace CycleR.Game.Server
 
         private void updateMoveLocation(object sender, MoveEventArgs e)
         {
-            Debug.WriteLine("MOVE RECORDED AT " + (sender as Cycle).MovementController.Position);
+            Debug.WriteLine("MOVE RECORDED AT " + (sender as Cycle).MovementController.Position + " | Current Head Location: " + (sender as Cycle).MovementController.HeadLocation + " | Positions Map Location: " + Utilities.ToMapLocation((sender as Cycle).MovementController));
         }
 
         public bool Empty(MapLocation location)
