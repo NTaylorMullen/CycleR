@@ -70,7 +70,7 @@ namespace CycleR.Game.Server
 
         public bool RowOutOfBounds(int row)
         {
-            return row < 0 || row >= _dimensions.Height;
+            return row <= 0 || row >= _dimensions.Height;
         }
 
         public bool XOutOfBounds(double x)
@@ -85,7 +85,7 @@ namespace CycleR.Game.Server
 
         public bool ColumnOutOfBounds(int column)
         {
-            return column < 0 || column >= _dimensions.Width;
+            return column <= 0 || column >= _dimensions.Width;
         }
 
         public MapLocation GetCycleMapLocation(Cycle cycle)
