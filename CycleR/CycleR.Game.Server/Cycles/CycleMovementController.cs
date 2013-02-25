@@ -15,6 +15,7 @@ namespace CycleR.Game.Server
         {
             _gameConfiguration = gameConfiguration;
             _map = map;
+            RequestedPosition = position;
             // There aren't many velocities we can have so calculate them prior to cycle activation
             calculateVelocities();
         }
@@ -33,13 +34,15 @@ namespace CycleR.Game.Server
 
         private double stabilizeValue(double position, double velocity)
         {
+            var remainder = position % _gameConfiguration.MapConfig.FLOOR_TILE_SIZE.Width;
+
             if (velocity.Normalized() * position.Normalized() > 0)
             {
-                position -= position % _gameConfiguration.MapConfig.FLOOR_TILE_SIZE.Width;
+                position -= remainder;
             }
-            else if(position != 0)
+            else if(position != 0 && remainder != 0)
             {
-                position -= position % _gameConfiguration.MapConfig.FLOOR_TILE_SIZE.Width - _gameConfiguration.MapConfig.FLOOR_TILE_SIZE.Width * position.Normalized();
+                position -= remainder - _gameConfiguration.MapConfig.FLOOR_TILE_SIZE.Width * position.Normalized();
             }
 
             return position;
