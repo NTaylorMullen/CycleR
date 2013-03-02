@@ -1,4 +1,5 @@
 /// <reference path="SignalR/SignalR.d.ts" />
+/// <reference path="Knockout/knockout.d.ts" />
 
 // Typing for the jQuery library, version 1.7.x
 

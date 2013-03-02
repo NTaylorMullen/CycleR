@@ -21,6 +21,7 @@
 
     <%= Bundle.JavaScript()
             .Add("Scripts/jquery-1.8.2.js")
+            .Add("Scripts/knockout-2.2.1.js")
             .Add("Scripts/three.min.js")
             .Add("Scripts/three.detector.js")
             .Add("Scripts/three.trackballcontrols.js")
