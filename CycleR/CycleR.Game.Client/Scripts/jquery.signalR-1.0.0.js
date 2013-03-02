@@ -830,7 +830,7 @@
                 return;
             }
 
-            // Async by default unless explicitly overidden
+            // Async by default unless explicitly overridden
             async = typeof async === "undefined" ? true : async;
 
             var url = connection.url + "/abort" + "?transport=" + connection.transport.name + "&connectionToken=" + window.encodeURIComponent(connection.token);
