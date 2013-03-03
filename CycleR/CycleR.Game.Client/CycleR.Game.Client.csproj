@@ -306,9 +306,7 @@
     <Content Include="Client\Interfaces\jquery.d.ts" />
     <TypeScriptCompile Include="Client\Interfaces\SignalR\Connections\Connection.d.ts" />
     <TypeScriptCompile Include="Client\Interfaces\Knockout\knockout.d.ts" />
-    <Content Include="Client\Interfaces\Knockout\knockout.d.js">
-      <DependentUpon>knockout.d.ts</DependentUpon>
-    </Content>
+    <TypeScriptCompile Include="Client\Interfaces\Shortcut\shortcut.d.ts" />
     <Content Include="Client\Interfaces\SignalR\Connections\Connection.d.js">
       <DependentUpon>Connection.d.ts</DependentUpon>
     </Content>
