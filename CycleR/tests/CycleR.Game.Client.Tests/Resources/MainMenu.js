@@ -7,12 +7,26 @@ var MainMenu = (function (_super) {
     __extends(MainMenu, _super);
     function MainMenu(onCompletion, gameServer) {
         _super.call(this, MainMenu.NAME, onCompletion, gameServer);
+        this._menu = new Menu("Main Menu", [
+            new MenuOption("Quick Match", function () {
+                alert("quick game");
+            }), 
+            new MenuOption("Find Game", function () {
+                alert("find game");
+            }), 
+            new MenuOption("Create Game", function () {
+                alert("create game");
+            }), 
+            new MenuOption("Options", function () {
+                alert("options");
+            })
+        ]);
     }
     MainMenu.NAME = "MainMenu";
     MainMenu.prototype.Load = function () {
         console.log("Main Menu loaded!");
         console.log("Loading 'Find Game'...");
-        _super.prototype.Done.call(this, FindGame.NAME);
+        this._menu.Start();
     };
     return MainMenu;
 })(GameScreen);
