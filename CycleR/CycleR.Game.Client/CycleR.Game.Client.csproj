@@ -582,6 +582,9 @@
     <Content Include="Client\Extensions\Vector3.js.map">
       <DependentUpon>Vector3.ts</DependentUpon>
     </Content>
+    <Content Include="Fonts\Digital\digital.eot" />
+    <Content Include="Fonts\Digital\digital.ttf" />
+    <Content Include="Fonts\Digital\digital.woff" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
