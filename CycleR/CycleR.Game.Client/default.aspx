@@ -70,6 +70,8 @@
             .Add("Client/GameCore/GameHandler.js")
             .Add("Client/GameCore/Game.js")
             .Add("Client/GameScreens/GameScreen.js")
+            .Add("Client/GameScreens/Components/Menu.js")
+            .Add("Client/GameScreens/Components/MenuOption.js")
             .Add("Client/GameScreens/MainMenu.js")
             .Add("Client/GameScreens/CreateGame.js")
             .Add("Client/GameScreens/FindGame.js")
