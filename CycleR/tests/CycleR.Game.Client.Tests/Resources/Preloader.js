@@ -20,7 +20,7 @@ var Preloader = (function (_super) {
         console.log("Preloader loaded!");
         console.log("Loading models...");
         ModelLoader.LoadModel(ModelLibrary.Cycle, function () {
-            _this.modelsLoaded();
+            _super.prototype.Done.call(_this, MainMenu.NAME);
         });
     };
     return Preloader;

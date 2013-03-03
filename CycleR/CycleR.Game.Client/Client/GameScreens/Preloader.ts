@@ -23,7 +23,8 @@ class Preloader extends GameScreen {
         console.log("Loading models...");
        
         ModelLoader.LoadModel(ModelLibrary.Cycle, () => {
-            this.modelsLoaded();
+            super.Done(MainMenu.NAME);
+            //this.modelsLoaded();
         });
     }
 }
