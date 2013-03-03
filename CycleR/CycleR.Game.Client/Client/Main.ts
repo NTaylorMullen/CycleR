@@ -20,5 +20,7 @@ $(function () {
         });        
     });    
 
-    $.connection.hub.start({ transport: "serverSentEvents" });
+    $.connection.hub.logging = true;
+
+    $.connection.hub.start();
 })

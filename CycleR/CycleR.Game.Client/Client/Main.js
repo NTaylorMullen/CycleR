@@ -9,8 +9,7 @@ $(function () {
             gameScreenHandler.Load(Preloader.NAME);
         });
     });
-    $.connection.hub.start({
-        transport: "serverSentEvents"
-    });
+    $.connection.hub.logging = true;
+    $.connection.hub.start();
 });
 //@ sourceMappingURL=Main.js.map
