@@ -598,7 +598,36 @@
     <Content Include="Scripts\three.min.js" />
     <Content Include="Scripts\three.trackballcontrols.js" />
     <Content Include="Scripts\tween.js" />
-    <Content Include="Styles\game.css" />
+    <Content Include="Styles\colors.css">
+      <DependentUpon>colors.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\colors.min.css">
+      <DependentUpon>colors.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\common.css">
+      <DependentUpon>common.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\common.min.css">
+      <DependentUpon>common.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\fonts.css">
+      <DependentUpon>fonts.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\fonts.min.css">
+      <DependentUpon>fonts.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\game.css">
+      <DependentUpon>game.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\game.min.css">
+      <DependentUpon>game.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\reset.css">
+      <DependentUpon>reset.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\reset.min.css">
+      <DependentUpon>reset.less</DependentUpon>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

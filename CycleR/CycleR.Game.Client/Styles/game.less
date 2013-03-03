@@ -1,0 +1,61 @@
+﻿@import-once 'reset.less';
+
+@import-once 'colors.less';
+@import-once 'fonts.less';
+@import-once 'common.less';
+@import-once 'utils.less';
+
+@menuArrowSize: .48em;
+
+body, html {
+    .fill-space;
+    background-color: @defaultBackground;
+    font-size: @defaultFontSize;
+}
+
+canvas {
+    .fill-space;
+}
+
+#GameWrapper {
+    .fill-space;
+}
+
+#GameScreen {
+    .top-left;
+    .fill-space;
+    position: absolute;
+
+    .menuComponentHolder {
+        .fill-space;
+        .opacity(.3);
+        text-align: center;
+        color: @defaultMenuFontColor;
+        background-color: @defaultMenuBackgroundColor;        
+
+        h1 {
+            .menu-header-font;
+        }
+
+        .menuComponent {
+            p {
+                .menu-font; 
+
+                span.menuItemHolder {
+                    position:relative;
+                    
+                    &:hover {
+                        cursor:pointer;
+                    }
+
+                    span.itemSelected {
+                        .block;
+                        .arrow-right(@defaultMenuFontColor, @menuArrowSize);
+                        position:absolute;
+                        left:-(@menuArrowSize + .2);                        
+                    }
+                }                
+            }
+        }
+    }
+}

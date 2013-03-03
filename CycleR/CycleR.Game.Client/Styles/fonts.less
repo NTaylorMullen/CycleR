@@ -1,0 +1,24 @@
+﻿@import-once 'colors.less';
+
+@defaultFontSize: 14px;
+
+@menuFontSize: 3em;
+@menuHeaderFontSize: 7em;
+
+@font-face {
+    font-family: digital;
+    src: url('../Fonts/Digital/digital.eot'), url('../Fonts/Digital/digital.ttf') format('truetype'), url('../Fonts/Digital/digital.woff');
+}
+
+.digitalFont(@size) {
+    font-family: digital;
+    font-size: @size;
+}
+
+.menu-font () {
+    .digitalFont(@menuFontSize);
+}
+
+.menu-header-font () {
+    .digitalFont(@menuHeaderFontSize);
+}

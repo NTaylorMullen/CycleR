@@ -1,0 +1,36 @@
+﻿@import-once 'common.less';
+
+.arrow-right (@color, @size) {
+    .collapse-space;
+    border-top: @size solid transparent;
+    border-bottom: @size solid transparent;
+    border-left: @size solid @color;
+}
+
+.arrow-left (@color, @size) {
+    .collapse-space;
+    border-top: @size solid transparent;
+    border-bottom: @size solid transparent;
+    border-right: @size solid @color;
+}
+
+.arrow-up (@color, @size) {
+    .collapse-space;
+    border-left: @size solid transparent;
+    border-right: @size solid transparent;
+    border-bottom: @size solid @color;
+}
+
+.arrow-down (@color, @size) {
+    .collapse-space;
+    border-left: @size solid transparent;
+    border-right: @size solid transparent;
+    border-top: @size solid @color;
+}
+
+.opacity(@opacity) {
+    filter: alpha(opacity=(@opacity * 100));
+    -moz-opacity: @opacity;
+    -khtml-opacity: @opacity;
+    opacity: @opacity;
+}

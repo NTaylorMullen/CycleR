@@ -1,74 +1,182 @@
-﻿html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
+﻿html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-    display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
-
 body {
-    line-height: 1;
+  line-height: 1;
+  margin: 0;
 }
-
-ol, ul {
-    list-style: none;
+ol,
+ul {
+  list-style: none;
 }
-
-blockquote, q {
-    quotes: none;
+blockquote,
+q {
+  quotes: none;
 }
-
-    blockquote:before, blockquote:after,
-    q:before, q:after {
-        content: '';
-        content: none;
-    }
-
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
 table {
-    border-collapse: collapse;
-    border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
-
-body, html {
-    width:100%;
-    height:100%;
-    background-color:#0b0c1b;
+@font-face {
+  font-family: digital;
+  src: url('../Fonts/Digital/digital.eot'), url('../Fonts/Digital/digital.ttf') format('truetype'), url('../Fonts/Digital/digital.woff');
 }
-
+body,
+html {
+  width: 100%;
+  height: 100%;
+  background-color: #0b0c1b;
+  font-size: 14px;
+}
 canvas {
-    display:block;
-    width:100%;
-    height:100%;
+  width: 100%;
+  height: 100%;
 }
-
 #GameWrapper {
-    width:100%;
-    height:100%;
+  width: 100%;
+  height: 100%;
 }
-
 #GameScreen {
-    position:absolute;
-    top: 0;
-    left: 0;
-    width:100%;
-    height:100%;
-    display:none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+#GameScreen .menuComponentHolder {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: #ffffff;
+  background-color: #000000;
+}
+#GameScreen .menuComponentHolder h1 {
+  font-family: digital;
+  font-size: 7em;
+}
+#GameScreen .menuComponentHolder .menuComponent p {
+  font-family: digital;
+  font-size: 3em;
+}
+#GameScreen .menuComponentHolder .menuComponent p span.menuItemHolder {
+  position: relative;
+}
+    #GameScreen .menuComponentHolder .menuComponent p span.menuItemHolder:hover {
+        cursor:pointer;
+    }
+#GameScreen .menuComponentHolder .menuComponent p span.menuItemHolder span.itemSelected {
+  position: absolute;
+  left: -0.6799999999999999em;
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 0.48em solid transparent;
+  border-bottom: 0.48em solid transparent;
+  border-left: 0.48em solid #ffffff;
 }
