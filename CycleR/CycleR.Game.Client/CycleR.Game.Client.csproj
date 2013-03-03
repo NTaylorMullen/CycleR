@@ -148,6 +148,20 @@
     <Content Include="Client\GameCore\GameHandler.min.js">
       <DependentUpon>GameHandler.ts</DependentUpon>
     </Content>
+    <TypeScriptCompile Include="Client\GameScreens\Components\Menu.ts" />
+    <Content Include="Client\GameScreens\Components\Menu.js">
+      <DependentUpon>Menu.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\GameScreens\Components\Menu.min.js">
+      <DependentUpon>Menu.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="Client\GameScreens\Components\MenuOption.ts" />
+    <Content Include="Client\GameScreens\Components\MenuOption.js">
+      <DependentUpon>MenuOption.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\GameScreens\Components\MenuOption.min.js">
+      <DependentUpon>MenuOption.ts</DependentUpon>
+    </Content>
     <Content Include="Client\GameScreens\CreateGame.js">
       <DependentUpon>CreateGame.ts</DependentUpon>
     </Content>
@@ -582,6 +596,12 @@
     <Content Include="Client\Extensions\Vector3.js.map">
       <DependentUpon>Vector3.ts</DependentUpon>
     </Content>
+    <Content Include="Client\GameScreens\Components\Menu.js.map">
+      <DependentUpon>Menu.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\GameScreens\Components\MenuOption.js.map">
+      <DependentUpon>MenuOption.ts</DependentUpon>
+    </Content>
     <Content Include="Fonts\Digital\digital.eot" />
     <Content Include="Fonts\Digital\digital.ttf" />
     <Content Include="Fonts\Digital\digital.woff" />
@@ -748,6 +768,12 @@
     <Content Include="Client\Trails\TrailManager.js.map">
       <DependentUpon>TrailManager.ts</DependentUpon>
     </Content>
+    <Content Include="Styles\game.less" />
+    <Content Include="Styles\reset.less" />
+    <Content Include="Styles\colors.less" />
+    <Content Include="Styles\fonts.less" />
+    <Content Include="Styles\common.less" />
+    <Content Include="Styles\utils.less" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
