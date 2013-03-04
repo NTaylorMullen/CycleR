@@ -18,13 +18,16 @@ class Preloader extends GameScreen {
         super.Done(MainMenu.NAME);
     }
 
-    public Load(): void {
+    public Load(lastScreen?: string): void {
+        super.Load(lastScreen);
+
         console.log("Preloader loaded!");
         console.log("Loading models...");
        
+        this.modelsLoaded();
+        /*
         ModelLoader.LoadModel(ModelLibrary.Cycle, () => {
-            super.Done(MainMenu.NAME);
-            //this.modelsLoaded();
-        });
+            this.modelsLoaded();
+        });*/
     }
 }

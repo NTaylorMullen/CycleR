@@ -8,7 +8,7 @@ var Size = (function () {
         }
     }
     Size.prototype.Half = function () {
-        return new Size(0.5 * this.Width, 0.5 * this.Height);
+        return new Size(.5 * this.Width, .5 * this.Height);
     };
     return Size;
 })();

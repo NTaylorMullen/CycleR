@@ -6,23 +6,28 @@ var __extends = this.__extends || function (d, b) {
 var MainMenu = (function (_super) {
     __extends(MainMenu, _super);
     function MainMenu(onCompletion, gameServer) {
+        var _this = this;
         _super.call(this, MainMenu.NAME, onCompletion, gameServer);
         this._menu = new Menu("Main Menu", [
             new MenuOption("Quick Match", function () {
-                alert("quick game");
+                _this.Done(QuickMatch.NAME);
             }), 
             new MenuOption("Find Game", function () {
-                alert("find game");
+                _this.Done(FindGame.NAME);
             }), 
             new MenuOption("Create Game", function () {
-                alert("create game");
+                _this.Done(CreateGame.NAME);
             }), 
-            new MenuOption("Options", function () {
-                alert("options");
+            new MenuOption("Settings", function () {
+                _this.Done(Settings.NAME);
             })
         ]);
     }
     MainMenu.NAME = "MainMenu";
+    MainMenu.prototype.Done = function (nextScreen) {
+        this._menu.Stop();
+        _super.prototype.Done.call(this, nextScreen);
+    };
     MainMenu.prototype.Load = function () {
         console.log("Main Menu loaded!");
         console.log("Loading 'Find Game'...");

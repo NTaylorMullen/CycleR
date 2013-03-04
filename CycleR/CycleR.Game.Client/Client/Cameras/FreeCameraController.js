@@ -11,7 +11,7 @@ var FreeCameraController = (function (_super) {
     }
     FreeCameraController.MODE = "Free";
     FreeCameraController.MOVE_SPEED = 2000;
-    FreeCameraController.LOOK_SPEED = 0.075;
+    FreeCameraController.LOOK_SPEED = .075;
     FreeCameraController.prototype.initializeCamera = function (camera) {
         this._controls = new THREE.FirstPersonControls(camera);
         this._controls.movementSpeed = FreeCameraController.MOVE_SPEED;

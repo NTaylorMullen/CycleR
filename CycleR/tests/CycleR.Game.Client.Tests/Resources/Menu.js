@@ -48,7 +48,7 @@ var Menu = (function () {
         $.each(Menu._cursorUpKeys, function (i, val) {
             shortcut.remove(val);
         });
-        $.each(Menu._cursorUpKeys, function (i, val) {
+        $.each(Menu._cursorDownKeys, function (i, val) {
             shortcut.remove(val);
         });
         $.each(Menu._cursorSelectKeys, function (i, val) {
@@ -65,7 +65,6 @@ var Menu = (function () {
         ko.applyBindings(this, this.Element[0]);
     };
     Menu.prototype.Stop = function () {
-        this.unapplyKeybindings();
         ko.cleanNode(this.Element[0]);
     };
     return Menu;

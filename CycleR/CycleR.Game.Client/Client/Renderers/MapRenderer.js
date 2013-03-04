@@ -6,7 +6,7 @@ var MapRenderer = (function () {
     }
     MapRenderer.prototype.renderFloor = function () {
         var floorSizeIncrementor = new Size(Map.MAP_SIZE.Width / Map.FLOOR_TILE_SIZE.Width, Map.MAP_SIZE.Height / Map.FLOOR_TILE_SIZE.Height), planeTesselated = new THREE.PlaneGeometry(Map.MAP_SIZE.Width, Map.MAP_SIZE.Height, floorSizeIncrementor.Width, floorSizeIncrementor.Height), matWire = new THREE.MeshBasicMaterial({
-            color: 2414099,
+            color: 0x24D613,
             wireframe: true,
             wireframeLinewidth: 2
         });
@@ -17,7 +17,7 @@ var MapRenderer = (function () {
     };
     MapRenderer.prototype.renderWalls = function () {
         var wallGeometry = new THREE.PlaneGeometry(Map.WALL_SIZE.Width, Map.WALL_SIZE.Height), wallMaterial = new THREE.MeshBasicMaterial({
-            color: 3355443
+            color: 0x333333
         }), wallLength = Map.MAP_SIZE.Width / 2, halfWallHeight = Map.WALL_SIZE.Height / 2, wallPositions = [
             [
                 0, 

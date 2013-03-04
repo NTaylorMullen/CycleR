@@ -15,13 +15,11 @@ var Preloader = (function (_super) {
         console.log("Loading Main Menu...");
         _super.prototype.Done.call(this, MainMenu.NAME);
     };
-    Preloader.prototype.Load = function () {
-        var _this = this;
+    Preloader.prototype.Load = function (lastScreen) {
+        _super.prototype.Load.call(this, lastScreen);
         console.log("Preloader loaded!");
         console.log("Loading models...");
-        ModelLoader.LoadModel(ModelLibrary.Cycle, function () {
-            _super.prototype.Done.call(_this, MainMenu.NAME);
-        });
+        this.modelsLoaded();
     };
     return Preloader;
 })(GameScreen);

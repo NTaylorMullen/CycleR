@@ -7,7 +7,7 @@ var Map = (function (_super) {
     __extends(Map, _super);
     function Map() {
         _super.call(this);
-        this._halfMapSize = new Size(Map.MAP_SIZE.Width * 0.5, Map.MAP_SIZE.Height * 0.5);
+        this._halfMapSize = new Size(Map.MAP_SIZE.Width * .5, Map.MAP_SIZE.Height * .5);
         this._dimensions = new Size(Map.MAP_SIZE.Width / Map.FLOOR_TILE_SIZE.Width, Map.MAP_SIZE.Height / Map.FLOOR_TILE_SIZE.Height);
         this._map = [];
         this._cycles = {

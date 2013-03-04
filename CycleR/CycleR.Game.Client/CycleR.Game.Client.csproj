@@ -231,6 +231,13 @@
     </Content>
     <TypeScriptCompile Include="Client\Interfaces\Game\Configuration\GameConfiguration.d.ts" />
     <TypeScriptCompile Include="Client\Interfaces\Game\Configuration\CycleConfiguration.d.ts" />
+    <TypeScriptCompile Include="Client\GameScreens\Settings.ts" />
+    <Content Include="Client\GameScreens\Settings.js">
+      <DependentUpon>Settings.ts</DependentUpon>
+    </Content>
+    <Content Include="Client\GameScreens\Settings.min.js">
+      <DependentUpon>Settings.ts</DependentUpon>
+    </Content>
     <Content Include="Client\Interfaces\Game\Configuration\CycleConfiguration.d.js">
       <DependentUpon>CycleConfiguration.d.ts</DependentUpon>
     </Content>
@@ -603,6 +610,9 @@
     <Content Include="Fonts\Digital\digital.eot" />
     <Content Include="Fonts\Digital\digital.ttf" />
     <Content Include="Fonts\Digital\digital.woff" />
+    <Content Include="Client\GameScreens\Settings.js.map">
+      <DependentUpon>Settings.ts</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />

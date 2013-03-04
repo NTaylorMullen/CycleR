@@ -5,12 +5,16 @@ var GameScreen = (function () {
         this.Name = name;
         this.Running = false;
     }
-    GameScreen.prototype.Load = function () {
+    GameScreen.prototype.Load = function (lastScreen) {
         this.Running = true;
+        this._lastScreen = lastScreen;
     };
     GameScreen.prototype.Done = function (nextScreen) {
         this.Running = false;
-        this._onCompletion(nextScreen);
+        if(!nextScreen) {
+            nextScreen = this._lastScreen;
+        }
+        this._onCompletion(nextScreen, this.Name);
     };
     return GameScreen;
 })();

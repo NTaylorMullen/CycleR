@@ -4,7 +4,6 @@ var Menu = (function () {
         this.Selected = ko.observable(0);
         this.Title = title;
         this.Options = options;
-        this.Element = $(Menu._template);
         this._cursorUp = function () {
             if(that.Selected() <= 0) {
                 that.Selected(that.Options.length - 1);
@@ -19,7 +18,7 @@ var Menu = (function () {
             that.Options[that.Selected()].Action();
         };
     }
-    Menu._template = "<div class='menuComponentHolder'>" + "<h1 data-bind='text: Title'></h1><hr />" + "<div class='menuComponent' data-bind='foreach: Options'>" + "<p><span class='menuItemHolder'><span class='itemSelected' data-bind='visible: $root.Selected() == $index()'></span><span class='itemName' data-bind='text: Name, click: $root.Select.bind($root)'></span></span></p>" + "</div>" + "</div>";
+    Menu._template = "<div class='menuComponentHolder'>" + "<h1 data-bind='text: Title'></h1><hr />" + "<div class='menuComponent' data-bind='foreach: Options'>" + "<p><span class='menuItemHolder' data-bind='click: $root.Select.bind($root)'><span class='itemSelected' data-bind='visible: $root.Selected() == $index()'></span><span class='itemName' data-bind='text: Name'></span></span></p>" + "</div>" + "</div>";
     Menu._holder = $("#GameScreen");
     Menu._cursorUpKeys = [
         "Up", 
@@ -48,7 +47,7 @@ var Menu = (function () {
         $.each(Menu._cursorUpKeys, function (i, val) {
             shortcut.remove(val);
         });
-        $.each(Menu._cursorUpKeys, function (i, val) {
+        $.each(Menu._cursorDownKeys, function (i, val) {
             shortcut.remove(val);
         });
         $.each(Menu._cursorSelectKeys, function (i, val) {
@@ -61,11 +60,13 @@ var Menu = (function () {
     };
     Menu.prototype.Start = function () {
         this.applyKeybindings();
+        this.Element = $(Menu._template);
         Menu._holder.append(this.Element);
         ko.applyBindings(this, this.Element[0]);
     };
     Menu.prototype.Stop = function () {
         this.unapplyKeybindings();
+        this.Element.remove();
         ko.cleanNode(this.Element[0]);
     };
     return Menu;

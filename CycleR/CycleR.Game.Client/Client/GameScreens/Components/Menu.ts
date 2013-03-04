@@ -6,7 +6,7 @@ class Menu {
     private static _template = "<div class='menuComponentHolder'>" +
                                     "<h1 data-bind='text: Title'></h1><hr />" +
                                     "<div class='menuComponent' data-bind='foreach: Options'>" +
-                                        "<p><span class='menuItemHolder'><span class='itemSelected' data-bind='visible: $root.Selected() == $index()'></span><span class='itemName' data-bind='text: Name, click: $root.Select.bind($root)'></span></span></p>" +
+                                        "<p><span class='menuItemHolder' data-bind='click: $root.Select.bind($root)'><span class='itemSelected' data-bind='visible: $root.Selected() == $index()'></span><span class='itemName' data-bind='text: Name'></span></span></p>" +
                                     "</div>" +
                                "</div>";
 
@@ -28,8 +28,7 @@ class Menu {
         var that = this;
         this.Selected = ko.observable(0);
         this.Title = title;
-        this.Options = options;
-        this.Element = $(Menu._template);
+        this.Options = options;        
 
         this._cursorUp = () => {
             if (that.Selected() <= 0) {
@@ -68,7 +67,7 @@ class Menu {
             shortcut.remove(val);
         });
 
-        $.each(Menu._cursorUpKeys, (i, val) => {
+        $.each(Menu._cursorDownKeys, (i, val) => {
             shortcut.remove(val);
         });
 
@@ -85,12 +84,15 @@ class Menu {
     public Start(): void {
         this.applyKeybindings();
 
+        this.Element = $(Menu._template);
         Menu._holder.append(this.Element);
+
         ko.applyBindings(this, this.Element[0]);
     }
 
     public Stop(): void {
         this.unapplyKeybindings();
+        this.Element.remove();
         ko.cleanNode(this.Element[0]);
     }
 }

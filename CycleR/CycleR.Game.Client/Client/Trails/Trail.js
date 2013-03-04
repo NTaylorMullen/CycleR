@@ -23,7 +23,7 @@ var Trail = (function () {
     Trail.prototype.ExtendTo = function (ownerPosition) {
         var positionDiff = this._startPosition[this.Direction] - ownerPosition[this.Direction], newSize = Math.abs(positionDiff);
         this.Context.scale[this.Direction] = newSize;
-        this.Context.position[this.Direction] = ownerPosition[this.Direction] + 0.5 * newSize * positionDiff / Math.abs(positionDiff);
+        this.Context.position[this.Direction] = ownerPosition[this.Direction] + .5 * newSize * positionDiff / Math.abs(positionDiff);
     };
     return Trail;
 })();

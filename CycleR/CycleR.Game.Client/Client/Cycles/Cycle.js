@@ -21,7 +21,7 @@ var Cycle = (function (_super) {
     };
     Cycle.prototype.createContext = function (rawModel) {
         var context = new THREE.Mesh(new THREE.CubeGeometry(1, 1, 1), new THREE.MeshBasicMaterial({
-            color: 16777215
+            color: 0xffffff
         }));
         context.scale = new THREE.Vector3(100, 100, 100);
         return context;
