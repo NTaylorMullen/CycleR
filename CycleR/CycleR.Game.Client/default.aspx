@@ -78,6 +78,7 @@
             .Add("Client/GameScreens/Loading.js")
             .Add("Client/GameScreens/MainGame.js")
             .Add("Client/GameScreens/Options.js")
+            .Add("Client/GameScreens/Settings.js")
             .Add("Client/GameScreens/QuickMatch.js")
             .Add("Client/GameScreens/Preloader.js")
             .Add("Client/GameScreens/GameScreenHandler.js")

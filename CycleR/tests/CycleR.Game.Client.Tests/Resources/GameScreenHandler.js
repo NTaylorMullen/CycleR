@@ -10,6 +10,7 @@ var GameScreenHandler = (function () {
         this._screens[MainMenu.NAME] = new MainMenu(completionCallback, gameServer);
         this._screens[QuickMatch.NAME] = new QuickMatch(completionCallback, gameServer);
         this._screens[Options.NAME] = new Options(completionCallback, gameServer);
+        this._screens[Settings.NAME] = new Settings(completionCallback, gameServer);
         this._screens[FindGame.NAME] = new FindGame(completionCallback, gameServer);
         this._screens[CreateGame.NAME] = new CreateGame(completionCallback, gameServer);
         this._screens[Preloader.NAME] = new Preloader(completionCallback, gameServer);
